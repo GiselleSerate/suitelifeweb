@@ -6,6 +6,7 @@ import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable,
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import * as firebase from 'firebase/app';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +16,35 @@ import * as firebase from 'firebase/app';
 export class AppComponent {
   items: FirebaseListObservable<any[]>;
   user: FirebaseObjectObservable<any>;
+  handleSubject: Subject<any>;
   title = 'app';
   constructor(db: AngularFireDatabase, afAuth: AngularFireAuth) {
-  	this.items = db.list('/users/AGGv3AEbBuV52vhG1f1a5dd2NcQ2/debts');
+  	this.items = db.list('/users');
+    // -----
+    // this.items = db.list('/items', { preserveSnapshot: true });
+    // this.items.subscribe(snapshots => {
+    //   snapshots.forEach(snapshot => {
+    //     console.log(snapshot.key)
+    //     console.log(snapshot.val())
+    //   });
+    // })
+    // -----
+
+    // this.handleSubject = new Subject(); // Goes with filterby.
+    // this.items = db.list('/users', {
+    //   query: {
+    //     orderByChild: 'handle',
+    //     equalTo: this.handleSubject
+    //   }
+    // });
+
   	this.user = db.object('/users/GjtBrJiPYkZQCnhFV8FwsqUyE6u2/handle');
   	// afAuth.authState;
   }
+
+  // filterBy(size: string) {
+  //   this.handleSubject.next(size); 
+  // }
 }
 
 
