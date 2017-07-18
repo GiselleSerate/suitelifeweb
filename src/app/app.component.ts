@@ -19,9 +19,22 @@ export class AppComponent {
   items: FirebaseListObservable<any[]>;
   currentUser: Observable<firebase.User>;
   handleSubject: Subject<any>;
+  currentUserInfo: FirebaseListObservable<any[]>;
+  currentUserID: string;
 
   constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
     this.currentUser = afAuth.authState;
+    this.currentUser.subscribe(res => {
+      if(res && res.uid) {
+        console.log("User logged in.");
+        console.log(res.uid);
+        this.currentUserID = res.uid;
+        this.currentUserInfo = db.list('/users/'.concat(this.currentUserID, '/list'));
+      }
+      else {
+        console.log("User not logged in.")
+      }
+    })
   	this.items = db.list('/users');
   }
 
