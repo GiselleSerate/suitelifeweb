@@ -13,45 +13,27 @@ import { Subject } from 'rxjs/Subject';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
+
   items: FirebaseListObservable<any[]>;
-  user: FirebaseObjectObservable<any>;
+  currentUser: Observable<firebase.User>;
   handleSubject: Subject<any>;
-  title = 'app';
-  constructor(db: AngularFireDatabase, afAuth: AngularFireAuth) {
+
+  constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
+    this.currentUser = afAuth.authState;
   	this.items = db.list('/users');
-    // -----
-    // this.items = db.list('/items', { preserveSnapshot: true });
-    // this.items.subscribe(snapshots => {
-    //   snapshots.forEach(snapshot => {
-    //     console.log(snapshot.key)
-    //     console.log(snapshot.val())
-    //   });
-    // })
-    // -----
-
-    // this.handleSubject = new Subject(); // Goes with filterby.
-    // this.items = db.list('/users', {
-    //   query: {
-    //     orderByChild: 'handle',
-    //     equalTo: this.handleSubject
-    //   }
-    // });
-
-  	this.user = db.object('/users/GjtBrJiPYkZQCnhFV8FwsqUyE6u2/handle');
-  	// afAuth.authState;
   }
 
-  // filterBy(size: string) {
-  //   this.handleSubject.next(size); 
-  // }
+  login() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
+
+  logout() {
+    this.afAuth.auth.signOut();
+  }
+
 }
-
-
-// import { AngularFireAuth } from 'angularfire2/auth';
-// // Do not import from 'firebase' as you'd lose the tree shaking benefits
-// import * as firebase from 'firebase/app';
-// ...
 
 // user: Observable<firebase.User>;
 // constructor(afAuth: AngularFireAuth) {
