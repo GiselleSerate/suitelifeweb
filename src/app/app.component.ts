@@ -10,8 +10,6 @@ import * as firebase from 'firebase/app';
 import { Subject } from 'rxjs/Subject';
 // --------------------------------------------
 
-import { InventoryComponent } from './inventory/inventory.component';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,35 +19,23 @@ import { InventoryComponent } from './inventory/inventory.component';
 export class AppComponent {
 
   items: FirebaseListObservable<any[]>;
-  currentUser: Observable<firebase.User>;
-  handleSubject: Subject<any>;
-  currentUserInfo: FirebaseListObservable<any[]>;
-  currentUserID: string;
+  currentUserData: Observable<any>;
 
   constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
-    this.currentUser = afAuth.authState;
-    this.currentUser.subscribe(res => {
-      if(res && res.uid) {
-        console.log("User logged in.");
-        console.log(res.uid);
-        this.currentUserInfo = db.list('/users/'.concat(res.uid, '/list'));
-      }
-      else {
-        console.log("User not logged in.")
-        this.currentUserInfo = null;
-      }
-    })
   	this.items = db.list('/users');
   }
 
-  login() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  handleLogin(user) {
+    if(user != null) {
+      console.log("App is handling login.");
+      this.currentUserData = user;
+      console.log(this.currentUserData);
+    }
+    else {
+      console.log("App is handling logout.")
+      this.currentUserData = null;
+    }
   }
-
-  logout() {
-    this.afAuth.auth.signOut();
-  }
-
 }
 
 // user: Observable<firebase.User>;

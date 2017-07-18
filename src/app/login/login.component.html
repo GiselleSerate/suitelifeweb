@@ -1,0 +1,6 @@
+<div>
+	<h3>Log In:</h3>
+	<p>The current user is:  {{ (currentUser | async)?.uid }} </p>
+	<button (click)="login()">Login</button>
+	<button (click)="logout()">Logout</button>
+</div>
