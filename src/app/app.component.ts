@@ -28,11 +28,11 @@ export class AppComponent {
       if(res && res.uid) {
         console.log("User logged in.");
         console.log(res.uid);
-        this.currentUserID = res.uid;
-        this.currentUserInfo = db.list('/users/'.concat(this.currentUserID, '/list'));
+        this.currentUserInfo = db.list('/users/'.concat(res.uid, '/list'));
       }
       else {
         console.log("User not logged in.")
+        this.currentUserInfo = null;
       }
     })
   	this.items = db.list('/users');
@@ -44,6 +44,8 @@ export class AppComponent {
 
   logout() {
     this.afAuth.auth.signOut();
+    window.localStorage.clear();
+    window.localStorage.removeItem("firebaseSession")
   }
 
 }
