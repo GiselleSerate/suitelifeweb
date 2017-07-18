@@ -44,8 +44,6 @@ export class AppComponent {
 
   logout() {
     this.afAuth.auth.signOut();
-    window.localStorage.clear();
-    window.localStorage.removeItem("firebaseSession")
   }
 
 }
