@@ -14,13 +14,15 @@ import * as firebase from 'firebase/app';
 
 import { InventoryComponent } from './inventory/inventory.component';
 import { LoginComponent } from './login/login.component';
+import { ItemComponent } from './inventory/item/item.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     InventoryComponent,
-    LoginComponent
+    LoginComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
