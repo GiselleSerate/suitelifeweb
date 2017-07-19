@@ -10,6 +10,7 @@ export class ItemComponent implements OnInit {
   @Input() checked;
   @Input() name;
   @Input() price;
+  @Input() select;
 
   constructor() { }
 

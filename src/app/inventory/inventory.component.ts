@@ -24,6 +24,7 @@ export class InventoryComponent {
 
   currentUserData: FirebaseListObservable<any[]>;
   currentUser: Observable<firebase.User>;
+  selectUid: string;
 
   constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
     this.currentUser = afAuth.authState;
@@ -39,5 +40,9 @@ export class InventoryComponent {
         console.log(this.currentUserData)
       }
     })
+  }
+
+  onSelect(uid: string) {
+    this.selectUid = uid;
   }
 }
