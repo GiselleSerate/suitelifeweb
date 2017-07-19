@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="this.currentUserData!=null">
 	<h3>CURRENT USER'S {{inventoryType.toUpperCase()}}:</h3>
 	<ul>
 	  <li class="text" *ngFor="let thing of currentUserData | async">

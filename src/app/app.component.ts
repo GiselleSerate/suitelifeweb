@@ -37,8 +37,3 @@ export class AppComponent {
     }
   }
 }
-
-// user: Observable<firebase.User>;
-// constructor(afAuth: AngularFireAuth) {
-//   this.user = afAuth.authState; // only triggered on sign-in/out (for old behavior use .idToken)
-// }

@@ -35,6 +35,7 @@ export class InventoryComponent {
       else {
         console.log("User not logged in.")
         this.currentUserData = null;
+        console.log(this.currentUserData)
       }
     })
   }
