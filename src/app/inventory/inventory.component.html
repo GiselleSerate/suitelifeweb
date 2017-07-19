@@ -3,7 +3,6 @@
 	<ul>
 	  <li class="text" *ngFor="let thing of currentUserData | async" (click)="onSelect(thing.uidString)">
 	    <app-item [checked]="thing.checked" [name]="thing.name" [price]="thing.price" [select]="thing.uidString==selectUid"></app-item>
-	    <!-- <app-detail *ngIf="this.currentUserData!=null"></app-detail> -->
 	  </li>
 	</ul>
 </div>
