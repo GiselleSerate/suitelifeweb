@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 // These imports are all for Firebase.---------
@@ -19,6 +19,8 @@ import { Subject } from 'rxjs/Subject';
 })
 export class InventoryComponent {
 
+  @Input() inventoryType: string;
+
   currentUserData: FirebaseListObservable<any[]>;
   currentUser: Observable<firebase.User>;
 
@@ -28,7 +30,7 @@ export class InventoryComponent {
       if(res && res.uid) {
         console.log("User logged in.");
         console.log(res.uid);
-        this.currentUserData = db.list('/users/'.concat(res.uid, '/list'));
+        this.currentUserData = db.list('/users/'.concat(res.uid, '/', this.inventoryType));
       }
       else {
         console.log("User not logged in.")

@@ -1,5 +1,5 @@
 <div>
-	<h3>Current User's List: the user is {{loginState}}</h3>
+	<h3>CURRENT USER'S {{inventoryType.toUpperCase()}}:</h3>
 	<ul>
 	  <li class="text" *ngFor="let thing of currentUserData | async">
 	    {{thing.checked}}, {{thing.name}}, {{thing.price}}
