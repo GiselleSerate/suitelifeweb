@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 // These imports are all for Firebase.---------
@@ -10,6 +10,8 @@ import * as firebase from 'firebase/app';
 import { Subject } from 'rxjs/Subject';
 // --------------------------------------------
 
+
+
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
@@ -17,10 +19,21 @@ import { Subject } from 'rxjs/Subject';
 })
 export class InventoryComponent {
 
-  @Input() loginState;
   currentUserData: FirebaseListObservable<any[]>;
+  currentUser: Observable<firebase.User>;
 
   constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
-    this.currentUserData = db.list('/users/'.concat(this.loginState, '/list'));
+    this.currentUser = afAuth.authState;
+    this.currentUser.subscribe(res => {
+      if(res && res.uid) {
+        console.log("User logged in.");
+        console.log(res.uid);
+        this.currentUserData = db.list('/users/'.concat(res.uid, '/list'));
+      }
+      else {
+        console.log("User not logged in.")
+        this.currentUserData = null;
+      }
+    })
   }
 }

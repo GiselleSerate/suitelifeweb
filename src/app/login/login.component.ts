@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, HostBinding } from '@angular/core';
 
 // These imports are all for Firebase.---------
 import { Observable } from 'rxjs/Observable';
@@ -9,6 +9,10 @@ import { environment } from '../../environments/environment';
 import * as firebase from 'firebase/app';
 import { Subject } from 'rxjs/Subject';
 // --------------------------------------------
+
+import { Router } from '@angular/router';
+// import { moveIn } from '../router.animations'; // tutorial hasn't written this yet. 
+
 
 @Component({
   selector: 'app-login',
@@ -31,7 +35,7 @@ export class LoginComponent {
       if(res && res.uid) {
         console.log("User logged in.");
         console.log(res.uid);
-        this.loginState.emit(res.uid);
+        this.loginState.emit(afAuth.authState);
       }
       else {
         console.log("User not logged in.")
