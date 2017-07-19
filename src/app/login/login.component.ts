@@ -1,3 +1,5 @@
+// Component handles login behavior. 
+
 import { Component, Output, EventEmitter, OnInit, HostBinding } from '@angular/core';
 
 // These imports are all for Firebase.---------

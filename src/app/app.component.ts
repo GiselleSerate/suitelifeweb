@@ -24,16 +24,4 @@ export class AppComponent {
   constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
   	this.items = db.list('/users');
   }
-
-  handleLogin(user) {
-    if(user != null) {
-      console.log("App is handling login.");
-      this.currentUserData = user;
-      console.log(this.currentUserData);
-    }
-    else {
-      console.log("App is handling logout.")
-      this.currentUserData = null;
-    }
-  }
 }

@@ -1,3 +1,5 @@
+// Component displays list or pantry based on parameter. 
+
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
@@ -9,7 +11,6 @@ import { environment } from '../../environments/environment';
 import * as firebase from 'firebase/app';
 import { Subject } from 'rxjs/Subject';
 // --------------------------------------------
-
 
 
 @Component({
