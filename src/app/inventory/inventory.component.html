@@ -2,7 +2,7 @@
 	<h3>CURRENT USER'S {{inventoryType.toUpperCase()}}:</h3>
 	<ul>
         <li class="text" *ngFor="let thing of currentUserData | async"> 
-	    <app-item [checked]="thing.checked" [name]="thing.name" [price]="thing.price" ></app-item>
+	    <app-item [checked]="thing.checked" [name]="thing.name" [price]="thing.price" [uidString]="thing.uidString" [inventoryType]="inventoryType" [userUid]="userUid" [index]="thing.$key"></app-item>
 	  </li>
 	</ul>
 </div>

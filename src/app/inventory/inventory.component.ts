@@ -21,6 +21,7 @@ import { Subject } from 'rxjs/Subject';
 export class InventoryComponent {
 
   @Input() inventoryType: string;
+  userUid: string;
 
   currentUserData: FirebaseListObservable<any[]>;
   currentUser: Observable<firebase.User>;
@@ -31,12 +32,14 @@ export class InventoryComponent {
       if(res && res.uid) {
         console.log("User logged in.");
         console.log(res.uid);
+        this.userUid = res.uid;
         this.currentUserData = db.list('/users/'.concat(res.uid, '/', this.inventoryType));
       }
       else {
         console.log("User not logged in.")
         this.currentUserData = null;
         console.log(this.currentUserData)
+        this.userUid = null;
       }
     })
   }
