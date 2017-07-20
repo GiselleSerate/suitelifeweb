@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
@@ -28,7 +29,8 @@ import { ItemComponent } from './inventory/item/item.component';
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular2fb'),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,11 +1,7 @@
-<div *ngIf="!select"> <!-- This part only shows if you have NOT selected it. -->
-  {{checked}}, {{name}}, {{price}}
-</div>
-<div *ngIf="select"> <!-- This part only shows if you have selected it. -->
+<div>
   <form>
-      <input type="checkbox" value={{checked}}>
-      <input type="text" value={{name}}>
-      <input type="number" value={{price}}>
-      <input type="submit">
+    <input type="checkbox" [(ngModel)]="checked" name="item-checked" (blur)="save()">
+    <input type="text" [(ngModel)]="name" name="item-name" placeholder="Item Name" (blur)="save()">
+    <input type="number" [(ngModel)]="price" name="item-price" placeholder="$" (blur)="save()">
   </form>
 </div>

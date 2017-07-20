@@ -1,8 +1,8 @@
 <div *ngIf="this.currentUserData!=null">
 	<h3>CURRENT USER'S {{inventoryType.toUpperCase()}}:</h3>
 	<ul>
-	  <li class="text" *ngFor="let thing of currentUserData | async" (click)="onSelect(thing.uidString)">
-	    <app-item [checked]="thing.checked" [name]="thing.name" [price]="thing.price" [select]="thing.uidString==selectUid"></app-item>
+        <li class="text" *ngFor="let thing of currentUserData | async"> 
+	    <app-item [checked]="thing.checked" [name]="thing.name" [price]="thing.price" ></app-item>
 	  </li>
 	</ul>
 </div>

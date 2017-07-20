@@ -1,6 +1,6 @@
 // Component displays list or pantry based on parameter. 
 
-import { Component, Input } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 // These imports are all for Firebase.---------
@@ -24,7 +24,6 @@ export class InventoryComponent {
 
   currentUserData: FirebaseListObservable<any[]>;
   currentUser: Observable<firebase.User>;
-  selectUid: string;
 
   constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
     this.currentUser = afAuth.authState;
@@ -42,7 +41,4 @@ export class InventoryComponent {
     })
   }
 
-  onSelect(uid: string) {
-    this.selectUid = uid;
-  }
 }
