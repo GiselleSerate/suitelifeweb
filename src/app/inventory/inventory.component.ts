@@ -2,6 +2,7 @@
 
 import { Component, Input} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { InventoryItem } from '../inventoryItem'
 
 // These imports are all for Firebase.---------
 import { AngularFireModule } from 'angularfire2';
@@ -22,9 +23,10 @@ export class InventoryComponent {
 
   @Input() inventoryType: string;
   userUid: string;
-
-  currentUserData: FirebaseListObservable<any[]>;
+  inventory: [InventoryItem];
+  
   currentUser: Observable<firebase.User>;
+  currentUserData: Observable<any[]>;
 
   constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
     this.currentUser = afAuth.authState;
@@ -33,13 +35,24 @@ export class InventoryComponent {
         console.log("User logged in.");
         console.log(res.uid);
         this.userUid = res.uid;
-        this.currentUserData = db.list('/users/'.concat(res.uid, '/', this.inventoryType));
+        this.inventory = [] as [InventoryItem];
+        var key ='/users/'.concat(res.uid, '/', this.inventoryType);
+        this.currentUserData = db.list(key);
+        this.currentUserData
+          .subscribe(snapshots => {
+            this.inventory = [] as [InventoryItem];
+            snapshots.forEach(snapshot => {
+              var itemKey = key.concat("/",snapshot.$key);
+              var item = new InventoryItem(snapshot.checked, snapshot.name, snapshot.price, snapshot.uidString, db, itemKey);
+              this.inventory.push(item);
+            });
+          })
       }
       else {
         console.log("User not logged in.")
-        this.currentUserData = null;
-        console.log(this.currentUserData)
         this.userUid = null;
+        this.inventory = null;
+        this.currentUserData = null;
       }
     })
   }

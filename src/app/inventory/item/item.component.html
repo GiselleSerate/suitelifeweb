@@ -1,7 +1,7 @@
 <div>
   <form>
-    <input type="checkbox" [(ngModel)]="checked" name="item-checked" (blur)="save()">
-    <input type="text" [(ngModel)]="name" name="item-name" placeholder="Item Name" (blur)="save()">
-    <input type="number" [(ngModel)]="price" name="item-price" placeholder="$" (blur)="save()">
+    <input type="checkbox" [(ngModel)]="item.checked" name="item-checked" (blur)="save()">
+    <input type="text" [(ngModel)]="item.name" name="item-name" placeholder="Item Name" (blur)="save()">
+    <input type="number" [(ngModel)]="item.price" name="item-price" placeholder="$" (blur)="save()">
   </form>
 </div>

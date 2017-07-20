@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { InventoryItem } from '../../inventoryItem';
 
 // These imports are all for Firebase.---------
 import { AngularFireModule } from 'angularfire2';
@@ -15,31 +16,14 @@ import { Subject } from 'rxjs/Subject';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
-export class ItemComponent implements OnInit{
-
-  @Input() checked;
-  @Input() name;
-  @Input() price;
-  @Input() index;
-  @Input() uidString;
-  @Input() inventoryType;
-  @Input() userUid;
-  db: AngularFireDatabase;
-
-  constructor(db: AngularFireDatabase, afAuth: AngularFireAuth) {
-    this.db = db;
-  }
-
-  ngOnInit() {
-  }
+export class ItemComponent{
+  @Input() item: InventoryItem;
 
   save() {
-    console.log("Saving item with name: ".concat(this.name,", uid: ",this.uidString),", index: ",this.index)
-    this.db.object("/users/".concat(this.userUid,"/",this.inventoryType,"/",this.index)).update({
-      "checked": this.checked,
-      "name": this.name,
-      "price": this.price,
-      "uidString": this.uidString
-    })
+    this.item.save();
+  }
+  
+  remove() {
+    this.item.remove();
   }
 }
