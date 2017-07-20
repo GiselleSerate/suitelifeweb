@@ -13,15 +13,17 @@ export class InventoryItem {
   price: number;
   uidString: string;
   db: AngularFireDatabase;
-  key: string;
+  key: string; // does not include index
+  index: number;
 
-  constructor(checked: boolean, name: string, price: number, uidString: string, db: AngularFireDatabase, key: string) {
+  constructor(checked: boolean, name: string, price: number, uidString: string, db: AngularFireDatabase, key: string, index: number) {
     this.checked = checked;
     this.name = name;
     this.price = price;
     this.uidString = uidString;
     this.db = db;
     this.key = key;
+    this.index = index;
   }
 
   slowSave(delay: number) {
@@ -30,7 +32,7 @@ export class InventoryItem {
 
   save() {
     console.log("Saving item with name: ".concat(this.name,", uid: ",this.uidString));
-    this.db.object(this.key).update({
+    this.db.object(this.key.concat('/', this.index.toString())).update({
       "checked": this.checked,
       "name": this.name,
       "price": this.price,
@@ -38,7 +40,17 @@ export class InventoryItem {
     });
   }
 
+  // createOnDB() {
+  //   console.log("Creating item with name: ".concat(this.name));
+  //   this.db.list(this.path).push({
+  //     "checked": this.checked,
+  //     "name": this.name,
+  //     "price": this.price,
+  //     "uidString": this.uidString
+  //   });
+  // }
+
   remove() {
-    this.db.object(this.key).remove();
+    this.db.object(this.key.concat('/', this.index.toString())).remove();
   }
 }

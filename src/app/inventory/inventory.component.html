@@ -1,8 +1,11 @@
 <div *ngIf="this.currentUserData!=null">
 	<h3>CURRENT USER'S {{inventoryType.toUpperCase()}}:</h3>
+	<button type='checkbox' (click)="selectAll()"></button>
 	<ul>
         <li class="text" *ngFor="let item of inventory"> 
 	    <app-item [item] = "item"></app-item>
 	  </li>
 	</ul>
+	<button (click)="addItem()">Add Item</button>
+	<button (click)="deleteSelected()">Delete Selected</button>
 </div>

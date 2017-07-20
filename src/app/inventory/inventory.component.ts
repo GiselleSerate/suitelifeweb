@@ -13,6 +13,7 @@ import * as firebase from 'firebase/app';
 import { Subject } from 'rxjs/Subject';
 // --------------------------------------------
 
+import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-inventory',
@@ -28,7 +29,12 @@ export class InventoryComponent {
   currentUser: Observable<firebase.User>;
   currentUserData: Observable<any[]>;
 
+  key: string;
+
+  db: AngularFireDatabase;
+
   constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
+    this.db = db;
     this.currentUser = afAuth.authState;
     this.currentUser.subscribe(res => {
       if(res && res.uid) {
@@ -36,25 +42,60 @@ export class InventoryComponent {
         console.log(res.uid);
         this.userUid = res.uid;
         this.inventory = [] as [InventoryItem];
-        var key ='/users/'.concat(res.uid, '/', this.inventoryType);
-        this.currentUserData = db.list(key);
+        this.key ='/users/'.concat(res.uid, '/', this.inventoryType);
+        this.currentUserData = db.list(this.key);
         this.currentUserData
           .subscribe(snapshots => {
             this.inventory = [] as [InventoryItem];
             snapshots.forEach(snapshot => {
-              var itemKey = key.concat("/",snapshot.$key);
-              var item = new InventoryItem(snapshot.checked, snapshot.name, snapshot.price, snapshot.uidString, db, itemKey);
+              var item = new InventoryItem(snapshot.checked, snapshot.name, snapshot.price, snapshot.uidString, db, this.key, snapshot.$key);
               this.inventory.push(item);
             });
           })
       }
       else {
-        console.log("User not logged in.")
+        console.log("User not logged in.");
         this.userUid = null;
         this.inventory = null;
         this.currentUserData = null;
       }
     })
+  }
+
+  addItem() {
+    console.log("Adding new item.");
+    var uid = UUID.UUID();
+    var newItem = new InventoryItem(false, "", 0, uid, this.db, this.key, this.inventory.length);
+    newItem.save();
+  }
+
+  deleteSelected() {
+    console.log("Deleting all the selected items.");
+    var selectedItems = this.inventory.filter(item => !item.checked);
+
+    this.inventory = [] as [InventoryItem];
+    this.db.object(this.key).remove();
+
+    selectedItems.forEach((item, index) => {
+      item.index = index;
+      item.save();
+      this.inventory.push(item);
+    });
+  }
+
+  selectAll() {
+    console.log("Selecting all.");
+    var set: boolean;
+    if(this.inventory.every(item => item.checked)) { // If everything is checked.
+      set = true;
+    }
+    else {
+      set = false;
+    }
+    this.inventory.map(item => {
+      item.checked = true;
+      item.save();
+    });
   }
 
 }
