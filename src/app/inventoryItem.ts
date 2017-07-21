@@ -32,6 +32,9 @@ export class InventoryItem {
 
   save() {
     console.log("Saving item with name: ".concat(this.name,", uid: ",this.uidString));
+    console.log(this.price);
+    this.price = Math.floor(this.price * 100);
+    console.log(this.price);
     this.db.object(this.key.concat('/', this.index.toString())).update({
       "checked": this.checked,
       "name": this.name,
