@@ -9,10 +9,25 @@ import { User } from '../user';
 export class PersonViewComponent implements OnInit {
 
   @Input() person: User;
+  isFocused: boolean;
+  pendingDebt: number;
 
-  constructor() { }
+  constructor() { 
+    this.isFocused = false;
+    this.pendingDebt = null;
+  }
 
   ngOnInit() {
+  }
+
+  focus() { // Toggle focus.
+    this.isFocused = !this.isFocused;
+  }
+
+  subDebt() {
+    this.person.addDebt(this.pendingDebt);
+    this.pendingDebt = null;
+    this.isFocused = false;
   }
 
 }

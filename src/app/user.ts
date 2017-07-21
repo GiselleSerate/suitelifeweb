@@ -53,18 +53,9 @@ export class User {
   // This means that if you will add this POSITIVE amount to the balance in my debts and this NEGATED amount to the other person's. 
   addDebt(amount: number) { 
     // Update my debt tree. 
-    // const debtRef1 = this.db.ref('/users/'.concat(this.currentUserID,'/debts/',this.userID));
-    // debtRef1.transaction(debt => debt + amount);
     this.db.object('/users/'.concat(this.currentUserID,'/debts/',this.userID)).$ref.ref.transaction(debt => debt + amount);
-    // this.database.ref('/users/'.concat(this.currentUserID,'/debts/',this.userID)).transaction(debt => debt + amount);
-    // this.database.ref('/users/'.concat(this.currentUserID,'/debts/',this.userID)).transaction(function(debt) {
-    //   if (debt) {
-    //     debt = debt + amount;
-    //   }
-    //   return debt;
-    // });
-    // const debtRef2 = this.db.ref('/users/'.concat(this.userID,'/debts/',this.currentUserID));
-    // debtRef2.transaction(debt => debt - amount);
+    // Update their debt tree. 
+    this.db.object('/users/'.concat(this.userID,'/debts/',this.currentUserID)).$ref.ref.transaction(debt => debt + amount);
   }
 
 }

@@ -1,1 +1,8 @@
-{{person.name}} @{{person.handle}} {{person.debt}}
+<div (click)="focus()">
+  {{person.name}} @{{person.handle}} {{person.debt}}
+</div>
+<div *ngIf="this.isFocused">
+  You are paying this much money to {{person.name}}: <br>
+  <input [(ngModel)]="pendingDebt" name="debt" type="number"><br>
+  <button (click)="focus()">Cancel</button><button (click)="subDebt()">Submit</button>
+</div>
