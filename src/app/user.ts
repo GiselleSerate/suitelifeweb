@@ -7,19 +7,25 @@ import * as firebase from 'firebase/app';
 import { Subject } from 'rxjs/Subject';
 // --------------------------------------------
 
+import { Observable } from 'rxjs/Observable';
+
 export class User {
   currentUserID: string; // The current user's id. 
   userID: string;
   debt: number;
-  db: AngularFireDatabase;
+  db: AngularFireDatabase; // Through AngularFire.
+  afAuth: AngularFireAuth;
   name: string;
   handle: string;
+  database = firebase.database(); // Through Firebase. 
 
-  constructor(currentUserID: string, userID: string, debt: number, db: AngularFireDatabase) { // If you don't need the debt, set it to 0. It shouldn't mess anything up. 
+  constructor(currentUserID: string, userID: string, debt: number, db: AngularFireDatabase, afAuth: AngularFireAuth) { // If you don't need the debt, set it to 0. It shouldn't mess anything up. 
     this.currentUserID = currentUserID;
     this.userID = userID;
     this.debt = debt;
     this.db = db;
+    this.afAuth = afAuth;
+    this.database = firebase.database();
     // From the userID, I can calculate the other properties of the user in question. For now, I will initialize them to an default string so it fails semi-gracefully. 
     this.name = "waiting";
     this.handle = "waiting";
@@ -33,7 +39,7 @@ export class User {
     })
   }
 
-  save() {
+  save() { // Why would I need this function??
     console.log("Saving debt with: ".concat(this.name,", uid: ",this.userID,", amount: ",this.debt.toString()));
 
     var myKey = this.userID as string; // For some reason putting this.userID doesn't really work in the .update function. It is angery. 
@@ -44,8 +50,23 @@ export class User {
     });
   }
 
-  addDebt(amount: number) { // A debt amount to add to the debts.
-
+  // A debt amount (which is an INT OF CENTS) to add to the debts. 
+  // This is an amount that you are PAYING BACK. 
+  // This means that if you will add this POSITIVE amount to the balance in my debts and this NEGATED amount to the other person's. 
+  addDebt(amount: number) { 
+    // Update my debt tree. 
+    // const debtRef1 = this.db.ref('/users/'.concat(this.currentUserID,'/debts/',this.userID));
+    // debtRef1.transaction(debt => debt + amount);
+    // this.database.ref('/users/'.concat(this.currentUserID,'/debts/',this.userID)).transaction(debt => debt + amount);
+    var currentUser = this.afAuth.authState;
+    this.database.ref('/users/'.concat(this.currentUserID,'/debts/',this.userID)).transaction(function(debt) {
+      if (debt) {
+        debt = debt + amount;
+      }
+      return debt;
+    });
+    // const debtRef2 = this.db.ref('/users/'.concat(this.userID,'/debts/',this.currentUserID));
+    // debtRef2.transaction(debt => debt - amount);
   }
 
 }
