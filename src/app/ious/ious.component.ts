@@ -41,7 +41,7 @@ export class IousComponent implements OnInit {
         this.currentUserData.subscribe(snapshots => { // Begin observable's subscription. 
 		      this.people = [] as [User]; // Clear inventory array. 
 		      snapshots.forEach(snapshot => { // Iterate over snapshots and initialize items. 
-		        var item = new User(res.uid, snapshot.$key, snapshot.$value, this.db, afAuth);
+		        var item = new User(res.uid, snapshot.$key, snapshot.$value, this.db);
 		        item.init();
 		        this.people.push(item); // Put the items into the local array. 
 		      });
