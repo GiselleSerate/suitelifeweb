@@ -2,7 +2,7 @@
 
 import { Component, Input} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { InventoryItem } from '../inventoryItem'
+import { InventoryItem } from '../inventoryItem';
 
 // These imports are all for Firebase.---------
 import { AngularFireModule } from 'angularfire2';

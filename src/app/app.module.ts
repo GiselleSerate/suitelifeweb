@@ -16,7 +16,8 @@ import * as firebase from 'firebase/app';
 import { InventoryComponent } from './inventory/inventory.component';
 import { LoginComponent } from './login/login.component';
 import { ItemComponent } from './inventory/item/item.component';
-import { IousComponent } from './src/app/ious/ious.component';
+import { IousComponent } from './ious/ious.component';
+import { PersonViewComponent } from './person-view/person-view.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { IousComponent } from './src/app/ious/ious.component';
     InventoryComponent,
     LoginComponent,
     ItemComponent,
-    IousComponent
+    IousComponent,
+    PersonViewComponent
   ],
   imports: [
     BrowserModule,

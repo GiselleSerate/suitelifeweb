@@ -10,6 +10,7 @@ import * as firebase from 'firebase/app';
 import { Subject } from 'rxjs/Subject';
 // --------------------------------------------
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,6 +23,10 @@ export class AppComponent {
   currentUserData: Observable<any>;
 
   constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
-  	this.items = db.list('/users');
+
+  }
+
+  ngOnInit() {
+    firebase.initializeApp(environment.firebase); // Maybe this doesn't go here. But it's working, so. 
   }
 }
