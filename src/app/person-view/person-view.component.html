@@ -4,5 +4,5 @@
 <div *ngIf="this.isFocused">
   You are paying this much money to {{person.name}}: <br>
   <input [(ngModel)]="pendingDebt" name="debt" type="number"><br>
-  <button (click)="focus()">Cancel</button><button (click)="subDebt()">Submit</button>
+  <button (click)="focus()">Cancel</button><button (click)="submitDebt()">Submit</button>
 </div>

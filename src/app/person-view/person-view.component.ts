@@ -24,7 +24,7 @@ export class PersonViewComponent implements OnInit {
     this.isFocused = !this.isFocused;
   }
 
-  subDebt() {
+  submitDebt() {
     this.person.addDebt(this.pendingDebt);
     this.pendingDebt = null;
     this.isFocused = false;
