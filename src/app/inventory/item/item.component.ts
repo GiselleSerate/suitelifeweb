@@ -11,6 +11,9 @@ import * as firebase from 'firebase/app';
 import { Subject } from 'rxjs/Subject';
 // --------------------------------------------
 
+import * as $ from 'jquery';
+
+
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
@@ -19,7 +22,12 @@ import { Subject } from 'rxjs/Subject';
 export class ItemComponent{
   @Input() item: InventoryItem;
 
+  ngAfterViewInit() {
+    // ($('.price') as any).number( true, 2 ); // Should format to 2 decimal places. 
+  }
+
   save() {
+    // ($('.price') as any).number( true, 2 ); // Should format to 2 decimal places. 
     this.item.save();
   }
   

@@ -16,13 +16,15 @@ import * as firebase from 'firebase/app';
 import { InventoryComponent } from './inventory/inventory.component';
 import { LoginComponent } from './login/login.component';
 import { ItemComponent } from './inventory/item/item.component';
+import { IousComponent } from './src/app/ious/ious.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InventoryComponent,
     LoginComponent,
-    ItemComponent
+    ItemComponent,
+    IousComponent
   ],
   imports: [
     BrowserModule,

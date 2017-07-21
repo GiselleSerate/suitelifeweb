@@ -2,7 +2,6 @@
   <form>
     <input type="checkbox" [(ngModel)]="item.checked" name="item-checked" (blur)="save()">
     <input type="text" [(ngModel)]="item.name" name="item-name" placeholder="Item Name" (blur)="save()">
-    <!-- Regex matches a price with arbitrary dollars and 2 cent places. -->
-    <input type="number" min="0" step="0.01" [(ngModel)]="item.price" name="item-price" placeholder="$" (blur)="save()">
+    <input class=".price" type="number" min="0" step="0.01" [(ngModel)]="item.price" name="item-price" placeholder="$" (blur)="save()">
   </form>
 </div>

@@ -1,6 +1,6 @@
 // Component handles login behavior. 
 
-import { Component, Output, EventEmitter, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 
 // These imports are all for Firebase.---------
 import { Observable } from 'rxjs/Observable';
@@ -23,29 +23,19 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  items: FirebaseListObservable<any[]>;
   currentUser: Observable<firebase.User>;
-  handleSubject: Subject<any>;
-  currentUserInfo: FirebaseListObservable<any[]>;
-  currentUserID: string;
-  @Output() loginState = new EventEmitter();
 
   constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
-
     this.currentUser = afAuth.authState;
+
     this.currentUser.subscribe(res => {
       if(res && res.uid) {
-        console.log("User logged in.");
-        console.log(res.uid);
-        this.loginState.emit(afAuth.authState);
+        console.log("User logged in with id:".concat(res.uid));
       }
       else {
         console.log("User not logged in.")
-        this.currentUserInfo = null;
-        this.loginState.emit(null);
       }
     })
-  	this.items = db.list('/users');
   }
 
   login() {
