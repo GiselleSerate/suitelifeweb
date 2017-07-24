@@ -25,6 +25,7 @@ export class User {
     // From the userID, I can calculate the other properties of the user in question. For now, I will initialize them to an default string so it fails semi-gracefully. 
     this.name = "waiting";
     this.handle = "waiting";
+    // TODO: Call init() in constructor?
   }
 
   init() { // Initialize the user immediately following construction. Remember to call me! 
@@ -42,18 +43,20 @@ export class User {
 
     // Send update to the database. 
     this.db.object('/users/'.concat(this.currentUserID,'/debts')).update({
+      // debt is stored locally as a float of money, so we need to multiply by 100
       myKey: this.debt
     });
   }
 
   // A debt amount (which is an INT OF CENTS) to add to the debts. 
+  // To maintain the int of cents, we multiply our debt (currently a float of dollars) by 100
   // This is an amount that you are PAYING BACK. 
   // This means that if you will add this POSITIVE amount to the balance in my debts and this NEGATED amount to the other person's. 
   addDebt(amount: number) { 
     // Update my debt tree. 
-    this.db.object('/users/'.concat(this.currentUserID,'/debts/',this.userID)).$ref.ref.transaction(debt => debt + amount);
+    this.db.object('/users/'.concat(this.currentUserID,'/debts/',this.userID)).$ref.ref.transaction(debt => debt - (amount*100));
     // Update their debt tree. 
-    this.db.object('/users/'.concat(this.userID,'/debts/',this.currentUserID)).$ref.ref.transaction(debt => debt + amount);
+    this.db.object('/users/'.concat(this.userID,'/debts/',this.currentUserID)).$ref.ref.transaction(debt => debt + (amount*100));
   }
 
   formatDebt(): string { // Formats debt with dollar sign and negative as a string. 
