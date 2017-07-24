@@ -73,15 +73,15 @@ export class User {
     var assignedClass: string;
     if(this.debt == 0) {
       color = 'color: gray';
-      assignedClass = 'class: debt-zero';
+      assignedClass = 'debt-zero';
     }
     else if(this.debt > 0) {
       color = 'color: red';
-      assignedClass = 'class: debt-positive';
+      assignedClass = 'debt-positive';
     }
     else {
       color = 'color: green';
-      assignedClass = 'class: debt-negative';
+      assignedClass = 'debt-negative';
     }
     return assignedClass;
   }

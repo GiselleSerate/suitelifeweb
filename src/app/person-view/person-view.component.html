@@ -1,4 +1,4 @@
-<div (click)="focus()" [style]="person.colorDebt() | safe">
+<div (click)="focus()" [class]="person.colorDebt()">
   {{person.name}} @{{person.handle}}  {{person.formatDebt()}}
 </div>
 <div *ngIf="this.isFocused">

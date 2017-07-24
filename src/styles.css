@@ -7,6 +7,15 @@ body {
 
 app-login div {
   border: 5px solid black;
-  background: gray 50%; }
+  background: gray; }
+
+.debt-zero {
+  color: gray; }
+
+.debt-positive {
+  color: red; }
+
+.debt-negative {
+  color: green; }
 
 /*# sourceMappingURL=styles.css.map */
