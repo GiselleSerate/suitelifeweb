@@ -21,8 +21,12 @@ export class PersonViewComponent implements OnInit {
   ngOnInit() {
   }
 
-  focus() { // Toggle focus.
+  toggleFocus() { // Toggle focus.
     this.isFocused = !this.isFocused;
+  }
+
+  setFocus(focus: boolean) {
+    this.isFocused = focus;
   }
 
   submitDebt() {
