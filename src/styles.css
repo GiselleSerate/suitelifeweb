@@ -1,5 +1,12 @@
 /* UI Gradient: Brady Brady Fun Fun */
 body {
-  background: -webkit-linear-gradient(#00c3ff, #ffff1c); }
+  background: -webkit-linear-gradient(left, #00c3ff, #ffff1c);
+  background-repeat: repeat-y;
+  width: 100%;
+  height: 100%; }
+
+app-login div {
+  border: 5px solid black;
+  background: gray 50%; }
 
 /*# sourceMappingURL=styles.css.map */

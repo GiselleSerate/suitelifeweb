@@ -1,6 +1,17 @@
 /* UI Gradient: Brady Brady Fun Fun */
-$logo-gradient: -webkit-linear-gradient(#00c3ff, #ffff1c);
+$logo-gradient: -webkit-linear-gradient(left, #00c3ff, #ffff1c);
 
 body {
 	background: $logo-gradient;
+	background-repeat: repeat-y;
+	width: 100%;
+	height: 100%;
+}
+
+app-login {
+	div {
+		border: 5px solid black;
+		background: gray;
+		
+	}
 }
