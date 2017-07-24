@@ -70,16 +70,20 @@ export class User {
 
   colorDebt() {
     var color: string;
+    var assignedClass: string;
     if(this.debt == 0) {
       color = 'color: gray';
+      assignedClass = 'class: debt-zero';
     }
     else if(this.debt > 0) {
       color = 'color: red';
+      assignedClass = 'class: debt-positive';
     }
     else {
       color = 'color: green';
+      assignedClass = 'class: debt-negative';
     }
-    return color;
+    return assignedClass;
   }
 
 }
