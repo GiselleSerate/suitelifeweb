@@ -36,15 +36,15 @@ export class InventoryItem {
     console.log(this.price);
 
     // Truncates the price before storing and also turns the decimal displayed into an int of cents. 
-    this.price = Math.floor(this.price * 100); 
+    var savePrice = Math.floor(this.price * 100); 
 
-    console.log(this.price);
+    console.log(savePrice);
 
     // Send update to the database. 
     this.db.object(this.path.concat('/', this.index.toString())).update({
       "checked": this.checked,
       "name": this.name,
-      "price": this.price,
+      "price": savePrice,
       "uidString": this.uidString
     });
   }
@@ -53,5 +53,10 @@ export class InventoryItem {
   // Only call if you have made sure that this won't mess up the indices of the list. 
   remove() { 
     this.db.object(this.path.concat('/', this.index.toString())).remove();
+  }
+
+  formatPrice() {
+    // Format to 2 decimal places
+    this.price = parseFloat(this.price.toFixed(2));
   }
 }

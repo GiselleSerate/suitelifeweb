@@ -1,10 +1,10 @@
 // These imports are all for Firebase.---------
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
-import { environment } from '../environments/environment';
-import * as firebase from 'firebase/app';
-import { Subject } from 'rxjs/Subject';
+// import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+// import { environment } from '../environments/environment';
+// import * as firebase from 'firebase/app';
+// import { Subject } from 'rxjs/Subject';
 // --------------------------------------------
 
 import { Observable } from 'rxjs/Observable';
@@ -14,18 +14,14 @@ export class User {
   userID: string;
   debt: number;
   db: AngularFireDatabase; // Through AngularFire.
-  afAuth: AngularFireAuth;
   name: string;
   handle: string;
-  database = firebase.database(); // Through Firebase. 
 
-  constructor(currentUserID: string, userID: string, debt: number, db: AngularFireDatabase, afAuth: AngularFireAuth) { // If you don't need the debt, set it to 0. It shouldn't mess anything up. 
+  constructor(currentUserID: string, userID: string, debt: number, db: AngularFireDatabase) { // If you don't need the debt, set it to 0. It shouldn't mess anything up. 
     this.currentUserID = currentUserID;
     this.userID = userID;
     this.debt = debt;
     this.db = db;
-    this.afAuth = afAuth;
-    this.database = firebase.database();
     // From the userID, I can calculate the other properties of the user in question. For now, I will initialize them to an default string so it fails semi-gracefully. 
     this.name = "waiting";
     this.handle = "waiting";
@@ -55,18 +51,39 @@ export class User {
   // This means that if you will add this POSITIVE amount to the balance in my debts and this NEGATED amount to the other person's. 
   addDebt(amount: number) { 
     // Update my debt tree. 
-    // const debtRef1 = this.db.ref('/users/'.concat(this.currentUserID,'/debts/',this.userID));
-    // debtRef1.transaction(debt => debt + amount);
-    // this.database.ref('/users/'.concat(this.currentUserID,'/debts/',this.userID)).transaction(debt => debt + amount);
-    var currentUser = this.afAuth.authState;
-    this.database.ref('/users/'.concat(this.currentUserID,'/debts/',this.userID)).transaction(function(debt) {
-      if (debt) {
-        debt = debt + amount;
-      }
-      return debt;
-    });
-    // const debtRef2 = this.db.ref('/users/'.concat(this.userID,'/debts/',this.currentUserID));
-    // debtRef2.transaction(debt => debt - amount);
+    this.db.object('/users/'.concat(this.currentUserID,'/debts/',this.userID)).$ref.ref.transaction(debt => debt + amount);
+    // Update their debt tree. 
+    this.db.object('/users/'.concat(this.userID,'/debts/',this.currentUserID)).$ref.ref.transaction(debt => debt + amount);
+  }
+
+  formatDebt(): string { // Formats debt with dollar sign and negative as a string. 
+    var clean = this.debt;
+    var sign = ""
+
+    if(this.debt < 0) {
+      clean = -this.debt;
+      sign = "-"
+    }
+
+    return sign+"$"+(clean/100).toFixed(2);
+  }
+
+  colorDebt() {
+    var color: string;
+    var assignedClass: string;
+    if(this.debt == 0) {
+      color = 'color: gray';
+      assignedClass = 'class: debt-zero';
+    }
+    else if(this.debt > 0) {
+      color = 'color: red';
+      assignedClass = 'class: debt-positive';
+    }
+    else {
+      color = 'color: green';
+      assignedClass = 'class: debt-negative';
+    }
+    return assignedClass;
   }
 
 }

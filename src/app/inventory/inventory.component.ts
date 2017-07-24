@@ -14,7 +14,7 @@ import { Subject } from 'rxjs/Subject';
 // --------------------------------------------
 
 import { UUID } from 'angular2-uuid';
-
+import { Group } from '../group'
 
 @Component({
   selector: 'app-inventory',
@@ -24,6 +24,7 @@ import { UUID } from 'angular2-uuid';
 export class InventoryComponent {
 
   @Input() inventoryType: string; // Either list or pantry. 
+  @Input() group: Group; // A Group type instance. 
 
   userUid: string;  // User's authid, for passing to other components. 
   path: string;     // A path leading to this inventory in the database. 
@@ -43,17 +44,23 @@ export class InventoryComponent {
       if(res && res.uid) { // User logged in.
         // Assign this-component-scope properties to give to other components.
         this.userUid = res.uid;
-        this.path ='/users/'.concat(res.uid, '/', this.inventoryType);
+
+        // Set path variable. 
+        if(this.group.groupID == "personal") {
+          this.path ='/users/'.concat(res.uid, '/', this.inventoryType);
+        }
+        else {
+          this.path ='/groups/'.concat(this.group.groupID, '/', this.inventoryType);
+        }
 
         this.currentUserData = db.list(this.path); // Attach observable to the correct path. 
-        this.currentUserData
-          .subscribe(snapshots => { // Begin observable's subscription. 
-            this.inventory = [] as [InventoryItem]; // Clear inventory array. 
-            snapshots.forEach(snapshot => { // Iterate over snapshots and initialize items. 
-              var item = new InventoryItem(snapshot.checked, snapshot.name, snapshot.price, snapshot.uidString, db, this.path, snapshot.$key);
-              this.inventory.push(item); // Put the items into the local array. 
-            });
-          })
+        this.currentUserData.subscribe(snapshots => { // Begin observable's subscription. 
+          this.inventory = [] as [InventoryItem]; // Clear inventory array. 
+          snapshots.forEach(snapshot => { // Iterate over snapshots and initialize items. 
+            var item = new InventoryItem(snapshot.checked, snapshot.name, snapshot.price, snapshot.uidString, db, this.path, snapshot.$key);
+            this.inventory.push(item); // Put the items into the local array. 
+          });
+        })
       }
       else { // User not logged in.
         // Unassign all variables storing information about the user. 
@@ -93,10 +100,10 @@ export class InventoryComponent {
     var set: boolean;
 
     if(this.inventory.every(item => item.checked)) { // If everything is checked, then uncheck everything.
-      set = true;
+      set = false;
     }
     else { // Else there are some things that are not checked, so check them.
-      set = false;
+      set = true;
     }
 
     this.inventory.map(item => { // Set or unset checks as determined above, and save to database. 
