@@ -56,4 +56,34 @@ export class User {
     this.db.object('/users/'.concat(this.userID,'/debts/',this.currentUserID)).$ref.ref.transaction(debt => debt + amount);
   }
 
+  formatDebt(): string { // Formats debt with dollar sign and negative as a string. 
+    var clean = this.debt;
+    var sign = ""
+
+    if(this.debt < 0) {
+      clean = -this.debt;
+      sign = "-"
+    }
+
+    return sign+"$"+(clean/100).toFixed(2);
+  }
+
+  colorDebt() {
+    var color: string;
+    var assignedClass: string;
+    if(this.debt == 0) {
+      color = 'color: gray';
+      assignedClass = 'class: debt-zero';
+    }
+    else if(this.debt > 0) {
+      color = 'color: red';
+      assignedClass = 'class: debt-positive';
+    }
+    else {
+      color = 'color: green';
+      assignedClass = 'class: debt-negative';
+    }
+    return assignedClass;
+  }
+
 }
