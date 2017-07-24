@@ -1,6 +1,7 @@
 // Component displays list or pantry based on parameter. 
 
 import { Component, Input} from '@angular/core';
+import 'rxjs/add/operator/take'
 import { Observable } from 'rxjs/Observable';
 import { InventoryItem } from '../inventoryItem';
 
@@ -26,8 +27,9 @@ export class InventoryComponent {
   @Input() inventoryType: string; // Either list or pantry. 
   @Input() group: Group; // A Group type instance. 
 
-  userUid: string;  // User's authid, for passing to other components. 
-  path: string;     // A path leading to this inventory in the database. 
+  userUid: string;    // User's authid, for passing to other components. 
+  path: string;       // A path leading to this inventory in the database. 
+  pairPath: string  // A path leading to the inventory's pair (list if inventoryType is pantry, pantry if inventoryType is list) in the database.
 
   db: AngularFireDatabase; // A reference to the database. 
 
@@ -45,12 +47,21 @@ export class InventoryComponent {
         // Assign this-component-scope properties to give to other components.
         this.userUid = res.uid;
 
+        // Quality hard-coding to get the corresponding pair's inventory type
+        var pairInventoryType = null;
+        if(this.inventoryType == "list") {
+          pairInventoryType = "pantry";
+        } else {
+          pairInventoryType = "list";
+        }
         // Set path variable. 
         if(this.group.groupID == "personal") {
           this.path ='/users/'.concat(res.uid, '/', this.inventoryType);
+          this.pairPath = '/users/'.concat(res.uid, '/', pairInventoryType);
         }
         else {
           this.path ='/groups/'.concat(this.group.groupID, '/', this.inventoryType);
+          this.pairPath ='/groups/'.concat(this.group.groupID, '/', pairInventoryType);
         }
 
         this.currentUserData = db.list(this.path); // Attach observable to the correct path. 
@@ -90,8 +101,11 @@ export class InventoryComponent {
     unselectedItems.forEach((item, index) => { // Iterate over unselected items. 
       item.index = index;          // Reindex. 
       item.save();                 // Save to database.
-      this.inventory.push(item);   // Save to local array. 
+      this.inventory.push(item);   // Save locally. 
     });
+    // TODO: Diagonose this bug
+    // Inventory will have a duplicated last item -- bandaid remedy by popping
+    this.inventory.pop();
   }
 
   selectAll() {
@@ -110,6 +124,34 @@ export class InventoryComponent {
       item.checked = set;
       item.save();
     });
+  }
+
+  checkOut() {
+    // Get a reference to the selected items
+    var selectedItems = this.inventory.filter(item => item.checked);
+    // Remove the selected items
+    this.deleteSelected();
+    // Get the length of the pair's array in a somewhat janky manner
+    // TODO: Get the array length locally
+    var pair = this.db.object(this.pairPath, { preserveSnapshot: true }).take(1);
+    pair
+      .subscribe(snapshots => {
+        // TODO: Not this. 
+        var i = 0;
+        snapshots.forEach(snapshot => {
+          i++;
+        });
+        var startIndex = i + 1;
+        console.log("Length of pair: ".concat(startIndex.toString()));
+        selectedItems.forEach((item,index) => {
+          item.index = index + startIndex;
+          item.path = this.pairPath;
+          // Deselected the items that you move over
+          item.checked = false;
+          item.save();
+        })
+    })
+    
   }
 
 }

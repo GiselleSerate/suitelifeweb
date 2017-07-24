@@ -25,6 +25,7 @@ export class User {
     // From the userID, I can calculate the other properties of the user in question. For now, I will initialize them to an default string so it fails semi-gracefully. 
     this.name = "waiting";
     this.handle = "waiting";
+    // TODO: Call init() in constructor?
   }
 
   init() { // Initialize the user immediately following construction. Remember to call me! 
