@@ -30,4 +30,8 @@ export class PersonViewComponent implements OnInit {
     this.isFocused = false;
   }
 
+  formatPendingDebt() {
+    this.pendingDebt = parseFloat(this.pendingDebt.toFixed(2));
+  }
+
 }

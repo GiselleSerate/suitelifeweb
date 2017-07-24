@@ -3,6 +3,6 @@
 </div>
 <div *ngIf="this.isFocused">
   You are paying this much money to {{person.name}}: <br>
-  <input [(ngModel)]="pendingDebt" name="debt" type="number"><br>
+  <label>$</label> <input class=".price" type="number" min="0" step="0.01" [(ngModel)]="pendingDebt" name="debt" placeholder="0" (keyup)="formatPendingDebt()" ><br>
   <button (click)="focus()">Cancel</button><button (click)="submitDebt()">Submit</button>
 </div>
