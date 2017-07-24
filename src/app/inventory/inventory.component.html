@@ -1,5 +1,5 @@
 <div *ngIf="this.currentUserData!=null">
-    <h3>{{group.name}} {{inventoryType == 'list' ? "List" : "Pantry"}}:</h3> <!-- Sorry for using a ternary operator. --> 
+    <h3>{{inventoryType == 'list' ? "List" : "Pantry"}}:</h3> <!-- Sorry for using a ternary operator. --> 
     <button type='checkbox' (click)="selectAll()"></button>
     <ul>
       <li class="text" *ngFor="let item of inventory"> 

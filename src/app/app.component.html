@@ -1,29 +1,48 @@
-<ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#home">Inventory</a></li>
-  <li><a data-toggle="tab" href="#menu1">IOUs</a></li>
-</ul>
-<app-login></app-login>
-<div class="tab-content">
+<div class="page-container">
 
-  <!-- INVENTORY CONTENT GOES BELOW THIS -->
-  <div id="home" class="tab-pane fade in active">
-    <h3>Inventory</h3>
-    <ul>
-      <li *ngFor="let item of items | async">
-        {{item.name}}: {{item.handle}}
-      </li>
-    </ul>
-
-    <div *ngFor="let group of groups">
-      <app-inventory [inventoryType]="'list'" [group]="group"></app-inventory>
-      <app-inventory [inventoryType]="'pantry'" [group]="group"></app-inventory>
-    </div>
+  <div class="masthead">
+    <img class="side-button" src="./assets/iconOnly.svg"/>
+    &nbsp; SuiteLife
+    <button class="login">Log Out</button>
   </div>
 
-  <!-- IOUS CONTENT GOES BELOW THIS -->
-  <div id="menu1" class="tab-pane fade">
-    <h3>IOUs</h3>
-    <app-ious></app-ious>
+  <div class="masthead-spacer">
+  </div>
+
+  <app-login></app-login>
+
+  <ul class="nav nav-tabs nav-justified">
+    <li class="active"><a data-toggle="tab" href="#home">Inventory</a></li>
+    <li><a data-toggle="tab" href="#menu1">IOUs</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <!-- INVENTORY CONTENT GOES BELOW THIS -->
+    <div id="home" class="tab-pane fade in active">
+      <ul>
+        <li *ngFor="let item of items | async">
+          {{item.name}}: {{item.handle}}
+        </li>
+      </ul>
+
+      <div *ngFor="let group of groups">
+        <div class="group-container">
+          <h3>{{group.name}}</h3><br>
+          <div class="inventory-container">
+            <app-inventory class="inventory-list" [inventoryType]="'list'" [group]="group"></app-inventory>
+            <app-inventory class="inventory-pantry"[inventoryType]="'pantry'" [group]="group"></app-inventory>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- IOUS CONTENT GOES BELOW THIS -->
+    <div id="menu1" class="tab-pane fade">
+      <h3>IOUs</h3>
+      <app-ious></app-ious>
+    </div>
+
   </div>
 
 </div>

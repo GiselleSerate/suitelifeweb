@@ -1,32 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 /* UI Gradient: Brady Brady Fun Fun */
 $logo-gradient: -webkit-linear-gradient(left, #00c3ff, #ffff1c);
+$logo-font: 'Montserrat', sans-serif;
 
 body {
-	background: $logo-gradient;
-	background-repeat: repeat-y;
-	width: 100%;
-	height: 100%;
+  background: $logo-gradient;
+  background-repeat: repeat-y;
+  width: 100%;
+  height: 100%;
 }
 
 app-login {
-	div {
-		border: 5px solid black;
-		background: gray;
-		
-	}
+  div {
+      border: 5px solid black;
+      background: gray;
+      
+  }
+}
+.page-container {
+  width: 100vw;
+}
+
+.masthead {
+  position: fixed;
+
+  /* Flexbox stuff. */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  text-align: center;
+
+  width: 100vw;
+
+  font-family: $logo-font;
+  color: black;
+  font-size: 3.5vh;
+
+  background: blue;
+
+  .side-button {
+      height: 6vh;
+      width: 6vh; 
+      padding: 4px;
+  }
+
+  .login {
+    font-size: 2vh;
+  }
+}
+
+.masthead-spacer {
+  height: 6vh;
+}
+
+// @media only screen and (min-width: 600px) {
+//   /* For tablets: */
+
+// }
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .masthead {
+    .side-button {
+        height: 50px;   
+        width: 50px;
+    }
+
+    .login {
+      font-size: 20px;
+    }
+  }
+  .masthead-spacer {
+    height: 50px;
+  }
+
+  div .group-container .inventory-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+}
+
+/* Single Inventory Container. */
+.group-container {    
+
+background: rgba(192,192,192,0.7);
+
+  .inventory-container {
+    display: flex;
+    flex-direction: column;
+
+    padding: 4px;
+
+    .inventory-list {
+      padding: 4px;
+      background: white;
+    }
+
+    .inventory-pantry {
+      padding: 4px;
+      background: black;
+    }
+  }
 }
 
 
 /* Use these classes to color the text of the IOUs. */
 
 .debt-zero {
-	color: gray;
+    color: gray;
 }
 
 .debt-positive {
-	color: red;
+    color: red;
 }
 
 .debt-negative {
-	color: green;
+    color: green;
 }
