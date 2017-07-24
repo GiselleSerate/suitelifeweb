@@ -18,6 +18,8 @@ import { LoginComponent } from './login/login.component';
 import { ItemComponent } from './inventory/item/item.component';
 import { IousComponent } from './ious/ious.component';
 import { PersonViewComponent } from './person-view/person-view.component';
+import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { PersonViewComponent } from './person-view/person-view.component';
     LoginComponent,
     ItemComponent,
     IousComponent,
-    PersonViewComponent
+    PersonViewComponent,
+    UserSettingsComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

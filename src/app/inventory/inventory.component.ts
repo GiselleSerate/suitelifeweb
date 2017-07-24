@@ -100,10 +100,10 @@ export class InventoryComponent {
     var set: boolean;
 
     if(this.inventory.every(item => item.checked)) { // If everything is checked, then uncheck everything.
-      set = true;
+      set = false;
     }
     else { // Else there are some things that are not checked, so check them.
-      set = false;
+      set = true;
     }
 
     this.inventory.map(item => { // Set or unset checks as determined above, and save to database. 
