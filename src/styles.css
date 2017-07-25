@@ -2,7 +2,7 @@
 /* UI Gradient: Brady Brady Fun Fun */
 /* Color scheme */
 body {
-  background: #30383a url(assets/cityscape.svg) repeat-x fixed bottom;
+  background: #30383a url(assets/cityscapeOverlap.svg) repeat-x fixed bottom;
   background-size: 30%;
   width: 100%;
   height: 100%;
