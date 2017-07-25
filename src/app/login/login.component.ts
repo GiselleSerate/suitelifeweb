@@ -24,6 +24,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   currentUser: Observable<firebase.User>;
+  loggedIn: boolean;
 
   constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
     this.currentUser = afAuth.authState;
@@ -31,9 +32,11 @@ export class LoginComponent {
     this.currentUser.subscribe(res => {
       if(res && res.uid) {
         console.log("User logged in with id:".concat(res.uid));
+        this.loggedIn = true;
       }
       else {
-        console.log("User not logged in.")
+        console.log("User not logged in.");
+        this.loggedIn = false;
       }
     })
   }
