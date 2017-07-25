@@ -2,8 +2,8 @@
 /* UI Gradient: Brady Brady Fun Fun */
 /* Color scheme */
 body {
-  background: #30383a;
-  background-repeat: repeat-y;
+  background: #30383a url(assets/cityscape.svg) repeat-x fixed bottom;
+  background-size: 30%;
   width: 100%;
   height: 100%;
   font-color: #30383a; }
