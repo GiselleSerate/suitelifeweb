@@ -1,8 +1,8 @@
 <div *ngIf="this.currentUserData!=null">
     <h3>{{inventoryType == 'list' ? "List" : "Pantry"}}:</h3> <!-- Sorry for using a ternary operator. --> 
     <button type='checkbox' (click)="selectAll()"></button>
-    <ul>
-      <li class="text" *ngFor="let item of inventory"> 
+    <ul class="list-pantry">
+      <li *ngFor="let item of inventory"> 
         <app-item [item] = "item"></app-item>
       </li>
     </ul>
