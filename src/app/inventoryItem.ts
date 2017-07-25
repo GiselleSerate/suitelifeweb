@@ -33,8 +33,11 @@ export class InventoryItem {
 
   save() {
     console.log("Saving item with name: ".concat(this.name,", uid: ",this.uidString));
-    console.log(this.price);
 
+    if(this.price == null) {
+      alert("Item ".concat(this.name," has invalid price, defaulting to 0"));
+      this.price = 0;
+    }
     // Truncates the price before storing and also turns the decimal displayed into an int of cents. 
     var savePrice = Math.floor(this.price * 100); 
 

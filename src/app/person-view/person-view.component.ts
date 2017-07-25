@@ -30,7 +30,12 @@ export class PersonViewComponent implements OnInit {
   }
 
   submitDebt() {
-    this.person.addDebt(this.pendingDebt);
+    if(this.pendingDebt == null){
+      alert("The amount you are trying to modify this debt by is invalid, no change will be made.");
+    } else {
+      // If the amount is valid, add it.
+      this.person.addDebt(this.pendingDebt);
+    }
     this.pendingDebt = null;
     this.isFocused = false;
   }
