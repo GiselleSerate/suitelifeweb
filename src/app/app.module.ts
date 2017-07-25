@@ -20,6 +20,7 @@ import { IousComponent } from './ious/ious.component';
 import { PersonViewComponent } from './person-view/person-view.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { SafePipe } from './safe.pipe';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SafePipe } from './safe.pipe';
     IousComponent,
     PersonViewComponent,
     UserSettingsComponent,
-    SafePipe
+    SafePipe,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
