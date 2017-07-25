@@ -4,6 +4,11 @@
 $logo-gradient: -webkit-linear-gradient(left, #00c3ff, #ffff1c);
 $logo-font: 'Montserrat', sans-serif;
 
+/* Color scheme */
+$color-dominant: blue;  // For the navbar. 
+$color-list: white;     // For the list background. 
+$color-pantry: black;   // For the pantry background.
+
 body {
   background: $logo-gradient;
   background-repeat: repeat-y;
@@ -11,13 +16,6 @@ body {
   height: 100%;
 }
 
-app-login {
-  div {
-      border: 5px solid black;
-      background: gray;
-      
-  }
-}
 .page-container {
   width: 100vw;
 }
