@@ -51,8 +51,12 @@ body {
 /* Single Inventory Container. */
 .group-container {
   background: rgba(160, 219, 142, 0.7);
-  padding: 0 4px;
-  margin: 0 4px; }
+  padding: 4px;
+  margin: 4px; }
+  .group-container h3 {
+    padding: 0;
+    padding-left: 5px;
+    margin: 0; }
   .group-container .inventory-container {
     display: flex;
     flex-direction: column;
@@ -66,6 +70,9 @@ body {
       padding: 4px;
       margin: 4px;
       background: #6b7072; }
+    .group-container .inventory-container input {
+      background-color: #f3f3f4;
+      border: none; }
 
 .price {
   width: 61px;

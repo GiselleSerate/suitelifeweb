@@ -101,8 +101,14 @@ body {
 .group-container {    
 
   background: rgba($color-sprout, 0.7);
-  padding: 0 4px;
-  margin: 0 4px;
+  padding: 4px;
+  margin: 4px;
+
+  h3 {
+    padding: 0;
+    padding-left: 5px;
+    margin: 0;
+  }
 
   .inventory-container {
     display: flex;
@@ -121,6 +127,11 @@ body {
       padding: 4px;
       margin: 4px;
       background: mix($color-white, $color-onyx, 30%);
+    }
+
+    input {
+      background-color: rgba($color-white, 10);
+      border: none;
     }
   }
 }
