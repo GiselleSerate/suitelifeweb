@@ -1,7 +1,9 @@
-<div>
+<div class="group-container">
+  <h3>Settings</h3>
     <ul>
-        <li *ngFor="let key of SETTINGSKEYS['single']">
-            <label>{{key}}</label> <input [(ngModel)]="singlePropertySettings[key]" (keyup.enter)="updateSingleProperty(key)"> <button (click)="updateSingleProperty(key)">Update</button>
-        </li>
+      <li *ngFor="let key of SETTINGSKEYS['single']">
+        <label>{{key}}</label> <input [(ngModel)]="singlePropertySettings[key]" (keyup.enter)="updateSingleProperty(key)"> <button (click)="updateSingleProperty(key)">Update</button>
+      </li>
     </ul>
 </div>
+

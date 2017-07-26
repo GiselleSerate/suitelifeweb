@@ -1,6 +1,44 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null"
+
+    "users": {
+      ".indexOn": ["searchFields/name", "searchFields/handle"],
+      "$uid": {
+        "debts": {
+          ".read": "root.child('/users/'+auth.uid).exists()",
+          "$debtid": {
+            ".write": "auth.uid === $debtid || auth.uid === $uid" 
+          }
+        },
+        "groups": { // We should validate this so only members of the group can modify your membership in that group. 
+          ".read": "root.child('/users/'+auth.uid).exists()",
+          ".write": "root.child('/users/'+auth.uid).exists()",
+        },
+        "handle": {
+          ".read": "root.child('/users/'+auth.uid).exists()",
+          ".write": "auth.uid === $uid"
+        },
+        "list": {
+          ".read": "auth.uid === $uid",
+          ".write": "auth.uid === $uid"
+        },
+        "location": {
+          ".read": "root.child('/users/'+auth.uid).exists()",
+          ".write": "auth.uid === $uid"
+        },
+        "name": {
+          ".read": "root.child('/users/'+auth.uid).exists()",
+          ".write": "auth.uid === $uid"
+        },
+        "pantry": {
+          ".read": "auth.uid === $uid",
+          ".write": "auth.uid === $uid"
+        },
+        "searchFields": {
+          ".read": "root.child('/users/'+auth.uid).exists()",
+          ".write": "auth.uid === $uid"
+        }
+      }
+    }
   }
 }
