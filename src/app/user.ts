@@ -17,16 +17,17 @@ export class User {
   name: string;
   handle: string;
 
-  constructor(currentUserID: string, userID: string, debt: number, db: AngularFireDatabase) { // If you don't need the debt, set it to 0. It shouldn't mess anything up. 
+  constructor(currentUserID: string, userID: string, debt: number, db: AngularFireDatabase, name?: string, handle?: string) { // If you don't need the debt, set it to 0. It shouldn't mess anything up. 
     this.currentUserID = currentUserID;
     this.userID = userID;
     this.debt = debt;
     this.db = db;
     // From the userID, I can calculate the other properties of the user in question. For now, I will initialize them to an default string so it fails semi-gracefully. 
-    this.name = "waiting";
-    this.handle = "waiting";
+    this.name = name == null ? "Loading..." : name;
+    this.handle = handle == null ? "Loading..." : handle; 
     // TODO: Call init() in constructor?
   }
+
 
   init() { // Initialize the user immediately following construction. Remember to call me! 
     this.db.object('/users/'.concat(this.userID)).subscribe(snapshot => { // Begin observable's subscription. 

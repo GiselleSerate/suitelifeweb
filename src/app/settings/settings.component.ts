@@ -11,6 +11,7 @@ import { Subject } from 'rxjs/Subject';
 // --------------------------------------------
 
 import { Group } from '../group'
+import { User } from '../user'
 
 @Component({
   selector: 'app-settings',
@@ -88,5 +89,9 @@ export class SettingsComponent {
         this.db.object('/users/'.concat(this.currentUserID,'/searchFields/',key)).set(currentPropertyValue.toLowerCase());
         alert("Saved ".concat(key));
     }
+  }
+
+  selectUser(user: User) {
+    console.log(user);
   }
 }

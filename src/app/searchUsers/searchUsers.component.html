@@ -1,0 +1,10 @@
+<div>
+    <input #searchInput (keyup)="search(searchInput.value)"> 
+    <ul>
+        <li *ngFor="let user of searchResults"> 
+            <div (click)="selectUser(user)">
+                {{user.name + ' @' + user.handle}}
+            </div>
+        </li>
+    </ul>
+</div>
