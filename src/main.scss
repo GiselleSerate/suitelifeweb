@@ -4,119 +4,153 @@
 $logo-gradient: -webkit-linear-gradient(left, #00c3ff, #ffff1c);
 $logo-font: 'Montserrat', sans-serif;
 
+/* Color scheme */
+$color-white: #f3f3f4;    // Off-white.
+$color-sprout: #A0DB8E;   // Green, for transparenting on the background.
+$color-onyx: #30383a;     // For the navbar. (Black.)
+// $color-list: white;       // For the list background. 
+// $color-pantry: black;     // For the pantry background.
+$color-debt-gray: gray;
+$color-debt-red: red;
+$color-debt-green: green;
+
 body {
-  background: $logo-gradient;
-  background-repeat: repeat-y;
+  background: $color-onyx url(assets/cityscape.svg) repeat-x fixed bottom;
+  background-size: 500px;
   width: 100%;
   height: 100%;
+  font-color: $color-onyx;
+  margin: 0;
+
+  padding-top: 7vh; // Spacer.
 }
 
-app-login {
-  div {
-      border: 5px solid black;
-      background: gray;
-      
-  }
-}
 .page-container {
   width: 100vw;
 }
 
 .masthead {
-  position: fixed;
+  // z-index: 10;
 
-  /* Flexbox stuff. */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+
+  // // position: fixed; 
+  // // top: 0;
+  // // object-fit: cover;
+
+  // padding: 0;
+  // margin: 0;
+  // // border: 1px solid blue;
+
+  // // height: 20px;
+  // // width: 100vw;
+  // width: 100%;
+
+  font-family: $logo-font;
+  color: $color-white;
+  font-size: 3.5vh;
+
+  background: $color-onyx;
+  // background: blue;
 
   text-align: center;
 
-  width: 100vw;
-
-  font-family: $logo-font;
-  color: black;
-  font-size: 3.5vh;
-
-  background: blue;
-
   .side-button {
-      height: 6vh;
-      width: 6vh; 
-      padding: 4px;
+    height: 6vh;
+    width: 6vh; 
+    margin: 0.5vh;
+    float: left;
+  }
+
+  .masthead-name {
+    height: 6vh;
+    padding-top: 1vh;
   }
 
   .login {
+    margin: 1.5vh 0;
     font-size: 2vh;
+    float: right;
+    color: $color-onyx;
+    background-color: $color-white;
+    border: none;
   }
 }
-
-.masthead-spacer {
-  height: 6vh;
-}
-
-// @media only screen and (min-width: 600px) {
-//   /* For tablets: */
-
-// }
 
 @media only screen and (min-width: 768px) {
   /* For desktop: */
   .masthead {
     .side-button {
-        height: 50px;   
-        width: 50px;
-    }
-
-    .login {
-      font-size: 20px;
+      height: 50px;   
     }
   }
   .masthead-spacer {
-    height: 50px;
+    height: 60px;
   }
 
-  div .group-container .inventory-container {
+  div .group-container .inventory-container { // Extra specificity to make these definitely apply. 
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    // justify-content: center;
+    align-content: stretch;
   }
 }
 
 /* Single Inventory Container. */
 .group-container {    
 
-background: rgba(192,192,192,0.7);
+  background: rgba($color-sprout, 0.7);
+  padding: 4px;
+  margin: 4px;
+
+  h3 {
+    padding: 0;
+    padding-left: 5px;
+    margin: 0;
+  }
 
   .inventory-container {
     display: flex;
     flex-direction: column;
 
     padding: 4px;
+    margin: 4px;
 
     .inventory-list {
       padding: 4px;
-      background: white;
+      margin: 4px;
+      background: mix($color-white, $color-onyx, 90%);
     }
 
     .inventory-pantry {
       padding: 4px;
-      background: black;
+      margin: 4px;
+      background: mix($color-white, $color-onyx, 30%);
+    }
+
+    input {
+      background-color: rgba($color-white, 10);
+      border: none;
     }
   }
 }
 
+.price {
+  width: 61px;
+  text-align: right;
+}
 
 /* Use these classes to color the text of the IOUs. */
 
 .debt-zero {
-    color: gray;
+    color: $color-debt-gray;
 }
 
 .debt-positive {
-    color: red;
+    color: $color-debt-red;
 }
 
 .debt-negative {
-    color: green;
+    color: $color-debt-green;
 }

@@ -29,6 +29,7 @@ export class AppComponent {
 
     this.currentUser.subscribe(res => {   // This callback block happens upon login or logout. 
       if(res && res.uid) { // User logged in.
+        console.log(res.photoURL);
         this.currentUserData = db.list('/users/'.concat(res.uid, '/groups/')); // Attach observable to the correct path. 
         this.currentUserData.subscribe(snapshots => { // Begin observable's subscription. 
 
