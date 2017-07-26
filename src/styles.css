@@ -6,14 +6,22 @@ body {
   background-size: 30%;
   width: 100%;
   height: 100%;
-  font-color: #30383a; }
+  font-color: #30383a;
+  margin: 0; }
 
 .page-container {
   width: 100vw; }
 
 .masthead {
   position: fixed;
-  width: 100vw;
+  top: 0px;
+  object-fit: cover;
+  padding: 0;
+  margin: 0;
+  border: 1px solid blue;
+  z-index: 10;
+  height: 7vh;
+  width: 100%;
   font-family: "Montserrat", sans-serif;
   color: #f3f3f4;
   font-size: 3.5vh;
@@ -25,6 +33,7 @@ body {
     margin: 0.5vh;
     float: left; }
   .masthead .masthead-name {
+    height: 6vh;
     padding-top: 1vh; }
   .masthead .login {
     font-size: 2vh;
