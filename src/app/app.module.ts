@@ -19,6 +19,7 @@ import { ItemComponent } from './inventory/item/item.component';
 import { IousComponent } from './ious/ious.component';
 import { PersonViewComponent } from './person-view/person-view.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { SearchUsersComponent } from './searchUsers/searchUsers.component';
 import { SafePipe } from './safe.pipe';
 import { SettingsComponent } from './settings/settings.component';
 import { GroupsEditComponent } from './groups-edit/groups-edit.component';
@@ -36,7 +37,9 @@ import { GroupViewComponent } from './group-view/group-view.component';
     SafePipe,
     SettingsComponent,
     GroupsEditComponent,
-    GroupViewComponent
+    GroupViewComponent,
+    SearchUsersComponent
+
   ],
   imports: [
     BrowserModule,
