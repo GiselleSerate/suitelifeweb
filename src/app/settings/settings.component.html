@@ -5,6 +5,8 @@
         <label>{{key}}</label> <input [(ngModel)]="singlePropertySettings[key]" (keyup.enter)="updateSingleProperty(key)"> <button (click)="updateSingleProperty(key)">Update</button>
       </li>
     </ul>
+    <!-- Search users example -->
+    <div>
+        <label>Search Users</label><app-search-users [userSelectedCallback]="selectUser"></app-search-users>
+    </div>
 </div>
-<!-- Search users example -->
-<app-search-users [userSelectedCallback]="selectUser"></app-search-users>
