@@ -13,9 +13,9 @@ import { Subject } from 'rxjs/Subject';
 import { User } from '../user';
 
 @Component({
-  selector: 'app-searchUsers',
-  templateUrl: './searchUsers.component.html',
-  styleUrls: ['./searchUsers.component.css']
+  selector: 'app-search-users',
+  templateUrl: './search-users.component.html',
+  styleUrls: ['./search-users.component.css']
 })
 
 export class SearchUsersComponent {
