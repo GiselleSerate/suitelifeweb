@@ -6,7 +6,7 @@ $logo-font: 'Montserrat', sans-serif;
 
 /* Color scheme */
 $color-white: #f3f3f4;    // Off-white.
-$color-sprout: #A0DB8E;   // Green, for transparenting on the background.
+$color-sprout: #BBE4C4;   // Green, for transparenting on the background.
 $color-onyx: #30383a;     // For the navbar. (Black.)
 // $color-list: white;       // For the list background. 
 // $color-pantry: black;     // For the pantry background.
@@ -94,15 +94,19 @@ body {
     flex-wrap: nowrap;
     // justify-content: center;
     align-content: stretch;
+    button {
+      color: $color-onyx;
+    }
   }
 }
 
-/* Single Inventory Container. */
+/* General container for large chunks of web content.  */
 .group-container {    
 
   background: rgba($color-sprout, 0.7);
   padding: 4px;
   margin: 4px;
+  border-radius: 4px;
 
   h3 {
     padding: 0;
@@ -110,6 +114,16 @@ body {
     margin: 0;
   }
 
+  input {
+    background-color: rgba($color-white, 10);
+    border: none;
+  }
+
+  .smaller-container {
+
+  }
+
+  /* Single Inventory Container. */
   .inventory-container {
     display: flex;
     flex-direction: column;
@@ -121,18 +135,21 @@ body {
       padding: 4px;
       margin: 4px;
       background: mix($color-white, $color-onyx, 90%);
+      border-radius: 4px;
     }
 
     .inventory-pantry {
       padding: 4px;
       margin: 4px;
       background: mix($color-white, $color-onyx, 30%);
-    }
+      color: $color-white;
+      border-radius: 4px;
 
-    input {
-      background-color: rgba($color-white, 10);
-      border: none;
-    }
+      input {
+        color: $color-onyx;
+      }
+
+    } 
   }
 }
 

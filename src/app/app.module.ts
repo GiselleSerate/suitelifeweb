@@ -22,6 +22,7 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { SafePipe } from './safe.pipe';
 import { SettingsComponent } from './settings/settings.component';
 import { GroupsEditComponent } from './groups-edit/groups-edit.component';
+import { GroupViewComponent } from './group-view/group-view.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { GroupsEditComponent } from './groups-edit/groups-edit.component';
     UserSettingsComponent,
     SafePipe,
     SettingsComponent,
-    GroupsEditComponent
+    GroupsEditComponent,
+    GroupViewComponent
   ],
   imports: [
     BrowserModule,
