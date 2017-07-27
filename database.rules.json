@@ -12,7 +12,7 @@
         },
         "groups": { // We should validate this so only members of the group can modify your membership in that group. 
           ".read": "root.child('/users/'+auth.uid).exists()",
-          ".write": "root.child('/users/'+auth.uid).exists()",
+          ".write": "root.child('/users/'+auth.uid).exists()"
         },
         "handle": {
           ".read": "root.child('/users/'+auth.uid).exists()",

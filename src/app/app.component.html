@@ -19,11 +19,20 @@
 <div class="tab-content">
   <!-- INVENTORY CONTENT GOES BELOW THIS -->
   <div id="home" class="tab-pane fade in active">
-<!--     <ul>
-      <li *ngFor="let item of items | async">
-        {{item.name}}: {{item.handle}}
-      </li>
-    </ul> -->
+  
+    <!-- Landing page for users who are not logged in. -->
+    <div *ngIf="!currentUserData" class="row">
+      <div class="col-xs-0 col-md-2"></div>
+      <div class="group-container col-xs-12 col-md-8">
+        <div align="center">
+          <br>
+          <h3>Please log in to use SuiteLife!</h3><br>
+          <app-login></app-login><br>
+          <br>
+        </div>
+      </div>
+      <div class="col-xs-0 col-md-2"></div>
+    </div>
 
     <div *ngFor="let group of groups">
       <div class="row">
@@ -44,7 +53,7 @@
 
   <!-- IOUS CONTENT GOES BELOW THIS -->
   <div id="menu1" class="tab-pane fade">
-    <div class="row">
+    <div *ngIf="currentUserData" class="row">
       <div class="col-xs-1 col-md-2"></div> <!-- IOUs spacer. -->
       <app-ious class="group-container col-xs-10 col-md-8"></app-ious>
       <div class="col-xs-1 col-md-2"></div> <!-- IOUs spacer. -->
@@ -54,12 +63,12 @@
   <!-- SETTINGS CONTENT GOES BELOW THIS -->
   <!-- Perhaps temporary home for Settings -->
   <div id="settings" class="tab-pane fade">
-    <div class="row">
+    <div *ngIf="currentUserData" class="row">
       <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
       <app-settings class="col-xs-10 col-md-8"></app-settings>
       <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
     </div>
-    <div class="row">
+    <div *ngIf="currentUserData" class="row">
       <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
       <app-groups-edit class="col-xs-10 col-md-8" [groups]="groups"></app-groups-edit>
       <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
