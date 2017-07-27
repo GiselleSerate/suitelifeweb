@@ -80,7 +80,7 @@ export class GroupsEditComponent implements OnInit {
     const myID = this.myID;
 
     this.globalGroupsRef.update(this.newGroup.groupID, {name: this.newGroup.name, members: {'this.myID': true}}); // Add the group. Add other members here. 
-    this.myGroupsRef.update({groupID: true});                                               // Add group to me.
+    this.myGroupsRef.update(this.newGroup.groupID, true);                                               // Add group to me.
 
     this.localInitNewGroup(); // Generate new new group because you just saved the one above. 
   }
