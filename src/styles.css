@@ -47,16 +47,23 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    align-content: stretch; } }
-/* Single Inventory Container. */
+    align-content: stretch; }
+    div .group-container .inventory-container button {
+      color: #30383a; } }
+/* General container for large chunks of web content.  */
 .group-container {
-  background: rgba(160, 219, 142, 0.7);
+  background: rgba(187, 228, 196, 0.7);
   padding: 4px;
-  margin: 4px; }
+  margin: 4px;
+  border-radius: 4px;
+  /* Single Inventory Container. */ }
   .group-container h3 {
     padding: 0;
     padding-left: 5px;
     margin: 0; }
+  .group-container input {
+    background-color: #f3f3f4;
+    border: none; }
   .group-container .inventory-container {
     display: flex;
     flex-direction: column;
@@ -65,14 +72,16 @@ body {
     .group-container .inventory-container .inventory-list {
       padding: 4px;
       margin: 4px;
-      background: #e0e0e1; }
+      background: #e0e0e1;
+      border-radius: 4px; }
     .group-container .inventory-container .inventory-pantry {
       padding: 4px;
       margin: 4px;
-      background: #6b7072; }
-    .group-container .inventory-container input {
-      background-color: #f3f3f4;
-      border: none; }
+      background: #6b7072;
+      color: #f3f3f4;
+      border-radius: 4px; }
+      .group-container .inventory-container .inventory-pantry input {
+        color: #30383a; }
 
 .price {
   width: 61px;

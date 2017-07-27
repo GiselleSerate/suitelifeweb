@@ -22,6 +22,8 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { SearchUsersComponent } from './search-users/search-users.component';
 import { SafePipe } from './safe.pipe';
 import { SettingsComponent } from './settings/settings.component';
+import { GroupsEditComponent } from './groups-edit/groups-edit.component';
+import { GroupViewComponent } from './group-view/group-view.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,10 @@ import { SettingsComponent } from './settings/settings.component';
     UserSettingsComponent,
     SafePipe,
     SettingsComponent,
+    GroupsEditComponent,
+    GroupViewComponent,
     SearchUsersComponent
+
   ],
   imports: [
     BrowserModule,

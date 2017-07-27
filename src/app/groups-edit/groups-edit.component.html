@@ -1,0 +1,17 @@
+<div class="group-container">
+  <h3>Groups</h3>
+    <ul *ngFor="let group of filterGroups()">
+      <li>
+      	<app-group-view [group]="group"></app-group-view>
+      </li>
+    </ul>
+  <button (click)="addGroup()">New Group</button>
+  <!-- Group adder. -->
+  <div *ngIf="showAddGroup">
+  	So you want to add a group.
+  	too bad<br>
+  	<input [(ngModel)]="newGroupName">
+  	<!-- Put searchy thing here. -->
+  	<button (click)="saveNewGroup()">Save</button>
+  </div>
+</div>

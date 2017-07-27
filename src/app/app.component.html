@@ -42,16 +42,28 @@
     </div>
   </div>
 
-    <!-- IOUS CONTENT GOES BELOW THIS -->
+  <!-- IOUS CONTENT GOES BELOW THIS -->
   <div id="menu1" class="tab-pane fade">
-    <app-ious></app-ious>
+    <div class="row">
+      <div class="col-xs-1 col-md-2"></div> <!-- IOUs spacer. -->
+      <app-ious class="group-container col-xs-10 col-md-8"></app-ious>
+      <div class="col-xs-1 col-md-2"></div> <!-- IOUs spacer. -->
+    </div>
   </div>
 
-    <!-- SETTINGS CONTENT GOES BELOW THIS -->
-    <!-- Perhaps temporary home for Settings -->
+  <!-- SETTINGS CONTENT GOES BELOW THIS -->
+  <!-- Perhaps temporary home for Settings -->
   <div id="settings" class="tab-pane fade">
-    <h3>Settings</h3>
-    <app-settings></app-settings>
+    <div class="row">
+      <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
+      <app-settings class="col-xs-10 col-md-8"></app-settings>
+      <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
+    </div>
+    <div class="row">
+      <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
+      <app-groups-edit class="col-xs-10 col-md-8" [groups]="groups"></app-groups-edit>
+      <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
+    </div>
   </div>
 
 </div>
