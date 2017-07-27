@@ -24,6 +24,7 @@ import { SafePipe } from './safe.pipe';
 import { SettingsComponent } from './settings/settings.component';
 import { GroupsEditComponent } from './groups-edit/groups-edit.component';
 import { GroupViewComponent } from './group-view/group-view.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { GroupViewComponent } from './group-view/group-view.component';
     AngularFireModule.initializeApp(environment.firebase, 'angular2fb'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    FormsModule
+    FormsModule, 
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

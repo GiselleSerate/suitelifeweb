@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
+// For Font Awesome.
+// @import "font-awesome-sprockets"; 
+// @import "font-awesome";
+
 /* UI Gradient: Brady Brady Fun Fun */
 $logo-gradient: -webkit-linear-gradient(left, #00c3ff, #ffff1c);
 $logo-font: 'Montserrat', sans-serif;
@@ -10,16 +14,20 @@ $color-sprout: #BBE4C4;   // Green, for transparenting on the background.
 $color-onyx: #30383a;     // For the navbar. (Black.)
 // $color-list: white;       // For the list background. 
 // $color-pantry: black;     // For the pantry background.
-$color-debt-gray: gray;
-$color-debt-red: red;
-$color-debt-green: green;
+$color-debt-gray: #686e6f;
+$color-debt-red: #F11929;
+$color-debt-green: #00823c;
+
+li { // No bullet points. Anywhere. 
+  list-style-type: none;
+}
 
 body {
   background: $color-onyx url(assets/cityscape.svg) repeat-x fixed bottom;
   background-size: 500px;
   width: 100%;
   height: 100%;
-  font-color: $color-onyx;
+  color: $color-onyx;
   margin: 0;
 
   padding-top: 7vh; // Spacer.

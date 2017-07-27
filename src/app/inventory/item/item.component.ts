@@ -34,4 +34,9 @@ export class ItemComponent{
   remove() {
     this.item.remove();
   }
+
+  toggleChecked() {
+    this.item.checked = !this.item.checked;
+    this.save();
+  }
 }

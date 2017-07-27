@@ -1,12 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 /* UI Gradient: Brady Brady Fun Fun */
 /* Color scheme */
+li {
+  list-style-type: none; }
+
 body {
   background: #30383a url(assets/cityscape.svg) repeat-x fixed bottom;
   background-size: 500px;
   width: 100%;
   height: 100%;
-  font-color: #30383a;
+  color: #30383a;
   margin: 0;
   padding-top: 7vh; }
 
@@ -89,12 +92,12 @@ body {
 
 /* Use these classes to color the text of the IOUs. */
 .debt-zero {
-  color: gray; }
+  color: #686e6f; }
 
 .debt-positive {
-  color: red; }
+  color: #F11929; }
 
 .debt-negative {
-  color: green; }
+  color: #00823c; }
 
 /*# sourceMappingURL=styles.css.map */
