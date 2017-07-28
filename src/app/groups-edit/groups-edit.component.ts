@@ -26,7 +26,7 @@ export class GroupsEditComponent implements OnInit {
   currentUser: Observable<firebase.User>;
   afAuth: AngularFireAuth;
   globalGroupsRef: FirebaseListObservable<any>;
-  myGroupsRef: FirebaseListObservable<any>;
+  myRef: FirebaseListObservable<any>; // a ref to me.
   myID: string;
 
   constructor(db: AngularFireDatabase, afAuth: AngularFireAuth) {     
@@ -36,12 +36,12 @@ export class GroupsEditComponent implements OnInit {
       if(res && res.uid) { // User logged in.
         this.myID = res.uid;
         this.globalGroupsRef = db.list('/groups/'); // Attach observable to the global path. 
-        this.myGroupsRef = db.list('/users/'.concat(res.uid, '/groups/')); // Attach observable to my internal path.         
+        this.myRef = db.list('/users/'.concat(res.uid)); // Attach observable to my internal path.         
       }
       else { // User not logged in.
         // Unassign all variables storing information about the user. 
         this.globalGroupsRef = null;
-        this.myGroupsRef = null;
+        this.myRef = null;
         this.myID = null;
       }
     })
@@ -79,8 +79,8 @@ export class GroupsEditComponent implements OnInit {
     const groupID = this.newGroup.groupID;
     const myID = this.myID;
 
-    this.globalGroupsRef.update(this.newGroup.groupID, {name: this.newGroup.name, members: {'this.myID': true}}); // Add the group. Add other members here. 
-    this.myGroupsRef.update(this.newGroup.groupID, true);                                               // Add group to me.
+    this.globalGroupsRef.update(this.newGroup.groupID, {name: this.newGroup.name, members: {[this.myID]: true}}); // Add the group. Add other members here. 
+    this.myRef.update('groups', {[this.newGroup.groupID]: true});  // Add group to me.  
 
     this.localInitNewGroup(); // Generate new new group because you just saved the one above. 
   }

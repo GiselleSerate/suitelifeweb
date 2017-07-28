@@ -1,5 +1,7 @@
-<div class="group-container">
-  <h3>Settings</h3>
+<div class="group-container" *ngIf="!isUserCreation || (isUserCreation && !userCreated)">
+  <h3 *ngIf="isUserCreation">Set User Details</h3>
+  <p *ngIf="isUserCreation">&nbsp;&nbsp;You can change these later.</p>
+  <h3 *ngIf="!isUserCreation">Settings</h3>
     <ul>
       <li *ngFor="let key of SETTINGSKEYS['single']">
       	<div class="row">
@@ -8,13 +10,14 @@
         	</div>
         	<div class="col-xs-11">
         		<input [(ngModel)]="singlePropertySettings[key]" (keyup.enter)="updateSingleProperty(key)">
-        		<button (click)="updateSingleProperty(key)">Update</button>
+        		<button *ngIf="!isUserCreation" (click)="updateSingleProperty(key)">Update</button>
         	</div>
         </div>
       </li>
     </ul>
+    <button *ngIf="isUserCreation" (click)="updateAllProperties()">Continue</button>
     <!-- Search users example -->
-    <div>
+<!--     <div>
         <label>Search Users</label><app-search-users [userSelectedCallback]="selectUser"></app-search-users>
-    </div>
+    </div> -->
 </div>

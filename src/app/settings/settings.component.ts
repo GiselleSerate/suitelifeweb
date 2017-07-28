@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 // These imports are all for Firebase.---------
 import { Observable } from 'rxjs/Observable';
@@ -28,10 +28,14 @@ export class SettingsComponent {
   singlePropertySettings = {};
   multiplePropertySettings = {};
   db: AngularFireDatabase;
+  userCreated: boolean; // TODO: Bandaid for now, to hide this component if it is user creation. 
+
+  @Input() isUserCreation; // Is this for user creation or is it a vanilla settings menu? 
   
   constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
     this.currentUser = afAuth.authState;
     this.db = db;
+    this.userCreated = !this.isUserCreation;
 
     this.currentUser.subscribe(res => {   // This callback block happens upon login or logout. 
       if(res && res.uid) { // User logged in.
@@ -89,6 +93,13 @@ export class SettingsComponent {
         this.db.object('/users/'.concat(this.currentUserID,'/searchFields/',key)).set(currentPropertyValue.toLowerCase());
         alert("Saved ".concat(key));
     }
+  }
+
+  updateAllProperties() {
+    for(let key of this.SETTINGSKEYS['single']) {
+      this.updateSingleProperty(key); // TODO: Alerts every single time. 
+    }
+    this.userCreated = true;
   }
 
   selectUser(user: User) {

@@ -8,9 +8,8 @@
   <button (click)="addGroup()">New Group</button>
   <!-- Group adder. -->
   <div *ngIf="showAddGroup">
-  	So you want to add a group.
-  	too bad<br>
-  	<input [(ngModel)]="newGroupName">
+  	Create a name for your new group:<br>
+  	<input [(ngModel)]="newGroup.name">
   	<!-- Put searchy thing here. -->
   	<button (click)="saveNewGroup()">Save</button>
   </div>

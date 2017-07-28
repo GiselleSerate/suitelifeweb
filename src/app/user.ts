@@ -30,10 +30,13 @@ export class User {
 
 
   init() { // Initialize the user immediately following construction. Remember to call me! 
-    this.db.object('/users/'.concat(this.userID)).subscribe(snapshot => { // Begin observable's subscription. 
+    this.db.object('/users/'.concat(this.userID, "/name/")).subscribe(snapshot => { // Begin observable's subscription. 
       // Set the user's properties. 
-      this.name = snapshot.name;
-      this.handle = snapshot.handle;
+      this.name = snapshot.$value;
+    })
+      this.db.object('/users/'.concat(this.userID, "/handle/")).subscribe(snapshot => { // Begin observable's subscription. 
+      // Set the user's properties. 
+      this.handle = snapshot.$value;
     })
   }
 

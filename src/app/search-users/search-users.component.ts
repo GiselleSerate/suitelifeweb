@@ -23,10 +23,12 @@ export class SearchUsersComponent {
   MINSEARCHLENGTH = 3;
   SEARCHFIELDS = ['name', 'handle'];
 
-  @Input() userSelectedCallback: (User) => void;
+  @Input() userSelectedCallback: (User) => void; // Callback deprecated. 
   currentUserID: string; 
   db: AngularFireDatabase;
   searchResults = Array<User>();
+
+  @Input() groupID;
 
   constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
     var currentUser = afAuth.authState;
@@ -46,7 +48,10 @@ export class SearchUsersComponent {
   }
   
   selectUser(user: User) {
-    this.userSelectedCallback(user);
+    // this.userSelectedCallback(user);
+    alert("Added user ".concat(user.name, " to your group"));
+    this.db.list('/groups/'.concat(this.groupID)).update('members', {[user.userID]: true}); // Add other members here. 
+    this.db.list('/users/'.concat(user.userID)).update('groups', {[this.groupID]: true});  // Add group to user.  
   }
 
   search(searchTerm: string) {

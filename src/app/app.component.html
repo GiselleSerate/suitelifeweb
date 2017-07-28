@@ -10,29 +10,49 @@
   </div>
 </div>
 
-<ul class="nav nav-tabs nav-justified">
+<!-- Landing page for users who are not logged in. -->
+<div *ngIf="!currentUserData" class="row">
+  <div class="col-xs-0 col-md-2"></div>
+  <div class="group-container col-xs-12 col-md-8">
+    <div align="center">
+      <br>
+      <h3>Try SuiteLife</h3><br>
+      <p>Please log in!</p>
+      <app-login></app-login><br>
+      <br>
+      <h3>About SuiteLife</h3><br>
+      <iframe src="https://docs.google.com/presentation/d/1Jox9v1jK5mM0h3TSEoEmokAN40luu96M7IR5Dv6nbm4/embed?start=true&loop=true&delayms=3000" frameborder="0" width="683" height="541" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe><br>
+      <br>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/9DwESflXZek" frameborder="0" allowfullscreen></iframe><br>
+      <br>
+      <h3>Give Us Feedback</h3><br>
+      <a href="https://goo.gl/forms/ZDRYWrn1zdE4KUmc2">Comments on our presentation</a><br>
+      <a href="https://goo.gl/forms/LkvzfS554y7gcSf43">Comments on our website or app</a>
+    </div>
+  </div>
+  <div class="col-xs-0 col-md-2"></div>
+</div>
+
+<!-- {{matchingUsers}} -->
+<!-- {{dummy}} -->
+<!-- <div *ngIf="currentUserData && userExists">we think you registerereed</div> -->
+<div class="row">
+  <div class="col-xs-1 col-md-2"></div>
+  <div class="col-xs-10 col-md-8">
+    <app-settings [isUserCreation]="true"></app-settings>
+  </div>
+  <div class="col-xs-1 col-md-2"></div>
+</div>
+
+<ul *ngIf="currentUserData && userExists" class="nav nav-tabs nav-justified">
   <li class="active"><a data-toggle="tab" href="#home">Inventory</a></li>
   <li><a data-toggle="tab" href="#menu1">IOUs</a></li>
   <li><a data-toggle="tab" href="#settings">Settings</a></li>
 </ul>
 
-<div class="tab-content">
+<div *ngIf="currentUserData && userExists" class="tab-content">
   <!-- INVENTORY CONTENT GOES BELOW THIS -->
   <div id="home" class="tab-pane fade in active">
-  
-    <!-- Landing page for users who are not logged in. -->
-    <div *ngIf="!currentUserData" class="row">
-      <div class="col-xs-0 col-md-2"></div>
-      <div class="group-container col-xs-12 col-md-8">
-        <div align="center">
-          <br>
-          <h3>Please log in to use SuiteLife!</h3><br>
-          <app-login></app-login><br>
-          <br>
-        </div>
-      </div>
-      <div class="col-xs-0 col-md-2"></div>
-    </div>
 
     <div *ngFor="let group of groups">
       <div class="row">
@@ -65,7 +85,7 @@
   <div id="settings" class="tab-pane fade">
     <div *ngIf="currentUserData" class="row">
       <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
-      <app-settings class="col-xs-10 col-md-8"></app-settings>
+      <app-settings class="col-xs-10 col-md-8" [isUserCreation]="false"></app-settings>
       <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
     </div>
     <div *ngIf="currentUserData" class="row">

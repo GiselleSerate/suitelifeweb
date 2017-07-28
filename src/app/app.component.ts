@@ -23,14 +23,29 @@ export class AppComponent {
   currentUser: Observable<firebase.User>;
   currentUserData: Observable<any>;
   groups: [Group];
+  userExists: boolean;
+  db: AngularFireDatabase;
+  matchingUsers: FirebaseListObservable<any>;
+  dummy: string;
 
   constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
     this.currentUser = afAuth.authState;
+    this.db = db;
 
     this.currentUser.subscribe(res => {   // This callback block happens upon login or logout. 
       if(res && res.uid) { // User logged in.
         console.log(res.photoURL);
-        this.currentUserData = db.list('/users/'.concat(res.uid, '/groups/')); // Attach observable to the correct path. 
+
+        this.matchingUsers = this.db.list('/users/', { query: {
+          orderByKey: !null,
+          equalTo: res.uid
+        }})
+        this.matchingUsers.subscribe(snapshots => {
+          this.userExists = snapshots.length != 0;
+          this.dummy = this.userExists ? snapshots[0].$key : "user dne"
+        })
+
+        this.currentUserData = db.list('/users/'.concat(res.uid, '/groups/')); // Attach observable to path of my groups. 
         this.currentUserData.subscribe(snapshots => { // Begin observable's subscription. 
 
           this.groups = [] as [Group]; // Clear groups array. 
