@@ -1,5 +1,9 @@
 {
   "rules": {
+    "groups": {
+      ".read": "auth != null",
+      ".write": "auth != null" // We'll grant more granular access later, right now we're going with this. 
+    },
 
     "users": {
       ".indexOn": ["searchFields/name", "searchFields/handle"],
