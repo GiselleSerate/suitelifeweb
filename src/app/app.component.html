@@ -33,10 +33,11 @@
   <div class="col-xs-0 col-md-2"></div>
 </div>
 
-<!-- {{matchingUsers}} -->
-<!-- {{dummy}} -->
-<!-- <div *ngIf="currentUserData && userExists">we think you registerereed</div> -->
-<div class="row">
+<!-- {{matchingUsers}}
+{{dummy}}
+<div *ngIf="currentUserData && userExists">we think you registerereed</div> -->
+<div *ngIf="currentUserData" class="row">
+hello world
   <div class="col-xs-1 col-md-2"></div>
   <div class="col-xs-10 col-md-8">
     <app-settings [isUserCreation]="true"></app-settings>

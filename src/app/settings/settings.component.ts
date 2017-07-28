@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 // These imports are all for Firebase.---------
 import { Observable } from 'rxjs/Observable';
@@ -19,7 +19,7 @@ import { User } from '../user'
   styleUrls: ['./settings.component.css']
 })
 
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
 
   SETTINGSKEYS = {'single': ['handle','name','location'], 'multiple': ['dietaryPreferences']};
   UNIQUESETTINGS = ['handle'];
@@ -30,13 +30,11 @@ export class SettingsComponent {
   db: AngularFireDatabase;
   userCreated: boolean; // TODO: Bandaid for now, to hide this component if it is user creation. 
 
-  @Input() isUserCreation; // Is this for user creation or is it a vanilla settings menu? 
+  @Input() isUserCreation: boolean; // Is this for user creation or is it a vanilla settings menu? 
   
   constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
     this.currentUser = afAuth.authState;
     this.db = db;
-    this.userCreated = !this.isUserCreation;
-
     this.currentUser.subscribe(res => {   // This callback block happens upon login or logout. 
       if(res && res.uid) { // User logged in.
         this.currentUserID = res.uid;
@@ -58,6 +56,10 @@ export class SettingsComponent {
       }
     })
   }   
+
+  ngOnInit() {
+    this.userCreated = !this.isUserCreation;
+  }
   
   updateSingleProperty(key: string) {
     var currentPropertyValue = this.singlePropertySettings[key];
