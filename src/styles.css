@@ -67,6 +67,8 @@ body {
   .group-container input {
     background-color: #f3f3f4;
     border: none; }
+  .group-container p {
+    padding-left: 4px; }
   .group-container .inventory-container {
     display: flex;
     flex-direction: column;

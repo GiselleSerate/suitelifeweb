@@ -127,6 +127,10 @@ body {
     border: none;
   }
 
+  p { // So I can stop adding random &nbsp;s to things.
+    padding-left: 4px;
+  }
+
   .smaller-container {
 
   }

@@ -1,6 +1,6 @@
 <div class="group-container" *ngIf="!isUserCreation || (isUserCreation && !userCreated)">
   <h3 *ngIf="isUserCreation">Set User Details</h3>
-  <p *ngIf="isUserCreation">&nbsp;&nbsp;You can change these later.</p>
+  <p *ngIf="isUserCreation">You can change these later.</p>
   <h3 *ngIf="!isUserCreation">Settings</h3>
     <ul>
       <li *ngFor="let key of SETTINGSKEYS['single']">

@@ -25,6 +25,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { GroupsEditComponent } from './groups-edit/groups-edit.component';
 import { GroupViewComponent } from './group-view/group-view.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
+import { DragulaModule } from 'ng2-dragula';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awes
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     FormsModule, 
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    DragulaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
