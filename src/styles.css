@@ -102,6 +102,9 @@ body {
 .debt-negative {
   color: #00823c; }
 
+.handle {
+  padding: 4px; }
+
 /* Copying dragula.css code because actual importing is hard. */
 .gu-mirror {
   position: fixed !important;

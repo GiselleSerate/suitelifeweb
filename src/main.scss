@@ -177,11 +177,15 @@ body {
 }
 
 .debt-positive {
-    color: $color-debt-red;
+  color: $color-debt-red;
 }
 
 .debt-negative {
-    color: $color-debt-green;
+  color: $color-debt-green;
+}
+
+.handle {
+  padding: 4px;
 }
 
 

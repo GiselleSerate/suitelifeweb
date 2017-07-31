@@ -1,6 +1,6 @@
 // Component displays list or pantry based on parameter. 
 
-import { Component, Input} from '@angular/core';
+import { Component, Input, ViewChild, OnInit } from '@angular/core';
 import 'rxjs/add/operator/take'
 import { Observable } from 'rxjs/Observable';
 import { InventoryItem } from '../inventoryItem';
@@ -23,7 +23,7 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
   templateUrl: './inventory.component.html',
   styleUrls: ['./inventory.component.css']
 })
-export class InventoryComponent {
+export class InventoryComponent implements OnInit {
 
   @Input() inventoryType: string; // Either list or pantry. 
   @Input() group: Group; // A Group type instance. 
@@ -39,23 +39,13 @@ export class InventoryComponent {
   currentUser: Observable<firebase.User>;  // An observable for the user that is logged in. 
   currentUserData: Observable<any[]>;      // An observable for the inventory corresponding to this component. 
 
-  constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth, private dragulaService: DragulaService) {
-    dragulaService.drag.subscribe((value) => {
-      console.log(`drag: ${value[0]}`);
-      this.onDrag(value.slice(1));
-    });
-    dragulaService.drop.subscribe((value) => {
-      console.log(`drop: ${value[0]}`);
-      this.onDrop(value.slice(1));
-    });
-    dragulaService.over.subscribe((value) => {
-      console.log(`over: ${value[0]}`);
-      this.onOver(value.slice(1));
-    });
-    dragulaService.out.subscribe((value) => {
-      console.log(`out: ${value[0]}`);
-      this.onOut(value.slice(1));
-    });
+  transferData: any;
+  dragulaService: DragulaService;
+
+  // @ViewChild('inventories'.concat(this.group.name, this.inventoryType)) meBag: any;
+
+  constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth, dragulaService: DragulaService) {
+    this.dragulaService = dragulaService;
 
     this.db = db;
     this.currentUser = afAuth.authState;
@@ -98,6 +88,54 @@ export class InventoryComponent {
         this.currentUserData = null;
       }
     })
+  }
+
+  ngOnInit() {
+    this.dragulaService.setOptions('inventories'.concat(this.group.groupID, this.inventoryType), {
+      moves: function (el, container, handle) {
+        return handle.classList.contains('handle');
+      }
+    });
+
+    // dragulaService.drag.subscribe((value) => {
+    //   console.log(`drag: ${value[0]}`);
+    //   this.onDrag(value.slice(1));
+    // });
+    // dragulaService.drop.subscribe((value) => {
+    //   console.log(`drop: ${value[0]}`);
+    //   this.onDrop(value.slice(1));
+    // });
+    // dragulaService.over.subscribe((value) => {
+    //   console.log(`over: ${value[0]}`);
+    //   this.onOver(value.slice(1));
+    // });
+    // dragulaService.out.subscribe((value) => {
+    //   console.log(`out: ${value[0]}`);
+    //   this.onOut(value.slice(1));
+    // });
+
+    let that = this;
+
+    this.dragulaService.dropModel.subscribe((args: any) => {
+      let [bagName, el, target, source] = args;
+      // console.log("Dropped inside bagName".concat(bagName));
+      this.saveAll();
+      // if(bagName == "inventories".concat(that.group.groupID, that.inventoryType)){ // needed since dropModel triggers for all bags, not only on the dropped bag
+      //   console.log("IT ME Dropped inside bagName".concat(bagName));
+      //   console.log("The id is ".concat(el.id));
+      //   let element = el.id;
+      //   for(let i = 0; i < that.inventory.length; i++){
+      //     console.log("A FOR WHOA");
+      //     let task = that.inventory[i];
+      //     console.log("We compare: ".concat(task.uidString, " ", element));
+      //     if(task.uidString == element){
+      //       console.log("A MATCH WOHA");
+      //       break;
+      //     }
+      //   }
+      // }
+    });
+
   }
 
   addItem() {
@@ -149,30 +187,31 @@ export class InventoryComponent {
 
     this.inventory.forEach((item, index) => { // Iterate over all items. 
       item.index = index;          // Reindex. 
+      item.path = this.path;
       item.save();                 // Save to database.
     });
   }
 
-  private onDrag(args) {
-    let [e, el] = args;
-    // do something
-  }
+  // private onDrag(args) {
+  //   // let [e, el] = args;
+  //   // do something
+  // }
 
-  private onDrop(args) {
-    // let [e, el] = args;
-    // // do something
-    this.saveAll();
-  }
+  // private onDrop(args) {
+  //   // let [e, el] = args;
+  //   // // do something
+  //   this.saveAll();
+  // }
 
-  private onOver(args) {
-    let [e, el, container] = args;
-    // do something
-  }
+  // private onOver(args) {
+  //   // let [e, el, container] = args;
+  //   // do something
+  // }
 
-  private onOut(args) {
-    // let [e, el, container] = args;
-    // // do something
-  }
+  // private onOut(args) {
+  //   // let [e, el, container] = args;
+  //   // // do something
+  // }
 
   checkOut() {
     // Get a reference to the selected items
