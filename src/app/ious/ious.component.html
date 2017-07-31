@@ -1,5 +1,6 @@
 <h3>IOUs:</h3>
 <div class="smaller-container">
+  <p *ngIf="people.length == 0">&nbsp;&nbsp;You don't have any debts on record.</p>
   <ul>
     <li class="text" *ngFor="let person of people"> 
       <app-person-view [person] = "person"></app-person-view>
