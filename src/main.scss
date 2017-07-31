@@ -18,10 +18,6 @@ $color-debt-gray: #686e6f;
 $color-debt-red: #F11929;
 $color-debt-green: #00823c;
 
-li { // No bullet points. Anywhere. 
-  list-style-type: none;
-}
-
 body {
   background: $color-onyx url(assets/cityscape.svg) repeat-x fixed bottom;
   background-size: 500px;
@@ -31,6 +27,24 @@ body {
   margin: 0;
 
   padding-top: 7vh; // Spacer.
+}
+
+li { // No bullet points. Anywhere. 
+  list-style-type: none;
+}
+
+/* For sizing the iframes on the preview page. */
+
+.ppt {
+  // Ratio: width="683" height="541" 
+  height: 80vh;
+  width: 80vh*683/541;
+}
+
+.demovid {
+  // Ratio: width="560" height="315" 
+  height: 20vh;
+  width: 20vh*560/315;
 }
 
 .page-container {

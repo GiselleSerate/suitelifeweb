@@ -1,9 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 /* UI Gradient: Brady Brady Fun Fun */
 /* Color scheme */
-li {
-  list-style-type: none; }
-
 body {
   background: #30383a url(assets/cityscape.svg) repeat-x fixed bottom;
   background-size: 500px;
@@ -12,6 +9,19 @@ body {
   color: #30383a;
   margin: 0;
   padding-top: 7vh; }
+
+li {
+  list-style-type: none; }
+
+/* For sizing the iframes on the preview page. */
+.ppt {
+  height: 80vh;
+  width: 100.9981515712vh; }
+
+.demovid {
+  height: 20vh;
+  width: 35.5555555556vh;
+  text-align: center; }
 
 .page-container {
   width: 100vw; }
