@@ -172,7 +172,6 @@ export class InventoryComponent {
   private onOut(args) {
     // let [e, el, container] = args;
     // // do something
-    this.saveAll();
   }
 
   checkOut() {
