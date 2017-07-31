@@ -1,6 +1,6 @@
 <div (click)="toggleFocus()" [class]="person.colorDebt()">
-  <i class="fa fa-plus-square" aria-hidden="true" *ngIf="!this.isFocused"></i>   <!-- Expand. -->
-  <i class="fa fa-minus-square-o" aria-hidden="true" *ngIf="this.isFocused"></i> <!-- Collapse. -->
+  <i class="fa fa-plus-square fixed-width" aria-hidden="true" *ngIf="!this.isFocused"></i>   <!-- Expand. -->
+  <i class="fa fa-minus-square-o fixed-width" aria-hidden="true" *ngIf="this.isFocused"></i> <!-- Collapse. -->
   {{person.name}} @{{person.handle}}  {{person.formatDebt()}}
 </div>
 <div *ngIf="this.isFocused">

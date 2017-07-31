@@ -41,8 +41,6 @@ export class InventoryItem {
     // Truncates the price before storing and also turns the decimal displayed into an int of cents. 
     var savePrice = Math.floor(this.price * 100); 
 
-    console.log(savePrice);
-
     // Send update to the database. 
     this.db.object(this.path.concat('/', this.index.toString())).update({
       "checked": this.checked,

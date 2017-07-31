@@ -119,8 +119,10 @@ export class InventoryComponent implements OnInit {
     this.dragulaService.dropModel.subscribe((args: any) => {
       let [bagName, el, target, source] = args;
       // console.log("Dropped inside bagName".concat(bagName));
-      this.saveAll();
-      // if(bagName == "inventories".concat(that.group.groupID, that.inventoryType)){ // needed since dropModel triggers for all bags, not only on the dropped bag
+
+      // We can only drop into one bag now so you might as well save only this one. 
+      if(bagName == "inventories".concat(that.group.groupID, that.inventoryType)){ 
+        this.saveAll();      
       //   console.log("IT ME Dropped inside bagName".concat(bagName));
       //   console.log("The id is ".concat(el.id));
       //   let element = el.id;
@@ -133,7 +135,7 @@ export class InventoryComponent implements OnInit {
       //       break;
       //     }
       //   }
-      // }
+      }
     });
 
   }

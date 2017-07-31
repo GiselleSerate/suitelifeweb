@@ -102,6 +102,12 @@ body {
 .debt-negative {
   color: #00823c; }
 
+/* Force icons to be the same size. */
+.fixed-width {
+  display: inline-block;
+  width: 1.25em; }
+
+/* Draggy handle. */
 .handle {
   padding: 4px; }
 
