@@ -45,9 +45,15 @@ export class GroupViewComponent implements OnInit {
     alert(this.localID);
   }
 
-  selectUser(user: User) {
-    alert("Added user ".concat(user.name, " to the group ", this.localID, " ", this.localName));
-    this.db.list('/groups/').update(this.localID, {members: {[user.userID]: true}}); // Add other members here. 
-    this.db.list('/users/'.concat(user.userID)).update('groups', {[this.localID]: true});  // Add group to user.  
+  // Callback needs to be generated because of the way that `this` works in JS, see https://stackoverflow.com/a/20279485/5309823
+  // The gist of it is that I create an explicit reference to `this` in order for it to be called properly
+  generateSelectUserCallback() {
+    var that = this;
+    return function(user: User) {
+      alert("Added user ".concat(user.name, " to the group ", that.group.groupID, " ", that.localName));
+      this.db.object('/groups/'.concat(that.group.groupID,'/members/',user.userID)).set(true); // Add user to group
+      this.db.object('/users/'.concat(user.userID,'/groups/',that.group.groupID)).set(true);  // Add group to user.  
+    }
   }
+
 }

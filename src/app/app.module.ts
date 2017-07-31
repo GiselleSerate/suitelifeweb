@@ -24,6 +24,7 @@ import { SafePipe } from './safe.pipe';
 import { SettingsComponent } from './settings/settings.component';
 import { GroupsEditComponent } from './groups-edit/groups-edit.component';
 import { GroupViewComponent } from './group-view/group-view.component';
+import { UserViewComponent } from './user-view/user-view.component'
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import { DragulaModule } from 'ng2-dragula';
 
@@ -41,7 +42,8 @@ import { DragulaModule } from 'ng2-dragula';
     SettingsComponent,
     GroupsEditComponent,
     GroupViewComponent,
-    SearchUsersComponent
+    SearchUsersComponent,
+    UserViewComponent
 
   ],
   imports: [

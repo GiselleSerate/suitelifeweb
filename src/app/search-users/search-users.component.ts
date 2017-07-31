@@ -48,10 +48,11 @@ export class SearchUsersComponent {
   }
   
   selectUser(user: User) {
-    // this.userSelectedCallback(user);
-    alert("Added user ".concat(user.name, " to your group"));
-    this.db.list('/groups/'.concat(this.groupID)).update('members', {[user.userID]: true}); // Add other members here. 
-    this.db.list('/users/'.concat(user.userID)).update('groups', {[this.groupID]: true});  // Add group to user.  
+    this.userSelectedCallback(user);
+    console.log("callback reached.");
+    // alert("Added user ".concat(user.name, " to your group"));
+    // this.db.list('/groups/'.concat(this.groupID)).update('members', {[user.userID]: true}); // Add other members here. 
+    // this.db.list('/users/'.concat(user.userID)).update('groups', {[this.groupID]: true});  // Add group to user.  
   }
 
   search(searchTerm: string) {
@@ -78,7 +79,8 @@ export class SearchUsersComponent {
         snapshots.forEach(snapshot => {
           // Multiply the debt by 1 since we want to retrieve THIS user's debt to them
           // The rest of these values are just what's required for the User constructor
-          var user = new User(this.currentUserID, snapshot.$key, -1 * snapshot['debts'][this.currentUserID], this.db, snapshot.name, snapshot.handle);
+          console.log(snapshot.photoURL);
+          var user = new User(this.currentUserID, snapshot.$key, this.db, -1 * snapshot['debts'][this.currentUserID], snapshot.name, snapshot.handle, snapshot.photoURL);
           this.addToSearchResults(user);
         })
       })
@@ -90,6 +92,7 @@ export class SearchUsersComponent {
       // Append only if the user is not in the array (we check quickly by looking at userID, which is unique)
       if(uids.indexOf(user.userID) == -1) {
         this.searchResults.push(user);
+        console.log(user.photoURL);
       }
     }
 
