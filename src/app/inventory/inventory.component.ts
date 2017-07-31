@@ -15,7 +15,8 @@ import { Subject } from 'rxjs/Subject';
 // --------------------------------------------
 
 import { UUID } from 'angular2-uuid';
-import { Group } from '../group'
+import { Group } from '../group';
+import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 @Component({
   selector: 'app-inventory',
@@ -38,7 +39,24 @@ export class InventoryComponent {
   currentUser: Observable<firebase.User>;  // An observable for the user that is logged in. 
   currentUserData: Observable<any[]>;      // An observable for the inventory corresponding to this component. 
 
-  constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth) {
+  constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth, private dragulaService: DragulaService) {
+    dragulaService.drag.subscribe((value) => {
+      console.log(`drag: ${value[0]}`);
+      this.onDrag(value.slice(1));
+    });
+    dragulaService.drop.subscribe((value) => {
+      console.log(`drop: ${value[0]}`);
+      this.onDrop(value.slice(1));
+    });
+    dragulaService.over.subscribe((value) => {
+      console.log(`over: ${value[0]}`);
+      this.onOver(value.slice(1));
+    });
+    dragulaService.out.subscribe((value) => {
+      console.log(`out: ${value[0]}`);
+      this.onOut(value.slice(1));
+    });
+
     this.db = db;
     this.currentUser = afAuth.authState;
 
@@ -124,6 +142,37 @@ export class InventoryComponent {
       item.checked = set;
       item.save();
     });
+  }
+
+  saveAll() {
+    console.log("Saving all the items.");
+
+    this.inventory.forEach((item, index) => { // Iterate over all items. 
+      item.index = index;          // Reindex. 
+      item.save();                 // Save to database.
+    });
+  }
+
+  private onDrag(args) {
+    let [e, el] = args;
+    // do something
+  }
+
+  private onDrop(args) {
+    // let [e, el] = args;
+    // // do something
+    this.saveAll();
+  }
+
+  private onOver(args) {
+    let [e, el, container] = args;
+    // do something
+  }
+
+  private onOut(args) {
+    // let [e, el, container] = args;
+    // // do something
+    this.saveAll();
   }
 
   checkOut() {
