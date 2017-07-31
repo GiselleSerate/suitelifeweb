@@ -13,6 +13,7 @@ export class Group {
   groupID: string;
   db: AngularFireDatabase; // Through AngularFire.
   name: string;
+  members: string[];
 
   constructor(groupID: string, db: AngularFireDatabase) { // If you don't need the debt, set it to 0. It shouldn't mess anything up. 
     this.groupID = groupID;
@@ -28,6 +29,7 @@ export class Group {
       this.db.object('/groups/'.concat(this.groupID)).subscribe(snapshot => { // Begin observable's subscription. 
         // Set the user's properties. 
         this.name = snapshot.name;
+        this.members = Object.keys(snapshot.members);
       })
     }
   }

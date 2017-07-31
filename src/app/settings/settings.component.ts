@@ -28,6 +28,7 @@ export class SettingsComponent implements OnInit {
   singlePropertySettings = {};
   multiplePropertySettings = {};
   db: AngularFireDatabase;
+  photoURL: string;
   userCreated: boolean; // TODO: Bandaid for now, to hide this component if it is user creation. 
 
   @Input() isUserCreation: boolean; // Is this for user creation or is it a vanilla settings menu? 
@@ -38,6 +39,7 @@ export class SettingsComponent implements OnInit {
     this.currentUser.subscribe(res => {   // This callback block happens upon login or logout. 
       if(res && res.uid) { // User logged in.
         this.currentUserID = res.uid;
+        this.photoURL = res.photoURL;
         this.SETTINGSKEYS['single'].forEach(key => {
           // Fetches changes constantly -- when things get updated, their value is changed immediately.
           // To undo, append .take(1); to the line below
@@ -101,6 +103,8 @@ export class SettingsComponent implements OnInit {
     for(let key of this.SETTINGSKEYS['single']) {
       this.updateSingleProperty(key); // TODO: Alerts every single time. 
     }
+    // Save photoURL, which we are currently not letting people edit
+    this.db.object('/users/'.concat(this.currentUserID,'/','photoURL')).set(this.photoURL);
     this.userCreated = true;
   }
 

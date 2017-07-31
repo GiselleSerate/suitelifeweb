@@ -2,9 +2,7 @@
     <input #searchInput (keyup)="search(searchInput.value)"> 
     <ul>
         <li *ngFor="let user of searchResults"> 
-            <div (click)="selectUser(user)">
-                {{user.name + ' @' + user.handle}}
-            </div>
+            <app-user-view [user]="user" (click)="selectUser(user)"></app-user-view>
         </li>
     </ul>
 </div>

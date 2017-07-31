@@ -7,6 +7,12 @@
   <b>name</b> <input [(ngModel)]="localName" (keyup.enter)="updateName()"><button (click)="updateName()">Update</button>
   <!-- Put searchy thing here. -->
   <div>
-    <label>Add A Member:</label><app-search-users [groupID]="localID" [userSelectedCallback]="selectUser"></app-search-users>
+      <ul>
+          <li *ngFor="let member of group.members">
+              <app-user-view [userID]="member"></app-user-view>
+              {{member}}
+          </li>
+    </ul>
+    <label>Add A Member:</label><app-search-users [groupID]="localID" [userSelectedCallback]="generateSelectUserCallback()"></app-search-users>
   </div>
 </div>
