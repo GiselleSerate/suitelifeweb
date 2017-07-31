@@ -29,7 +29,7 @@ export class User {
     // From the userID, I can calculate the other properties of the user in question. For now, I will initialize them to an default string so it fails semi-gracefully. 
     this.name = name == null ? "Loading..." : name;
     this.handle = handle == null ? "Loading..." : handle;
-    this.photoURL = photoURL == null ? "/defaultIcon.png" : photoURL;
+    this.photoURL = photoURL == null ? "/assets/iconOnly.svg" : photoURL;
     // TODO: Call init() in constructor?
   }
 

@@ -51,8 +51,8 @@ export class GroupViewComponent implements OnInit {
     var that = this;
     return function(user: User) {
       alert("Added user ".concat(user.name, " to the group ", that.group.groupID, " ", that.localName));
-      this.db.list('/groups/').update(that.group.groupID, {members: {[user.userID]: true}}); // Add other members here. 
-      this.db.list('/users/'.concat(user.userID)).update('groups', {[that.group.groupID]: true});  // Add group to user.  
+      this.db.object('/groups/'.concat(that.group.groupID,'/members/',user.userID)).set(true); // Add user to group
+      this.db.object('/users/'.concat(user.userID,'/groups/',that.group.groupID)).set(true);  // Add group to user.  
     }
   }
 
