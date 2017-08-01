@@ -91,7 +91,10 @@ export class InventoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dragulaService.setOptions('inventories'.concat(this.group.groupID, this.inventoryType), {
+    const bagID = 'inventories'.concat(this.group.groupID,this.inventoryType);
+    const bag = this.dragulaService.find(bagID);
+    if (bag !== undefined ) this.dragulaService.destroy(bagID);
+    this.dragulaService.setOptions(bagID, {
       moves: function (el, container, handle) {
         return handle.classList.contains('handle');
       }

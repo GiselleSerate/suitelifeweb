@@ -29,7 +29,9 @@ export class Group {
       this.db.object('/groups/'.concat(this.groupID)).subscribe(snapshot => { // Begin observable's subscription. 
         // Set the user's properties. 
         this.name = snapshot.name;
-        this.members = Object.keys(snapshot.members);
+        if(snapshot.members){
+          this.members = Object.keys(snapshot.members);
+        }  
       })
     }
   }
