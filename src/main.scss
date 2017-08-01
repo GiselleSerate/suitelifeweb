@@ -1,19 +1,18 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+// For the logo. We aren't currently using any of the following, so it's commented out. 
+// @import url('https://fonts.googleapis.com/css?family=Montserrat');
+// UI Gradient: Brady Brady Fun Fun
+// $logo-gradient: -webkit-linear-gradient(left, #00c3ff, #ffff1c);
+// $logo-font: 'Montserrat', sans-serif;
+//-------------------------------------------------------------------------------------
 
-// For Font Awesome.
-// @import "font-awesome-sprockets"; 
-// @import "font-awesome";
+/* Note: Designed with a mobile-first approach. */
 
-/* UI Gradient: Brady Brady Fun Fun */
-$logo-gradient: -webkit-linear-gradient(left, #00c3ff, #ffff1c);
-$logo-font: 'Montserrat', sans-serif;
 
 /* Color scheme */
 $color-white: #f3f3f4;    // Off-white.
-$color-sprout: #BBE4C4;   // Green, for transparenting on the background.
-$color-onyx: #30383a;     // For the navbar. (Black.)
-// $color-list: white;       // For the list background. 
-// $color-pantry: black;     // For the pantry background.
+$color-sprout: #BBE4C4;   // Green, for transparenting over the background.
+$color-onyx: #30383a;     // "Black" for the navbar. 
+// Colors to define debts. 
 $color-debt-gray: #686e6f;
 $color-debt-red: #F11929;
 $color-debt-green: #00823c;
@@ -31,30 +30,28 @@ body {
   padding-top: -moz-calc(7vh + 0.5px); 
 }
 
-li { // No bullet points. Anywhere. 
+li { // No bullet points on list items. Anywhere. 
   list-style-type: none;
 }
 
+
 /* For sizing the iframes on the preview page. */
 
-.ppt {
-  // Ratio: width="683" height="541" 
+.ppt { // Ratio: width="683" height="541" 
   height: 80vh;
   width: 80vh*683/541;
 }
 
-.demovid {
-  // Ratio: width="560" height="315" 
+.demovid { // Ratio: width="560" height="315" 
   height: 20vh;
   width: 20vh*560/315;
 }
 
-.page-container {
-  width: 100vw;
-}
+
+/* For sizing icons on the masthead. */
 
 .masthead {
-  // z-index: 10;
+  z-index: 10;
 
   border-bottom: 0.5px solid $color-white;
 
@@ -63,7 +60,6 @@ li { // No bullet points. Anywhere.
   font-size: 3.5vh;
 
   background: $color-onyx;
-  // background: blue;
 
   text-align: center;
 
@@ -91,35 +87,8 @@ li { // No bullet points. Anywhere.
   }
 }
 
-@media only screen and (min-width: 768px) {
-  /* For desktop: */
 
-  body {
-    // padding-top: calc(50px+1vh);
-  }
-
-  .masthead {
-    .side-button {
-      // height: 50px;   
-    }
-  }
-  .masthead-spacer {
-    height: 60px;
-  }
-
-  div .group-container .inventory-container { // Extra specificity to make these definitely apply. 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    // justify-content: center;
-    align-content: stretch;
-    button {
-      color: $color-onyx;
-    }
-  }
-}
-
-/* General container for large chunks of web content.  */
+/* General container for large chunks of web content that I want on a green background. */
 .group-container {    
 
   background: rgba($color-sprout, 0.7);
@@ -142,11 +111,7 @@ li { // No bullet points. Anywhere.
     padding-left: 4px;
   }
 
-  .smaller-container {
-
-  }
-
-  /* Single Inventory Container. */
+  /* Single inventory container. */
   .inventory-container {
     display: flex;
     flex-direction: column;
@@ -176,12 +141,15 @@ li { // No bullet points. Anywhere.
   }
 }
 
+
+/* Format any price fields to be an appropriate length and alignment. */
+
 .price {
   width: 61px;
   text-align: right;
 }
 
-/* Use these classes to color the text of the IOUs. */
+/* Color the IOUs. */
 
 .debt-zero {
     color: $color-debt-gray;
@@ -196,7 +164,7 @@ li { // No bullet points. Anywhere.
 }
 
 
-/* Force icons to be the same size. */
+/* Force font awesome icons to be the same size (e.g. checkboxes). */
 
 .fixed-width {
     display: inline-block;
@@ -205,7 +173,7 @@ li { // No bullet points. Anywhere.
 }
 
 
-/* Draggy handle. */
+/* Draggy handle padding to make its hitbox larger. */
 
 .handle {
   padding: 4px;
@@ -222,18 +190,37 @@ li { // No bullet points. Anywhere.
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80);
 }
+
 .gu-hide {
   display: none !important;
 }
+
 .gu-unselectable {
   -webkit-user-select: none !important;
   -moz-user-select: none !important;
   -ms-user-select: none !important;
   user-select: none !important;
 }
+
 .gu-transit {
   opacity: 0.2;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
   filter: alpha(opacity=20);
 }
 
+
+/* Media queries for formatting DESKTOP. */
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+
+  div .group-container .inventory-container { // Extra specificity to make these definitely apply. 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    button {
+      color: $color-onyx;
+    }
+  }
+}
