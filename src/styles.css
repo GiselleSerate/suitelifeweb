@@ -134,6 +134,9 @@ li {
 /* Media queries for formatting DESKTOP. */
 @media only screen and (min-width: 768px) {
   /* For desktop: */
+  body {
+    overflow-x: hidden; }
+
   div .group-container .inventory-container {
     display: flex;
     flex-direction: row;

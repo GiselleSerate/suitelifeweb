@@ -212,6 +212,9 @@ li { // No bullet points on list items. Anywhere.
 
 @media only screen and (min-width: 768px) {
   /* For desktop: */
+  body {
+    overflow-x: hidden;
+  }
 
   div .group-container .inventory-container { // Extra specificity to make these definitely apply. 
     display: flex;
