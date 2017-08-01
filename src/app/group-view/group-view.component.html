@@ -1,6 +1,6 @@
 <div (click)="toggleVisible()">
-  <i class="fa fa-plus-square" aria-hidden="true" *ngIf="!visible"></i>   <!-- Expand. -->
-  <i class="fa fa-minus-square-o" aria-hidden="true" *ngIf="visible"></i> <!-- Collapse. -->
+  <i class="fa fa-plus-square fixed-width" aria-hidden="true" *ngIf="!visible"></i>   <!-- Expand. -->
+  <i class="fa fa-minus-square-o fixed-width" aria-hidden="true" *ngIf="visible"></i> <!-- Collapse. -->
   {{group.name}}
 </div>
 <div *ngIf="visible">
