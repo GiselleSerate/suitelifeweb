@@ -5,6 +5,7 @@
 </div>
 <div *ngIf="visible">
   <b>name</b> <input [(ngModel)]="localName" (keyup.enter)="updateName()"><button (click)="updateName()">Update</button>
+  <button (click)="intendLeave()">Leave Group</button>
   <!-- Put searchy thing here. -->
   <div>
       <ul>

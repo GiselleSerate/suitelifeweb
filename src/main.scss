@@ -26,7 +26,9 @@ body {
   color: $color-onyx;
   margin: 0;
 
-  padding-top: 7vh; // Spacer.
+  padding-top: calc(7vh + 0.5px); // Spacer.
+  padding-top: -webkit-calc(7vh + 0.5px); 
+  padding-top: -moz-calc(7vh + 0.5px); 
 }
 
 li { // No bullet points. Anywhere. 
@@ -54,19 +56,7 @@ li { // No bullet points. Anywhere.
 .masthead {
   // z-index: 10;
 
-
-
-  // // position: fixed; 
-  // // top: 0;
-  // // object-fit: cover;
-
-  // padding: 0;
-  // margin: 0;
-  // // border: 1px solid blue;
-
-  // // height: 20px;
-  // // width: 100vw;
-  // width: 100%;
+  border-bottom: 0.5px solid $color-white;
 
   font-family: $logo-font;
   color: $color-white;
@@ -76,6 +66,8 @@ li { // No bullet points. Anywhere.
   // background: blue;
 
   text-align: center;
+
+  margin: 0;
 
   .side-button {
     height: 6vh;
@@ -101,9 +93,14 @@ li { // No bullet points. Anywhere.
 
 @media only screen and (min-width: 768px) {
   /* For desktop: */
+
+  body {
+    // padding-top: calc(50px+1vh);
+  }
+
   .masthead {
     .side-button {
-      height: 50px;   
+      // height: 50px;   
     }
   }
   .masthead-spacer {

@@ -25,10 +25,23 @@ export class GroupViewComponent implements OnInit {
   localName: string;
   localID: string;
   db: AngularFireDatabase;
+  currentUser: Observable<firebase.User>;
+  myID: string;
 
-  constructor(db: AngularFireDatabase) { 
+  constructor(db: AngularFireDatabase, afAuth: AngularFireAuth) { 
     this.db = db;
     this.visible = false;
+    this.currentUser = afAuth.authState;
+
+    this.currentUser.subscribe(res => {   // This callback block happens upon login or logout. 
+      if(res && res.uid) { // User logged in.
+        this.myID = res.uid;  
+      }
+      else { // User not logged in.
+        // Unassign all variables storing information about the user. 
+        this.myID = null;
+      }
+    })
   }
 
   ngOnInit() {
@@ -43,6 +56,18 @@ export class GroupViewComponent implements OnInit {
   updateName() {
     this.group.name = this.localName;
     alert(this.localID);
+  }
+
+  intendLeave() {
+    if(confirm("Are you sure you want to leave the group ".concat(this.group.name,"? This cannot be undone."))) {
+      this.leaveGroup();
+    }
+  }
+
+  leaveGroup() {
+    console.log("I'm leaving you for someone else");
+    this.db.object('/groups/'.concat(this.group.groupID,'/members/', this.myID)).remove(); // Remove me from group.
+    this.db.object('/users/'.concat(this.myID,'/groups/',this.group.groupID)).remove();  // Remove group from me.  
   }
 
   // Callback needs to be generated because of the way that `this` works in JS, see https://stackoverflow.com/a/20279485/5309823

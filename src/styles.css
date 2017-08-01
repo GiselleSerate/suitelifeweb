@@ -8,7 +8,9 @@ body {
   height: 100%;
   color: #30383a;
   margin: 0;
-  padding-top: 7vh; }
+  padding-top: calc(7vh + 0.5px);
+  padding-top: -webkit-calc(7vh + 0.5px);
+  padding-top: -moz-calc(7vh + 0.5px); }
 
 li {
   list-style-type: none; }
@@ -20,18 +22,19 @@ li {
 
 .demovid {
   height: 20vh;
-  width: 35.5555555556vh;
-  text-align: center; }
+  width: 35.5555555556vh; }
 
 .page-container {
   width: 100vw; }
 
 .masthead {
+  border-bottom: 0.5px solid #f3f3f4;
   font-family: "Montserrat", sans-serif;
   color: #f3f3f4;
   font-size: 3.5vh;
   background: #30383a;
-  text-align: center; }
+  text-align: center;
+  margin: 0; }
   .masthead .side-button {
     height: 6vh;
     width: 6vh;
@@ -50,9 +53,6 @@ li {
 
 @media only screen and (min-width: 768px) {
   /* For desktop: */
-  .masthead .side-button {
-    height: 50px; }
-
   .masthead-spacer {
     height: 60px; }
 
