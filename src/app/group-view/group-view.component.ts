@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 // These imports are all for Firebase.---------
 import { Observable } from 'rxjs/Observable';
@@ -27,11 +28,13 @@ export class GroupViewComponent implements OnInit {
   db: AngularFireDatabase;
   currentUser: Observable<firebase.User>;
   myID: string;
+  dragulaService: DragulaService;
 
-  constructor(db: AngularFireDatabase, afAuth: AngularFireAuth) { 
+  constructor(db: AngularFireDatabase, afAuth: AngularFireAuth, dragulaService: DragulaService ) { 
     this.db = db;
     this.visible = false;
     this.currentUser = afAuth.authState;
+    this.dragulaService = dragulaService;
 
     this.currentUser.subscribe(res => {   // This callback block happens upon login or logout. 
       if(res && res.uid) { // User logged in.
@@ -68,6 +71,8 @@ export class GroupViewComponent implements OnInit {
     console.log("I'm leaving you for someone else");
     this.db.object('/groups/'.concat(this.group.groupID,'/members/', this.myID)).remove(); // Remove me from group.
     this.db.object('/users/'.concat(this.myID,'/groups/',this.group.groupID)).remove();  // Remove group from me.  
+    this.dragulaService.destroy('inventories'.concat(this.group.groupID,'pantry'));
+    this.dragulaService.destroy('inventories'.concat(this.group.groupID,'list'));
   }
 
   // Callback needs to be generated because of the way that `this` works in JS, see https://stackoverflow.com/a/20279485/5309823

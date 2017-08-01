@@ -48,7 +48,7 @@ export class AppComponent {
 
         this.currentUserData = db.list('/users/'.concat(res.uid, '/groups/')); // Attach observable to path of my groups. 
         this.currentUserData.subscribe(snapshots => { // Begin observable's subscription. 
-
+          console.log("refresh groups");
           this.groups = [] as [Group]; // Clear groups array. 
           var personalGroup = new Group('personal', db); // Put personal "group" before you start loading other groups.
           personalGroup.init();
