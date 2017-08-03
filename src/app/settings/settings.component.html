@@ -4,21 +4,14 @@
   <h3 *ngIf="!isUserCreation">Settings</h3>
     <ul>
       <li *ngFor="let key of SETTINGSKEYS['single']">
-      	<div class="row">
-      		<div class="col-xs-1">
-        		<label>{{key}}</label>
-        	</div>
-        	<div class="col-xs-11">
-        		<input [(ngModel)]="singlePropertySettings[key]" (keyup.enter)="updateSingleProperty(key)">
-        		<button *ngIf="!isUserCreation" (click)="updateSingleProperty(key)">Update</button>
-        	</div>
+        <div class="row">
+          <br>
+          <label>{{key == 'payment-link' ? 'payment link' : key}}</label> <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<input [(ngModel)]="singlePropertySettings[key]" (keyup.enter)="updateSingleProperty(key)">
+          <button *ngIf="!isUserCreation" (click)="updateSingleProperty(key)">Update</button>
         </div>
       </li>
       Note that the payment link requires a full URL (including the <code>https://</code>). If you specify an invalid link, it won't work.
     </ul>
     <button *ngIf="isUserCreation" (click)="updateAllProperties()">Continue</button>
-    <!-- Search users example -->
-<!--     <div>
-        <label>Search Users</label><app-search-users [userSelectedCallback]="selectUser"></app-search-users>
-    </div> -->
 </div>
