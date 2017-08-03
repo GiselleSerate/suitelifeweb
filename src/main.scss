@@ -33,7 +33,7 @@ li { // No bullet points on list items. Anywhere.
   list-style-type: none;
 }
 
-button {
+button { // Standardized format for all buttons. 
   background: $color-white;
   color: $color-onyx;
   border: none;
@@ -54,8 +54,6 @@ button {
 /* For sizing the iframes on the preview page. */
 
 .ppt { // Ratio: width="683" height="541" 
-  // height: 80vh;
-  // width: 80vh*683/541;
   $width: 80vw;
   width: $width;
   height: $width*541/683;
@@ -63,8 +61,6 @@ button {
 }
 
 .demovid { // Ratio: width="560" height="315" 
-  // height: 40vh;
-  // width: 40vh*560/315;
   $width: 80vw;
   width: $width;
   height: $width*315/560;  
@@ -74,6 +70,13 @@ button {
 .profile-pic {
   float: left;
   padding: 0 4px 0 4px;
+}
+
+
+/* Resizing some stuff from Bootstrap because it's too big. */
+
+.row {
+  width: 100%;
 }
 
 
@@ -125,6 +128,7 @@ button {
 
 
 /* General container for large chunks of web content that I want on a green background. */
+
 .group-container {    
 
   background: rgba($color-sprout, 0.7);

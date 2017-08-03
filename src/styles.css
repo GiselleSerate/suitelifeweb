@@ -50,6 +50,10 @@ button {
   float: left;
   padding: 0 4px 0 4px; }
 
+/* Resizing some stuff from Bootstrap because it's too big. */
+.row {
+  width: 100%; }
+
 /* For sizing icons on the masthead. */
 .masthead {
   z-index: 10;
