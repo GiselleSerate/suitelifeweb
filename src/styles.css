@@ -135,6 +135,9 @@ button {
   width: 61px;
   text-align: right; }
 
+.disclosure-header {
+  display: inline; }
+
 /* Color the IOUs. */
 .person-debt {
   font-size: 12pt; }
