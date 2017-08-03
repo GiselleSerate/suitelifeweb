@@ -135,7 +135,7 @@ button {
   width: 61px;
   text-align: right; }
 
-.disclosure-header {
+.disclosure-header h4 {
   display: inline; }
 
 /* Color the IOUs. */
