@@ -14,6 +14,12 @@ body {
 li {
   list-style-type: none; }
 
+button {
+  background: #f3f3f4;
+  color: #30383a;
+  border: none;
+  padding: 4px; }
+
 .no-select {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -31,16 +37,22 @@ li {
 
 /* For sizing the iframes on the preview page. */
 .ppt {
-  height: 80vh;
-  width: 100.9981515712vh; }
+  width: 80vw;
+  height: 63.3674963397vw;
+  max-width: 100%; }
 
 .demovid {
-  height: 40vh;
-  width: 71.1111111111vh; }
+  width: 80vw;
+  height: 45vw;
+  max-width: 100%; }
 
 .profile-pic {
   float: left;
   padding: 0 4px 0 4px; }
+
+/* Resizing some stuff from Bootstrap because it's too big. */
+.row {
+  width: 100%; }
 
 /* For sizing icons on the masthead. */
 .masthead {
@@ -51,22 +63,25 @@ li {
   font-size: 3.5vh;
   background: #30383a;
   text-align: center;
-  margin: 0; }
-  .masthead .side-button {
+  margin: 0;
+  display: inline-block; }
+  .masthead .logo {
     height: 6vh;
     width: 6vh;
     margin: 0.5vh;
-    float: left; }
+    float: left;
+    display: inline-block; }
   .masthead .masthead-name {
     height: 6vh;
-    padding-top: 1vh; }
+    padding-top: 1vh;
+    text-align: center;
+    display: inline-block; }
   .masthead .login {
-    margin: 1.5vh 0;
     font-size: 2vh;
     float: right;
-    color: #30383a;
-    background-color: #f3f3f4;
-    border: none; }
+    display: inline-block; }
+    .masthead .login button {
+      margin: 1.5vh 0; }
 
 /* General container for large chunks of web content that I want on a green background. */
 .group-container {
