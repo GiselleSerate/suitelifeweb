@@ -17,11 +17,14 @@ export class User {
   name: string;
   handle: string;
   photoURL: string;
+  paymentLink: string;
+  DEFAULTPHOTOURL = "/assets/iconOnly.svg";
 
   constructor(currentUserID: string, userID: string, db: AngularFireDatabase)
   constructor(currentUserID: string, userID: string, db: AngularFireDatabase, debt: number)
   constructor(currentUserID: string, userID: string, db: AngularFireDatabase, debt: number, name: string, handle: string, photoURL: string)
-  constructor(currentUserID: string, userID: string, db: AngularFireDatabase, debt?: number, name?: string, handle?: string, photoURL?: string) { // If you don't need the debt, set it to 0. It shouldn't mess anything up. 
+  constructor(currentUserID: string, userID: string, db: AngularFireDatabase, debt: number, name: string, handle: string, photoURL: string, paymentLink: string)
+  constructor(currentUserID: string, userID: string, db: AngularFireDatabase, debt?: number, name?: string, handle?: string, photoURL?: string, paymentLink?: string) { // If you don't need the debt, set it to 0. It shouldn't mess anything up. 
     this.currentUserID = currentUserID;
     this.userID = userID;
     this.debt = debt == null ? 0 : debt;
@@ -29,7 +32,8 @@ export class User {
     // From the userID, I can calculate the other properties of the user in question. For now, I will initialize them to an default string so it fails semi-gracefully. 
     this.name = name == null ? "Loading..." : name;
     this.handle = handle == null ? "Loading..." : handle;
-    this.photoURL = photoURL == null ? "/assets/iconOnly.svg" : photoURL;
+    this.photoURL = photoURL == null ? this.DEFAULTPHOTOURL : photoURL;
+    this.paymentLink = paymentLink == null ? "" : paymentLink;
     // TODO: Call init() in constructor?
   }
 
@@ -46,7 +50,13 @@ export class User {
       this.db.object('/users/'.concat(this.userID, "/photoURL/")).subscribe(snapshot => { // Begin observable's subscription. 
       // Set the user's properties. 
       this.photoURL= snapshot.$value;
+        if (this.photoURL == null) {
+          this.photoURL = this.DEFAULTPHOTOURL;
+        }
     })     
+      this.db.object('/users/'.concat(this.userID, "/paymentLink/")).subscribe(snapshot => { // Begin observable's subscription. 
+      this.paymentLink = snapshot.$value;
+    })
   }
 
   save() { // Why would I need this function??

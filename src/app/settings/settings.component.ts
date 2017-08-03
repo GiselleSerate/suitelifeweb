@@ -21,7 +21,8 @@ import { User } from '../user'
 
 export class SettingsComponent implements OnInit {
 
-  SETTINGSKEYS = {'single': ['handle','name','location'], 'multiple': ['dietaryPreferences']};
+  SETTINGSKEYS = {'single': ['handle','name','location', 'payment-link'], 'multiple': ['dietaryPreferences']};
+  VALIDATESETTINGS = {'paymentLink': this.validatePaymentLink}
   UNIQUESETTINGS = ['handle'];
   currentUser: Observable<firebase.User>;
   currentUserID: string;
@@ -65,6 +66,14 @@ export class SettingsComponent implements OnInit {
   
   updateSingleProperty(key: string) {
     var currentPropertyValue = this.singlePropertySettings[key];
+    // Validate those keys which require validation
+    if(Object.keys(this.VALIDATESETTINGS).indexOf(key) != -1){
+      // Test against the validation method
+      if(! this.VALIDATESETTINGS[key](currentPropertyValue)) {
+        alert(key.concat(' is invalid.'));
+        return;
+      }
+    }
     // If the key is supposed to be unique, make sure it is
     if(this.UNIQUESETTINGS.indexOf(key) != -1){
       const query = this.db.list('/users', {
@@ -110,5 +119,9 @@ export class SettingsComponent implements OnInit {
 
   selectUser(user: User) {
     console.log(user);
+  }
+  validatePaymentLink(link: string) {
+    // Supported payment services: venmo.com, paypal.me
+    return /https?:\/\/(venmo.com|paypal.me)\/\S+\/?/i.test(link)
   }
 }
