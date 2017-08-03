@@ -155,6 +155,13 @@ li { // No bullet points on list items. Anywhere.
   }
 }
 
+.list-pantry {
+  touch-action: none;
+}
+
+.item-name {
+  width: 135px;
+}
 
 /* Format any price fields to be an appropriate length and alignment. */
 

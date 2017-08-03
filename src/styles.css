@@ -103,6 +103,12 @@ li {
       .group-container .inventory-container .inventory-pantry input {
         color: #30383a; }
 
+.list-pantry {
+  touch-action: none; }
+
+.item-name {
+  width: 135px; }
+
 /* Format any price fields to be an appropriate length and alignment. */
 .price {
   width: 61px;
