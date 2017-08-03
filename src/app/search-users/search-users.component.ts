@@ -80,7 +80,12 @@ export class SearchUsersComponent {
           // Multiply the debt by 1 since we want to retrieve THIS user's debt to them
           // The rest of these values are just what's required for the User constructor
           console.log(snapshot.photoURL);
-          var user = new User(this.currentUserID, snapshot.$key, this.db, -1 * snapshot['debts'][this.currentUserID], snapshot.name, snapshot.handle, snapshot.photoURL);
+          var debts = NaN;
+          if(snapshot['debts']) {
+            debts = -1 * snapshot['debts'][this.currentUserID]
+          }
+          var user = new User(this.currentUserID, snapshot.$key, this.db, debts, snapshot.name, snapshot.handle, snapshot.photoURL);
+
           this.addToSearchResults(user);
         })
       })
