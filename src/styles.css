@@ -18,7 +18,7 @@ button {
   background: #f3f3f4;
   color: #30383a;
   border: none;
-  padding: 4px; }
+  margin: 4px; }
 
 .no-select {
   -webkit-touch-callout: none;
@@ -46,13 +46,19 @@ button {
   height: 45vw;
   max-width: 100%; }
 
-.profile-pic {
+.bio-pic {
   float: left;
   padding: 0 4px 0 4px; }
 
+.profile-pic {
+  margin: 4px;
+  height: 40px;
+  width: 40px; }
+
 /* Resizing some stuff from Bootstrap because it's too big. */
 .row {
-  width: 100%; }
+  width: 100%;
+  left: 0; }
 
 /* For sizing icons on the masthead. */
 .masthead {
@@ -130,14 +136,14 @@ button {
   text-align: right; }
 
 /* Color the IOUs. */
-.debt-zero {
-  color: #686e6f; }
-
-.debt-positive {
-  color: #F11929; }
-
-.debt-negative {
-  color: #00823c; }
+.person-debt {
+  font-size: 12pt; }
+  .person-debt .debt-zero {
+    color: #686e6f; }
+  .person-debt .debt-positive {
+    color: #b22745; }
+  .person-debt .debt-negative {
+    color: #00823c; }
 
 /* Force font awesome icons to be the same size (e.g. checkboxes). */
 .fixed-width {

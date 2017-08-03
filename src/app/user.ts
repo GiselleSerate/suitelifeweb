@@ -18,7 +18,7 @@ export class User {
   handle: string;
   photoURL: string;
   paymentLink: string;
-  DEFAULTPHOTOURL = "/assets/iconOnly.svg";
+  DEFAULTPHOTOURL = "/assets/iconWBg.svg";
 
   constructor(currentUserID: string, userID: string, db: AngularFireDatabase)
   constructor(currentUserID: string, userID: string, db: AngularFireDatabase, debt: number)

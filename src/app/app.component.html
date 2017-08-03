@@ -42,7 +42,7 @@
         <h3>Team</h3><br>
 
         <div>
-          <div class="profile-pic">
+          <div class="bio-pic">
             <img src='assets/coleSquare.jpg' height='100px' width='100px'/>
           </div>
           <p>
@@ -55,7 +55,7 @@
         </div>
 
         <div>
-          <div class="profile-pic">
+          <div class="bio-pic">
             <img src='assets/giselleSquare.jpg' height='100px' width='100px'/>
           </div>
           <p>
@@ -68,7 +68,7 @@
         </div>
 
         <div>
-          <div class="profile-pic">
+          <div class="bio-pic">
             <img src='assets/jeniSquare.jpg' height='100px' width='100px'/>
           </div>
           <p>
@@ -97,11 +97,7 @@
   <div class="col-xs-0 col-md-2"></div>
 </div>
 
-<!-- {{matchingUsers}}
-{{dummy}}
-<div *ngIf="currentUserData && userExists">we think you registerereed</div> -->
 <div *ngIf="currentUserData && !userExists" class="row">
-hello world
   <div class="col-xs-1 col-md-2"></div>
   <div class="col-xs-10 col-md-8">
     <app-settings [isUserCreation]="true"></app-settings>
@@ -119,20 +115,18 @@ hello world
   <!-- INVENTORY CONTENT GOES BELOW THIS -->
   <div id="home" class="tab-pane fade in active">
 
-    <div *ngFor="let group of groups">
-      <div class="row">
-        <div class="col-xs-1 col-md-2"></div> <!-- Groups spacer. -->
-        <div class="group-container col-xs-10 col-md-8">
-          <h3>{{group.name}}</h3><br>
-          <div class="inventory-container">
-            <div class="col-xs-0 col-md-1"></div> <!-- Inventory spacer (has transparent background). -->
-            <app-inventory class="inventory-list col-xs-12 col-md-5" [inventoryType]="'list'" [group]="group"></app-inventory>
-            <app-inventory class="inventory-pantry col-xs-12 col-md-5"[inventoryType]="'pantry'" [group]="group"></app-inventory>
-            <div class="col-xs-0 col-md-1"></div> <!-- Inventory spacer (has transparent background). -->
-          </div>
+    <div *ngFor="let group of groups" class="row">
+      <div class="col-xs-1 col-md-2"></div> <!-- Groups spacer. -->
+      <div class="group-container col-xs-10 col-md-8">
+        <h3>{{group.name}}</h3><br>
+        <div class="inventory-container">
+          <div class="col-xs-0 col-md-1"></div> <!-- Inventory spacer (has transparent background). -->
+          <app-inventory class="inventory-list col-xs-12 col-md-5" [inventoryType]="'list'" [group]="group"></app-inventory>
+          <app-inventory class="inventory-pantry col-xs-12 col-md-5"[inventoryType]="'pantry'" [group]="group"></app-inventory>
+          <div class="col-xs-0 col-md-1"></div> <!-- Inventory spacer (has transparent background). -->
         </div>
-        <div class="col-xs-1 col-md-2"></div> <!-- Groups spacer. -->
       </div>
+      <div class="col-xs-1 col-md-2"></div> <!-- Groups spacer. -->
     </div>
   </div>
 
