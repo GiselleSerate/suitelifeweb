@@ -59,3 +59,13 @@ import { DragulaModule } from 'ng2-dragula';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// Debug variable to suppress console output
+// Credit to https://stackoverflow.com/a/1216743 
+var DEBUG = true;
+if(!DEBUG){
+    var methods = ["log", "debug", "warn", "info"];
+    for(var i=0;i<methods.length;i++){
+        console[methods[i]] = function(){};
+    }
+}
