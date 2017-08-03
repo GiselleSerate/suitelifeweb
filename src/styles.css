@@ -14,14 +14,33 @@ body {
 li {
   list-style-type: none; }
 
+.no-select {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+     supported by Chrome and Opera */ }
+
 /* For sizing the iframes on the preview page. */
 .ppt {
   height: 80vh;
   width: 100.9981515712vh; }
 
 .demovid {
-  height: 20vh;
-  width: 35.5555555556vh; }
+  height: 40vh;
+  width: 71.1111111111vh; }
+
+.profile-pic {
+  float: left;
+  padding: 0 4px 0 4px; }
 
 /* For sizing icons on the masthead. */
 .masthead {
@@ -84,6 +103,12 @@ li {
       .group-container .inventory-container .inventory-pantry input {
         color: #30383a; }
 
+.list-pantry {
+  touch-action: none; }
+
+.item-name {
+  width: 135px; }
+
 /* Format any price fields to be an appropriate length and alignment. */
 .price {
   width: 61px;
@@ -134,6 +159,9 @@ li {
 /* Media queries for formatting DESKTOP. */
 @media only screen and (min-width: 768px) {
   /* For desktop: */
+  body {
+    overflow-x: hidden; }
+
   div .group-container .inventory-container {
     display: flex;
     flex-direction: row;

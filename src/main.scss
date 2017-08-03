@@ -33,6 +33,16 @@ li { // No bullet points on list items. Anywhere.
   list-style-type: none;
 }
 
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
 
 /* For sizing the iframes on the preview page. */
 
@@ -42,8 +52,13 @@ li { // No bullet points on list items. Anywhere.
 }
 
 .demovid { // Ratio: width="560" height="315" 
-  height: 20vh;
-  width: 20vh*560/315;
+  height: 40vh;
+  width: 40vh*560/315;
+}
+
+.profile-pic {
+  float: left;
+  padding: 0 4px 0 4px;
 }
 
 
@@ -140,6 +155,13 @@ li { // No bullet points on list items. Anywhere.
   }
 }
 
+.list-pantry {
+  touch-action: none;
+}
+
+.item-name {
+  width: 135px;
+}
 
 /* Format any price fields to be an appropriate length and alignment. */
 
@@ -212,6 +234,9 @@ li { // No bullet points on list items. Anywhere.
 
 @media only screen and (min-width: 768px) {
   /* For desktop: */
+  body {
+    overflow-x: hidden;
+  }
 
   div .group-container .inventory-container { // Extra specificity to make these definitely apply. 
     display: flex;

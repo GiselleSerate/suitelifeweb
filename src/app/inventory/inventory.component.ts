@@ -246,4 +246,8 @@ export class InventoryComponent implements OnInit {
     
   }
 
+  drag() {
+    console.log("trying to drag");
+  }
+
 }

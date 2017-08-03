@@ -1,4 +1,4 @@
-<div (click)="toggleFocus()" [class]="person.colorDebt()">
+<div (click)="toggleFocus()" [class]="person.colorDebt().concat(' no-select')">
   <img style="height:40px;width:40px;"[src]="person.photoURL">
   <i class="fa fa-plus-square fixed-width" aria-hidden="true" *ngIf="!this.isFocused"></i>   <!-- Expand. -->
   <i class="fa fa-minus-square-o fixed-width" aria-hidden="true" *ngIf="this.isFocused"></i> <!-- Collapse. -->
@@ -7,5 +7,5 @@
 <div *ngIf="this.isFocused">
   You are paying this much money to {{person.name}}: <br>
   <label>$</label> <input class=".price" type="number" min="0" step="0.01" [(ngModel)]="pendingDebt" name="debt" placeholder="0" (keyup)="formatPendingDebt()" (keyup.enter)="submitDebt()" ><br>
-  <button (click)="toggleFocus()">Cancel</button><button (click)="submitDebt()">Submit</button><a *ngIf="person.paymentLink" href="https://www.paypal.com" target="_blank">Pay Back</a>
+  <button (click)="toggleFocus()">Cancel</button><button (click)="submitDebt()">Submit</button><a *ngIf="person.paymentLink" [href]="person.paymentLink" target="_blank">Pay Back</a>
 </div>
