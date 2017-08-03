@@ -1,8 +1,21 @@
 <h3>IOUs:</h3>
 <div class="smaller-container">
-  <p *ngIf="!people">You don't have any debts on record.</p>
+  <p *ngIf="(!positive_debts && !negative_debts && !settled_debts) || positive_debts.length + negative_debts.length + settled_debts.length == 0">You don't have any debts on record.</p>
+  <h4> People you owe </h4>
   <ul>
-    <li class="text" *ngFor="let person of people"> 
+      <li class="text" *ngFor="let person of sortUp(positive_debts)">
+      <app-person-view [person] = "person"></app-person-view>
+    </li>
+  </ul>
+  <h4> People who owe you </h4>
+  <ul>
+    <li class="text" *ngFor="let person of sortDown(negative_debts)"> 
+      <app-person-view [person] = "person"></app-person-view>
+    </li>
+  </ul>
+  <h4> Settled up </h4>
+  <ul>
+    <li class="text" *ngFor="let person of settled_debts"> 
       <app-person-view [person] = "person"></app-person-view>
     </li>
   </ul>

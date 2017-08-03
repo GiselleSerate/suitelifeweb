@@ -21,7 +21,9 @@ export class IousComponent implements OnInit {
 
   db: AngularFireDatabase; // A reference to the database. 
 
-  people: [User]; // Local array of people so that this component can access all debtors/debtees.  
+  positive_debts: [User];
+  negative_debts: [User];
+  settled_debts: [User];
   
   currentUser: Observable<firebase.User>;  // An observable for the user that is logged in. 
   currentUserData: Observable<any[]>;      // An observable for the people list. 
@@ -39,17 +41,27 @@ export class IousComponent implements OnInit {
 
         this.currentUserData = db.list(this.path); // Attach observable to the correct path. 
         this.currentUserData.subscribe(snapshots => { // Begin observable's subscription. 
-		      this.people = [] as [User]; // Clear inventory array. 
+		      this.positive_debts = [] as [User]; // Clear inventory array. 
+          this.negative_debts = [] as [User];
+          this.settled_debts  = [] as [User];
 		      snapshots.forEach(snapshot => { // Iterate over snapshots and initialize items. 
 		        var item = new User(res.uid, snapshot.$key, this.db, snapshot.$value);
 		        item.init();
-		        this.people.push(item); // Put the items into the local array. 
-		      });
+            if(snapshot.$value > 0) {
+              this.positive_debts.push(item);
+            } else if(snapshot.$value < 0) {
+              this.negative_debts.push(item);
+            } else {
+              this.settled_debts.push(item);
+            }
+          });
 		    })
       }
       else { // User not logged in.
         // Unassign all variables storing information about the user. 
-        this.people = null;
+        this.positive_debts = null;
+        this.negative_debts = null;
+        this.settled_debts = null;
         this.currentUserData = null;
       }
     })
@@ -58,4 +70,11 @@ export class IousComponent implements OnInit {
   ngOnInit() {
   }
 
+  sortUp(arr: [User]) {
+    return arr.sort( (user_a: User, user_b: User) => Number(user_a.debt < user_b.debt) );
+  }
+
+  sortDown(arr: [User]) {
+    return arr.sort( (a,b) => Number(a.debt > b.debt));
+  }
 }
