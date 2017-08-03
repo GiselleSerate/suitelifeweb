@@ -33,6 +33,13 @@ li { // No bullet points on list items. Anywhere.
   list-style-type: none;
 }
 
+button {
+  background: $color-white;
+  color: $color-onyx;
+  border: none;
+  padding: 4px;
+}
+
 .no-select {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -47,13 +54,21 @@ li { // No bullet points on list items. Anywhere.
 /* For sizing the iframes on the preview page. */
 
 .ppt { // Ratio: width="683" height="541" 
-  height: 80vh;
-  width: 80vh*683/541;
+  // height: 80vh;
+  // width: 80vh*683/541;
+  $width: 80vw;
+  width: $width;
+  height: $width*541/683;
+  max-width: 100%;
 }
 
 .demovid { // Ratio: width="560" height="315" 
-  height: 40vh;
-  width: 40vh*560/315;
+  // height: 40vh;
+  // width: 40vh*560/315;
+  $width: 80vw;
+  width: $width;
+  height: $width*315/560;  
+  max-width: 100%;
 }
 
 .profile-pic {
@@ -79,25 +94,32 @@ li { // No bullet points on list items. Anywhere.
 
   margin: 0;
 
-  .side-button {
+  display: inline-block;
+
+  .logo {
     height: 6vh;
     width: 6vh; 
     margin: 0.5vh;
     float: left;
+    display: inline-block;
   }
 
   .masthead-name {
     height: 6vh;
     padding-top: 1vh;
+    text-align: center;
+    display: inline-block;
   }
 
   .login {
-    margin: 1.5vh 0;
     font-size: 2vh;
     float: right;
-    color: $color-onyx;
-    background-color: $color-white;
-    border: none;
+    display: inline-block;
+
+    button {
+      margin: 1.5vh 0;
+    }
+
   }
 }
 
