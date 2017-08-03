@@ -203,7 +203,9 @@ button { // Standardized format for all buttons.
 }
 
 .disclosure-header {
-  display: inline;
+  h3 {
+    display: inline;
+  }
 }
 
 /* Color the IOUs. */
