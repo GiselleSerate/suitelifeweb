@@ -6,7 +6,8 @@
       <li *ngFor="let key of SETTINGSKEYS['single']">
       	<div class="row">
       		<div class="col-xs-1">
-        		<label>{{key}}</label>
+                <!-- capitalize the text and replace dashes with spaces -->
+        		<label style="text-transform: capitalize;">{{key.replace("-"," ")}}</label>
         	</div>
         	<div class="col-xs-11">
         		<input [(ngModel)]="singlePropertySettings[key]" (keyup.enter)="updateSingleProperty(key)">
