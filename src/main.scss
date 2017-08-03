@@ -9,11 +9,11 @@
 $logo-font: 'Montserrat', sans-serif;
 /* Color scheme */
 $color-white: #f3f3f4;    // Off-white.
-$color-sprout: #BBE4C4;   // Green, for transparenting over the background.
+$color-sprout: #bbe4c4;   // Green, for transparenting over the background.
 $color-onyx: #30383a;     // "Black" for the navbar. 
 // Colors to define debts. 
 $color-debt-gray: #686e6f;
-$color-debt-red: #F11929;
+$color-debt-red: #b22745;
 $color-debt-green: #00823c;
 
 body {
@@ -37,7 +37,7 @@ button { // Standardized format for all buttons.
   background: $color-white;
   color: $color-onyx;
   border: none;
-  padding: 4px;
+  margin: 4px;
 }
 
 .no-select {
@@ -67,16 +67,22 @@ button { // Standardized format for all buttons.
   max-width: 100%;
 }
 
-.profile-pic {
+.bio-pic { // For our bios.
   float: left;
   padding: 0 4px 0 4px;
 }
 
+.profile-pic {
+  margin: 4px;
+  height:40px;
+  width:40px;
+}
 
 /* Resizing some stuff from Bootstrap because it's too big. */
 
 .row {
   width: 100%;
+  left: 0;
 }
 
 
@@ -197,26 +203,30 @@ button { // Standardized format for all buttons.
 }
 
 /* Color the IOUs. */
+.person-debt {    
 
-.debt-zero {
+  font-size: 12pt;
+
+  .debt-zero {
     color: $color-debt-gray;
-}
+  }
 
-.debt-positive {
-  color: $color-debt-red;
-}
+  .debt-positive {
+    color: $color-debt-red;
+  }
 
-.debt-negative {
-  color: $color-debt-green;
+  .debt-negative {
+    color: $color-debt-green;
+  }
 }
 
 
 /* Force font awesome icons to be the same size (e.g. checkboxes). */
 
 .fixed-width {
-    display: inline-block;
-    width: 1.25em;
-    // text-align: center;
+  display: inline-block;
+  width: 1.25em;
+  // text-align: center;
 }
 
 

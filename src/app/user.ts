@@ -18,7 +18,7 @@ export class User {
   handle: string;
   photoURL: string;
   paymentLink: string;
-  DEFAULTPHOTOURL = "/assets/iconOnly.svg";
+  DEFAULTPHOTOURL = "/assets/iconWBg.svg";
 
   constructor(currentUserID: string, userID: string, db: AngularFireDatabase)
   constructor(currentUserID: string, userID: string, db: AngularFireDatabase, debt: number)
@@ -71,7 +71,7 @@ export class User {
     });
   }
 
-  // A debt amount (which is an INT OF CENTS) to add to the debts. 
+  // A debt amount (which is actually a float of dollars) to add to the debts. 
   // To maintain the int of cents, we multiply our debt (currently a float of dollars) by 100
   // This is an amount that you are PAYING BACK. 
   // This means that if you will add this POSITIVE amount to the balance in my debts and this NEGATED amount to the other person's. 
@@ -80,6 +80,13 @@ export class User {
     this.db.object('/users/'.concat(this.currentUserID,'/debts/',this.userID)).$ref.ref.transaction(debt => debt - (amount*100));
     // Update their debt tree. 
     this.db.object('/users/'.concat(this.userID,'/debts/',this.currentUserID)).$ref.ref.transaction(debt => debt + (amount*100));
+  }
+
+  addCentsDebt(amount: number) { // Does the same thing as addDebt but takes in an INT of CENTS.
+    // Update my debt tree. 
+    this.db.object('/users/'.concat(this.currentUserID,'/debts/',this.userID)).$ref.ref.transaction(debt => debt - amount);
+    // Update their debt tree. 
+    this.db.object('/users/'.concat(this.userID,'/debts/',this.currentUserID)).$ref.ref.transaction(debt => debt + amount);
   }
 
   formatDebt(): string { // Formats debt with dollar sign and negative as a string. 
