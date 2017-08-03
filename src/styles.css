@@ -35,6 +35,13 @@ button {
   /* Non-prefixed version, currently
      supported by Chrome and Opera */ }
 
+.nav-tabs li a {
+  color: #f3f3f4; }
+  .nav-tabs li a:hover {
+    color: #30383a; }
+  .nav-tabs li a:active {
+    color: #30383a; }
+
 /* For sizing the iframes on the preview page. */
 .ppt {
   width: 80vw;
