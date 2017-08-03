@@ -50,9 +50,6 @@ export class SearchUsersComponent {
   selectUser(user: User) {
     this.userSelectedCallback(user);
     console.log("callback reached.");
-    // alert("Added user ".concat(user.name, " to your group"));
-    // this.db.list('/groups/'.concat(this.groupID)).update('members', {[user.userID]: true}); // Add other members here. 
-    // this.db.list('/users/'.concat(user.userID)).update('groups', {[this.groupID]: true});  // Add group to user.  
   }
 
   search(searchTerm: string) {
@@ -77,7 +74,7 @@ export class SearchUsersComponent {
       }).take(1);
       query.subscribe(snapshots => {
         snapshots.forEach(snapshot => {
-          // Multiply the debt by 1 since we want to retrieve THIS user's debt to them
+          // Multiply the debt by -1 since we want to retrieve THIS user's debt to them
           // The rest of these values are just what's required for the User constructor
           console.log(snapshot.photoURL);
           var debts = NaN;

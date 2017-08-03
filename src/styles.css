@@ -135,8 +135,10 @@ button {
   width: 61px;
   text-align: right; }
 
-.disclosure-header h4 {
-  display: inline; }
+.disclosure-header {
+  display: block; }
+  .disclosure-header h4 {
+    display: inline; }
 
 /* Color the IOUs. */
 .person-debt {
