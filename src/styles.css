@@ -38,6 +38,10 @@ li {
   height: 40vh;
   width: 71.1111111111vh; }
 
+.profile-pic {
+  float: left;
+  padding: 0 4px 4px 0; }
+
 /* For sizing icons on the masthead. */
 .masthead {
   z-index: 10;
