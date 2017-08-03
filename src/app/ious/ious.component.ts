@@ -24,6 +24,10 @@ export class IousComponent implements OnInit {
   positive_debts: [User];
   negative_debts: [User];
   settled_debts: [User];
+
+  showPositiveDebts = true;
+  showNegativeDebts = true;
+  showSettledDebts = true;
   
   currentUser: Observable<firebase.User>;  // An observable for the user that is logged in. 
   currentUserData: Observable<any[]>;      // An observable for the people list. 

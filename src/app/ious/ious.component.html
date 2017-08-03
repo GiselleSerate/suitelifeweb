@@ -1,20 +1,29 @@
 <h3>IOUs:</h3>
 <div class="smaller-container">
   <p *ngIf="(!positive_debts && !negative_debts && !settled_debts) || positive_debts.length + negative_debts.length + settled_debts.length == 0">You don't have any debts on record.</p>
-  <h4> People you owe </h4>
-  <ul>
+  <span class="disclosure-header" (click)="showPositiveDebts = !showPositiveDebts"> <h4> People you owe</h4>
+      <i *ngIf="!showPositiveDebts" class="fa fa-chevron-right fixed-width"></i>
+      <i *ngIf="showPositiveDebts" class="fa fa-chevron-down fixed-width"></i>
+  </span>
+  <ul *ngIf="showPositiveDebts && positive_debts">
       <li class="text" *ngFor="let person of sortUp(positive_debts)">
       <app-person-view [person] = "person"></app-person-view>
     </li>
   </ul>
-  <h4> People who owe you </h4>
-  <ul>
+  <span class="disclosure-header" (click)="showNegativeDebts = !showNegativeDebts"> <h4> People who owe you</h4>
+      <i *ngIf="!showNegativeDebts" class="fa fa-chevron-right fixed-width"></i>
+      <i *ngIf="showNegativeDebts" class="fa fa-chevron-down fixed-width"></i>
+  </span>
+  <ul *ngIf="showNegativeDebts && negative_debts">
     <li class="text" *ngFor="let person of sortDown(negative_debts)"> 
       <app-person-view [person] = "person"></app-person-view>
     </li>
   </ul>
-  <h4> Settled up </h4>
-  <ul>
+  <span class="disclosure-header" (click)="showSettledDebts= !showSettledDebts"> <h4> Settled up</h4>
+      <i *ngIf="!showSettledDebts" class="fa fa-chevron-right fixed-width"></i>
+      <i *ngIf="showSettledDebts" class="fa fa-chevron-down fixed-width"></i>
+  </span>
+  <ul *ngIf="showSettledDebts && settled_debts">
     <li class="text" *ngFor="let person of settled_debts"> 
       <app-person-view [person] = "person"></app-person-view>
     </li>
