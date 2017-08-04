@@ -219,19 +219,30 @@ export class InventoryComponent implements OnInit {
   //   // // do something
   // }
 
-  checkOut() {
+  checkOut(isCheckOut: boolean) {
     // Get a reference to the selected items
     var selectedItems = this.inventory.filter(item => item.checked);
 
     // Calculate balance to check out for. THIS IS IN CENTS.
     var balance = 0;
-    for(let item of selectedItems) {
-      balance += item.price * 100;
+
+    var share = 0;     
+
+    if(isCheckOut) {
+      for(let item of selectedItems) {
+        balance += item.price * 100;
+      }
+      if(balance > 0) { // We want integer division behavior. 
+        share = Math.floor(balance/this.group.members.length); 
+      }
+      else {
+        share = Math.ceil(balance/this.group.members.length); 
+      }
     }
 
-    var share = balance/this.group.members.length;
-
     var remainder = balance - share * this.group.members.length; // How many cents are unaccounted? 
+
+    console.log(remainder);
 
     for(let memberID of this.group.members) {
       // If it's not yourself.
@@ -239,12 +250,16 @@ export class InventoryComponent implements OnInit {
         // Construct user.
         var tempUser = new User(this.userUid, memberID, this.db);
         // Add debt. 
-        if(remainder > 0) {
-          tempUser.addCentsDebt(share + 1);
-          remainder = remainder - 1;
-        }
-        else {
-          tempUser.addCentsDebt(share);
+        if(isCheckOut) {
+          if(remainder > 0) {
+            console.log(memberID.concat(" extra cents"));
+            tempUser.addCentsDebt(share + 1);
+            remainder = remainder - 1;
+          }
+          else {
+            console.log(memberID.concat(" no extra cents"));
+            tempUser.addCentsDebt(share);
+          }
         }
       }
     }

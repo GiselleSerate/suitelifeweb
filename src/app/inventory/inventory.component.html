@@ -13,5 +13,6 @@
     </ul>
     <button (click)="addItem()">Add Item</button>
     <button (click)="deleteSelected()">Delete Selected</button>
-    <button (click)="checkOut()">Check Out</button>
+    <button *ngIf="inventoryType == 'list'" (click)="checkOut(true)">Check Out</button>
+    <button *ngIf="inventoryType == 'pantry'" (click)="checkOut(false)">We're Out</button>
 </div>
