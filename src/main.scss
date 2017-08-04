@@ -34,6 +34,14 @@ body {
   // height: auto;
 }
 
+.page-anchor {
+  position: relative;
+  a {
+    position: absolute;
+    top: calc(-7vh - 0.5px);
+  }
+}
+
 li { // No bullet points on list items. Anywhere. 
   list-style-type: none;
 }
