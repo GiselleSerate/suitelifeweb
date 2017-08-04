@@ -29,6 +29,11 @@ body {
   padding-top: -moz-calc(7vh + 0.5px); 
 }
 
+.splash {
+  width: 100%;
+  // height: auto;
+}
+
 li { // No bullet points on list items. Anywhere. 
   list-style-type: none;
 }

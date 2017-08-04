@@ -10,7 +10,8 @@
   </div>
 </div>
 
-<!-- Landing page for users who are not logged in. -->
+<!-- Landing page for users who are not logged in. --> 
+<img *ngIf="!currentUserData" src="assets/Jeni.JPG" class="splash"/>
 <div *ngIf="!currentUserData" class="row">
   <div class="col-xs-0 col-md-2"></div>
   <div class="group-container col-xs-12 col-md-8">
