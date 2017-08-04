@@ -203,7 +203,8 @@ button { // Standardized format for all buttons.
 }
 
 .disclosure-header {
-  h3 {
+  display: block;
+  h4 {
     display: inline;
   }
 }
@@ -289,4 +290,10 @@ button { // Standardized format for all buttons.
       color: $color-onyx;
     }
   }
+}
+
+/* Show hover icon */
+
+.hover {
+    cursor: pointer;
 }

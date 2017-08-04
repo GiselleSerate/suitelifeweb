@@ -1,4 +1,4 @@
-<div *ngIf="user">
+<div *ngIf="user" class="hover" [title]="user.name">
     <!-- TODO: Not hardcode size here? -->
     <img class="profile-pic" [src]="user.photoURL">
     <b>{{user.name}}</b> <i>@{{user.handle}}</i>

@@ -136,7 +136,9 @@ button {
   text-align: right; }
 
 .disclosure-header {
-  display: inline; }
+  display: block; }
+  .disclosure-header h4 {
+    display: inline; }
 
 /* Color the IOUs. */
 .person-debt {
@@ -193,5 +195,8 @@ button {
     align-content: stretch; }
     div .group-container .inventory-container button {
       color: #30383a; } }
+/* Show hover icon */
+.hover {
+  cursor: pointer; }
 
 /*# sourceMappingURL=styles.css.map */
