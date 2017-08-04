@@ -50,6 +50,20 @@ button { // Standardized format for all buttons.
                                   supported by Chrome and Opera */
 }
 
+.nav-tabs {
+  li {
+    a {
+      color: $color-white; 
+      &:hover {
+        color: $color-onyx;
+      }
+      &:active {
+        color: $color-onyx;
+      }
+    }
+  }
+}
+
 
 /* For sizing the iframes on the preview page. */
 
