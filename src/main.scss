@@ -30,8 +30,24 @@ body {
 }
 
 .splash {
-  width: 100%;
-  // height: auto;
+
+  img {
+    width: 100%;
+  }
+
+  > div {
+    position: absolute;
+    text-align: center;
+    top: 43vh;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+    background-color: red;
+
+    .splash-content {
+      background-color: blue;
+    }
+  }
 }
 
 .page-anchor {
@@ -40,6 +56,10 @@ body {
     position: absolute;
     top: calc(-7vh - 0.5px);
   }
+}
+
+.bottom-scroll {
+  margin-bottom: 30vh;
 }
 
 li { // No bullet points on list items. Anywhere. 

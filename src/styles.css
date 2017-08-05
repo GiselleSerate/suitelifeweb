@@ -11,14 +11,27 @@ body {
   padding-top: -webkit-calc(7vh + 0.5px);
   padding-top: -moz-calc(7vh + 0.5px); }
 
-.splash {
+.splash img {
   width: 100%; }
+.splash > div {
+  position: absolute;
+  text-align: center;
+  top: 43vh;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  background-color: red; }
+  .splash > div .splash-content {
+    background-color: blue; }
 
 .page-anchor {
   position: relative; }
   .page-anchor a {
     position: absolute;
     top: calc(-7vh - 0.5px); }
+
+.bottom-scroll {
+  margin-bottom: 30vh; }
 
 li {
   list-style-type: none; }
