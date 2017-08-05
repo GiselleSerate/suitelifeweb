@@ -31,21 +31,25 @@ body {
 
 .splash {
 
+  width: 100%;
+
   img {
     width: 100%;
+    max-height: 100vh;
+    object-fit: cover;
   }
 
   > div {
     position: absolute;
     text-align: center;
-    top: 43vh;
+    top: 43vh; // TODO: Fix this number for if the image does not stretch to the bottom. Is this different for a landscape image? ugh it's portrait
     left: 0;
     z-index: 3;
     width: 100%;
-    background-color: red;
 
     .splash-content {
-      background-color: blue;
+      background-color: $color-onyx;
+      color: $color-white;
     }
   }
 }

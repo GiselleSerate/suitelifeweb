@@ -11,18 +11,22 @@ body {
   padding-top: -webkit-calc(7vh + 0.5px);
   padding-top: -moz-calc(7vh + 0.5px); }
 
-.splash img {
+.splash {
   width: 100%; }
-.splash > div {
-  position: absolute;
-  text-align: center;
-  top: 43vh;
-  left: 0;
-  z-index: 3;
-  width: 100%;
-  background-color: red; }
-  .splash > div .splash-content {
-    background-color: blue; }
+  .splash img {
+    width: 100%;
+    max-height: 100vh;
+    object-fit: cover; }
+  .splash > div {
+    position: absolute;
+    text-align: center;
+    top: 43vh;
+    left: 0;
+    z-index: 3;
+    width: 100%; }
+    .splash > div .splash-content {
+      background-color: #30383a;
+      color: #f3f3f4; }
 
 .page-anchor {
   position: relative; }
