@@ -1,181 +1,192 @@
-<div class="masthead row navbar navbar-fixed-top"> <!-- masthead row  -->
-  <div class="logo">
-    <img class="logo" src="./assets/iconOnly.svg"/>
-  </div>
-  <div class="masthead-name">
-    SuiteLife
-  </div>
-  <div class="login">
-    <app-login></app-login>
-  </div>
-</div>
-
-<!-- Landing page for users who are not logged in. --> 
-<div class="splash"> <!-- TODO: Why is this so freakin small? I said 100% -->
-  <img *ngIf="!currentUserData" src="assets/Jeni.JPG"/>
-  <div class="row">
-    <div class="col-xs-4"></div>
-    <div class="col-xs-4 splash-content">
-      <h3>Try SuiteLife</h3><br>
-      <p>Please log in!</p>
-      <app-login></app-login><br>
+<body [class]="currentUserData ? 'fixed-bg' : '' ">
+  <div class="masthead row navbar navbar-fixed-top"> <!-- masthead row  -->
+    <div class="logo">
+      <img class="logo" src="./assets/iconOnly.svg"/>
     </div>
-    <div class="col-xs-4"></div>
+    <div class="masthead-name">
+      SuiteLife
+    </div>
+    <div class="login">
+      <app-login></app-login>
+    </div>
   </div>
-</div>
-<div *ngIf="!currentUserData" class="row">
-  <div class="col-xs-0 col-md-2"></div>
-  <div class="group-container col-xs-12 col-md-8">
-    <div>
 
-      <div> <!-- Menu. -->
-        <a href="#team">Team</a> <a href="#pitch">Pitch</a> <a href="#contact">Contact</a>
+  <!-- Landing page for users who are not logged in. --> 
+  <div *ngIf="!currentUserData" class="splash"> <!-- TODO: Why is this so freakin small? I said 100% -->
+    <img src="assets/Jeni.JPG"/>
+    <div class="row">
+      <div class="col-xs-4"></div>
+      <div class="col-xs-4 splash-content">
+        <h3>Try SuiteLife</h3><br>
+        <p>Please log in!</p>
+        <app-login></app-login><br>
       </div>
+      <div class="col-xs-4"></div>
+    </div>
+  </div>
 
+  <div *ngIf="!currentUserData" class="text-center"> <!-- Menu. -->
+    <ul class="nav nav-pills center-pills">
+      <li><a href="#team">Team</a></li>
+      <li><a href="#pitch">Pitch</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+  </div>
+
+  <div *ngIf="!currentUserData" class="row">
+    <div class="col-xs-0 col-md-2"></div>
+    <div class="main-container col-xs-12 col-md-8">
       <div>
-        <div class="page-anchor">
-          <a name="team"></a>
-        </div>
-        <h3>Team</h3><br>
 
         <div>
-          <div class="bio-pic">
-            <img src='assets/coleSquare.jpg' height='100px' width='100px'/>
+          <div class="page-anchor">
+            <a name="team"></a>
           </div>
+          <h3>Team</h3><br>
+
+          <div class="row">
+
+            <div class="bio col-xs-12 col-md-4">
+              <div class="bio-pic">
+                <img src='assets/coleSquare.jpg' height='200px' width='200px'/>
+              </div>
+              <p>
+                <b>Cole Kurashige</b><br>
+                Harvey Mudd College 2020<br>
+                B.S., Computer Science<br>
+                Cole’s interests greatly outnumber his free hours. His mainstays include puzzles, music, <a href="https://codegolf.stackexchange.com/users/42833/cole">programming puzzles and code golf</a>, hackathons, and writing way too much. If he’s not working on a some sort of related project, he’s probably <a href="https://en.wikipedia.org/wiki/Freeline_skates">freelining</a> or playing a video game.<br>
+                <br>
+              </p>
+            </div>
+
+            <div class="bio col-xs-12 col-md-4">
+              <div class="bio-pic">
+                <img src='assets/giselleSquare.jpg' height='200px' width='200px'/>
+              </div>
+              <p>
+                <b>Giselle Serate</b><br>
+                Harvey Mudd College 2020<br>
+                B.S., Computer Science<br>
+                When not hunting bugs through various personal projects, Giselle can be found with Frosh Band, where she is a vocalist and guitarist. She also has a passion for duct tape (which fixes everything) and fountain pens (for edge cases not handled by the above). <br>
+                <br>
+              </p>
+            </div>
+
+            <div class="bio col-xs-12 col-md-4">
+              <div class="bio-pic">
+                <img src='assets/jeniSquare.jpg' height='200px' width='200px'/>
+              </div>
+              <p>
+                <b>Jennifer "Jeni" Zhu</b><br>
+                Harvey Mudd College 2020<br>
+                B.S., Applied Chemistry<br>
+                Concentration in Economics<br>
+                Jeni sees creativity as the spice of life. She enjoys traveling and crafting. Some of her recent endeavors have been in modern calligraphy and watercoloring. She never goes anywhere without her planner and has a collection of pens! <br>
+                <br>  
+              </p>
+            </div>
+
+          </div>
+
           <p>
-            <b>Cole Kurashige</b><br>
-            Harvey Mudd College 2020<br>
-            B.S., Computer Science<br>
-            Cole’s interests greatly outnumber his free hours. His mainstays include puzzles, music, <a href="https://codegolf.stackexchange.com/users/42833/cole">programming puzzles and code golf</a>, hackathons, and writing way too much. If he’s not working on a some sort of related project, he’s probably <a href="https://en.wikipedia.org/wiki/Freeline_skates">freelining</a> or playing a video game.<br>
+            <b>The SuiteLife team would also like to thank our advisors over Summer 2017:</b><br>
+            <a href='https://www.cs.hmc.edu/~dodds/'>Zachary Dodds</a><br>
+            Harvey Mudd College, Professor of Computer Science<br>  
+            <a href='http://pages.hmc.edu/evans/'>Gary Evans</a><br>
+            Harvey Mudd College, Professor of Economics and Entrepreneurial Leadership<br>
+            <a href='http://blogs.hmc.edu/lewis/'>Colleen Lewis</a><br>
+            Harvey Mudd College, Assistant Professor of Computer Science<br>
             <br>
           </p>
         </div>
 
         <div>
-          <div class="bio-pic">
-            <img src='assets/giselleSquare.jpg' height='100px' width='100px'/>
+          <div class="page-anchor">
+            <a name="pitch"></a>
           </div>
-          <p>
-            <b>Giselle Serate</b><br>
-            Harvey Mudd College 2020<br>
-            B.S., Computer Science<br>
-            When not hunting bugs through various personal projects, Giselle can be found with Frosh Band, where she is a vocalist and guitarist. She also has a passion for duct tape (which fixes everything) and fountain pens (for edge cases not handled by the above). <br>
-            <br>
-          </p>
-        </div>
+          <h3>Pitch</h3><br>
+          <p>SuiteLife is here to provide a platform for communal living. As population growth outpaces housing availability, SuiteLife believes a greater percentage of the population will find themselves in shared housing. We know sharing space might be easy, but keeping track of all the unique aspects of living with others isn’t! Inspired by campus residential life at Harvey Mudd College, the SuiteLife team has put together both an iOS and a web application to be platforms that encourage communication among members of shared housing.</p>
+          <div align="center">
+            <iframe class="ppt" src="https://docs.google.com/presentation/d/1Jox9v1jK5mM0h3TSEoEmokAN40luu96M7IR5Dv6nbm4/embed?start=true&loop=true&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+          </div><br>
+          <div align="center">
+            <iframe class="demovid" src="https://www.youtube.com/embed/9DwESflXZek" frameborder="0" allowfullscreen></iframe>
+          </div><br>
+        </div><br>
 
-        <div>
-          <div class="bio-pic">
-            <img src='assets/jeniSquare.jpg' height='100px' width='100px'/>
+        <div class="bottom-scroll">
+          <div class="page-anchor">
+            <a name="contact"></a>
           </div>
+          <h3>Contact Us</h3><br>
           <p>
-            <b>Jennifer "Jeni" Zhu</b><br>
-            Harvey Mudd College 2020<br>
-            B.S., Applied Chemistry<br>
-            Concentration in Economics<br>
-            Jeni sees creativity as the spice of life. She enjoys traveling and crafting. Some of her recent endeavors have been in modern calligraphy and watercoloring. She never goes anywhere without her planner and has a collection of pens! <br>
-            <br>  
+            We'd appreciate feedback on any and all aspects of SuiteLife, whether you've heard us present somewhere or are just trying out our web app. Please visit the following links to give us comments.<br>
+            <a href="https://goo.gl/forms/ZDRYWrn1zdE4KUmc2">Comments on our presentation</a><br>
+            <a href="https://goo.gl/forms/LkvzfS554y7gcSf43">Comments on our website or app</a>
           </p>
-        </div>
-
-        <p>
-          <b>The SuiteLife team would also like to thank our advisors over Summer 2017:</b><br>
-          <a href='https://www.cs.hmc.edu/~dodds/'>Zachary Dodds</a><br>
-          Harvey Mudd College, Professor of Computer Science<br>  
-          <a href='http://pages.hmc.edu/evans/'>Gary Evans</a><br>
-          Harvey Mudd College, Professor of Economics and Entrepreneurial Leadership<br>
-          <a href='http://blogs.hmc.edu/lewis/'>Colleen Lewis</a><br>
-          Harvey Mudd College, Assistant Professor of Computer Science<br>
-          <br>
-        </p>
-      </div>
-
-      <div>
-        <div class="page-anchor">
-          <a name="pitch"></a>
-        </div>
-        <h3>Pitch</h3><br>
-        <p>SuiteLife is here to provide a platform for communal living. As population growth outpaces housing availability, SuiteLife believes a greater percentage of the population will find themselves in shared housing. We know sharing space might be easy, but keeping track of all the unique aspects of living with others isn’t! Inspired by campus residential life at Harvey Mudd College, the SuiteLife team has put together both an iOS and a web application to be platforms that encourage communication among members of shared housing.</p>
-        <div align="center">
-          <iframe class="ppt" src="https://docs.google.com/presentation/d/1Jox9v1jK5mM0h3TSEoEmokAN40luu96M7IR5Dv6nbm4/embed?start=true&loop=true&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
         </div><br>
-        <div align="center">
-          <iframe class="demovid" src="https://www.youtube.com/embed/9DwESflXZek" frameborder="0" allowfullscreen></iframe>
-        </div><br>
-      </div><br>
 
-      <div>
-        <div class="page-anchor">
-          <a name="contact"></a>
-        </div>
-        <h3>Give Us Feedback</h3><br>
-        <p>
-          <a href="https://goo.gl/forms/ZDRYWrn1zdE4KUmc2">Comments on our presentation</a><br>
-          <a href="https://goo.gl/forms/LkvzfS554y7gcSf43">Comments on our website or app</a>
-        </p>
-      </div><br>
-
-    </div>
-  </div>
-  <div class="col-xs-0 col-md-2"></div>
-  <div class="bottom-scroll">&nbsp;</div>
-</div>
-
-<div *ngIf="currentUserData && !userExists" class="row">
-  <div class="col-xs-1 col-md-2"></div>
-  <div class="col-xs-10 col-md-8">
-    <app-settings [isUserCreation]="true"></app-settings>
-  </div>
-  <div class="col-xs-1 col-md-2"></div>
-</div>
-
-<ul *ngIf="currentUserData && userExists" class="nav nav-tabs nav-justified">
-  <li class="active"><a data-toggle="tab" href="#home">Inventory</a></li>
-  <li><a data-toggle="tab" href="#menu1">IOUs</a></li>
-  <li><a data-toggle="tab" href="#settings">Settings</a></li>
-</ul>
-
-<div *ngIf="currentUserData && userExists" class="tab-content">
-  <!-- INVENTORY CONTENT GOES BELOW THIS -->
-  <div id="home" class="tab-pane fade in active">
-
-    <div *ngFor="let group of groups" class="row">
-      <div class="col-xs-1 col-md-2"></div> <!-- Groups spacer. -->
-      <div class="group-container col-xs-10 col-md-8">
-        <h3>{{group.name}}</h3><br>
-        <div class="inventory-container">
-          <div class="col-xs-0 col-md-1"></div> <!-- Inventory spacer (has transparent background). -->
-          <app-inventory class="inventory-list col-xs-12 col-md-5" [inventoryType]="'list'" [group]="group"></app-inventory>
-          <app-inventory class="inventory-pantry col-xs-12 col-md-5"[inventoryType]="'pantry'" [group]="group"></app-inventory>
-          <div class="col-xs-0 col-md-1"></div> <!-- Inventory spacer (has transparent background). -->
-        </div>
       </div>
-      <div class="col-xs-1 col-md-2"></div> <!-- Groups spacer. -->
     </div>
+    <div class="col-xs-0 col-md-2"></div>
   </div>
 
-  <!-- IOUS CONTENT GOES BELOW THIS -->
-  <div id="menu1" class="tab-pane fade">
-    <div *ngIf="currentUserData" class="row">
-      <div class="col-xs-1 col-md-2"></div> <!-- IOUs spacer. -->
-      <app-ious class="group-container col-xs-10 col-md-8"></app-ious>
-      <div class="col-xs-1 col-md-2"></div> <!-- IOUs spacer. -->
+  <div *ngIf="currentUserData && !userExists" class="row">
+    <div class="col-xs-1 col-md-2"></div>
+    <div class="col-xs-10 col-md-8">
+      <app-settings [isUserCreation]="true"></app-settings>
     </div>
+    <div class="col-xs-1 col-md-2"></div>
   </div>
 
-  <!-- SETTINGS CONTENT GOES BELOW THIS -->
-  <!-- Perhaps temporary home for Settings -->
-  <div id="settings" class="tab-pane fade">
-    <div *ngIf="currentUserData" class="row">
-      <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
-      <app-settings class="col-xs-10 col-md-8" [isUserCreation]="false"></app-settings>
-      <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
-    </div>
-    <div *ngIf="currentUserData" class="row">
-      <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
-      <app-groups-edit class="col-xs-10 col-md-8" [groups]="groups"></app-groups-edit>
-      <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
-    </div>
-  </div>
+  <ul *ngIf="currentUserData && userExists" class="nav nav-tabs nav-justified">
+    <li class="active"><a data-toggle="tab" href="#home">Inventory</a></li>
+    <li><a data-toggle="tab" href="#menu1">IOUs</a></li>
+    <li><a data-toggle="tab" href="#settings">Settings</a></li>
+  </ul>
 
-</div>
+  <div *ngIf="currentUserData && userExists" class="tab-content">
+    <!-- INVENTORY CONTENT GOES BELOW THIS -->
+    <div id="home" class="tab-pane fade in active">
+
+      <div *ngFor="let group of groups" class="row">
+        <div class="col-xs-1 col-md-2"></div> <!-- Groups spacer. -->
+        <div class="group-container col-xs-10 col-md-8">
+          <h3>{{group.name}}</h3><br>
+          <div class="inventory-container">
+            <div class="col-xs-0 col-md-1"></div> <!-- Inventory spacer (has transparent background). -->
+            <app-inventory class="inventory-list col-xs-12 col-md-5" [inventoryType]="'list'" [group]="group"></app-inventory>
+            <app-inventory class="inventory-pantry col-xs-12 col-md-5"[inventoryType]="'pantry'" [group]="group"></app-inventory>
+            <div class="col-xs-0 col-md-1"></div> <!-- Inventory spacer (has transparent background). -->
+          </div>
+        </div>
+        <div class="col-xs-1 col-md-2"></div> <!-- Groups spacer. -->
+      </div>
+    </div>
+
+    <!-- IOUS CONTENT GOES BELOW THIS -->
+    <div id="menu1" class="tab-pane fade">
+      <div *ngIf="currentUserData" class="row">
+        <div class="col-xs-1 col-md-2"></div> <!-- IOUs spacer. -->
+        <app-ious class="group-container col-xs-10 col-md-8"></app-ious>
+        <div class="col-xs-1 col-md-2"></div> <!-- IOUs spacer. -->
+      </div>
+    </div>
+
+    <!-- SETTINGS CONTENT GOES BELOW THIS -->
+    <!-- Perhaps temporary home for Settings -->
+    <div id="settings" class="tab-pane fade">
+      <div *ngIf="currentUserData" class="row">
+        <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
+        <app-settings class="col-xs-10 col-md-8" [isUserCreation]="false"></app-settings>
+        <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
+      </div>
+      <div *ngIf="currentUserData" class="row">
+        <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
+        <app-groups-edit class="col-xs-10 col-md-8" [groups]="groups"></app-groups-edit>
+        <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
+      </div>
+    </div>
+
+  </div>
+</body>
