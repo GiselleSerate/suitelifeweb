@@ -57,6 +57,10 @@ body {
     .splash-content {
       background-color: $color-onyx;
       color: $color-white;
+
+      h3 {
+        font-size: 20px;
+      }
     }
   }
 }
@@ -260,6 +264,10 @@ button { // Standardized format for all buttons.
   color: $color-white;
 }
 
+.mobile-margin {
+  margin-left: 10px;
+}
+
 .list-pantry {
   touch-action: none;
 }
@@ -313,7 +321,7 @@ button { // Standardized format for all buttons.
 /* Draggy handle padding to make its hitbox larger. */
 
 .handle {
-  padding: 4px;
+  padding: -4px;
 }
 
 
@@ -361,6 +369,20 @@ button { // Standardized format for all buttons.
     align-content: stretch;
     button {
       color: $color-onyx;
+    }
+  }
+
+  .mobile-margin {
+    margin-left: 0;
+  }
+
+  .splash {
+    > div {
+      .splash-content {
+        h3 {
+          font-size: 40px;
+        }
+      }
     }
   }
 }

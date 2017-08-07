@@ -32,6 +32,8 @@ body {
     .splash > div .splash-content {
       background-color: #30383a;
       color: #f3f3f4; }
+      .splash > div .splash-content h3 {
+        font-size: 20px; }
 
 .nav-pills {
   display: flex;
@@ -173,6 +175,9 @@ button {
   background: rgba(255, 255, 255, 0);
   color: #f3f3f4; }
 
+.mobile-margin {
+  margin-left: 10px; }
+
 .list-pantry {
   touch-action: none; }
 
@@ -206,7 +211,7 @@ button {
 
 /* Draggy handle padding to make its hitbox larger. */
 .handle {
-  padding: 4px; }
+  padding: -4px; }
 
 /* Copying dragula.css code because actual importing is hard. */
 .gu-mirror {
@@ -243,7 +248,13 @@ button {
     flex-wrap: nowrap;
     align-content: stretch; }
     div .group-container .inventory-container button, div .main-container .inventory-container button {
-      color: #30383a; } }
+      color: #30383a; }
+
+  .mobile-margin {
+    margin-left: 0; }
+
+  .splash > div .splash-content h3 {
+    font-size: 40px; } }
 /* Show hover icon */
 .hover {
   cursor: pointer; }
