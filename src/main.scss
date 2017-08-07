@@ -23,7 +23,7 @@ body {
   height: 100%;
   color: $color-onyx;
 
-  margin-top: 50px; // Spacer.
+  margin-top: 7vh; // Spacer.
 }
 
 .fixed-bg { // EXtenddd???
@@ -33,7 +33,7 @@ body {
   height: 100%;
   color: $color-onyx;
 
-  margin-top: 50px;
+  margin-top: 7vh;
 }
 
 .splash {
@@ -373,7 +373,7 @@ button { // Standardized format for all buttons.
   }
 
   .mobile-margin {
-    margin-left: 0;
+    margin: 0;
   }
 
   .splash {
