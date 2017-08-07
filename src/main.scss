@@ -56,7 +56,7 @@ body {
     left: 3vh;
 
     .splash-content {
-      background-color: $color-onyx;
+      background-color: rgba($color-onyx, 0.5);
       color: $color-white;
 
       h3 {
