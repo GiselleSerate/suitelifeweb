@@ -1,5 +1,5 @@
 <body [class]="currentUserData ? 'fixed-bg' : '' ">
-  <div class="masthead row navbar navbar-fixed-top"> <!-- masthead row  -->
+  <div class="masthead row navbar navbar-fixed-top">
     <div class="logo">
       <img class="logo" src="./assets/iconOnly.svg"/>
     </div>
@@ -13,13 +13,14 @@
 
   <!-- Landing page for users who are not logged in. --> 
   <div *ngIf="!currentUserData" class="splash">
-    <img src="assets/Jeni.JPG"/>
+    <img src="assets/background.jpeg"/>
     <div class="row">
       <div class="col-xs-4"></div>
       <div class="col-xs-4 splash-content">
         <h3>Try SuiteLife</h3><br>
         <p>Please log in!</p>
         <app-login></app-login><br>
+        <br>
       </div>
       <div class="col-xs-4"></div>
     </div>

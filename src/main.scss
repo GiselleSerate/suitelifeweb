@@ -22,8 +22,8 @@ body {
   width: 100%;
   height: 100%;
   color: $color-onyx;
-
-  margin-top: 7vh; // Spacer.
+  margin: 7vh 0 0 0;
+  // margin-top: 7vh; // Spacer.
 }
 
 .fixed-bg { // EXtenddd???
@@ -47,12 +47,13 @@ body {
   }
 
   > div {
+    width: 100%;
     position: absolute;
     text-align: center;
-    top: 43vh; // TODO: Fix this number for if the image does not stretch to the bottom. Is this different for a landscape image? ugh it's portrait
-    left: 0;
+    top: 35vh; // TODO: Fix this number for if the image does not stretch to the bottom. Is this different for a landscape image? ugh it's portrait
+
     z-index: 3;
-    width: 100%;
+    left: 3vh;
 
     .splash-content {
       background-color: $color-onyx;
@@ -124,14 +125,14 @@ button { // Standardized format for all buttons.
   $width: 80vw;
   width: $width;
   height: $width*541/683;
-  max-width: 100%;
+  max-width: 65%;
 }
 
 .demovid { // Ratio: width="560" height="315" 
   $width: 80vw;
   width: $width;
   height: $width*315/560;  
-  max-width: 100%;
+  max-width: 65%;
 }
 
 .bio {
@@ -265,7 +266,8 @@ button { // Standardized format for all buttons.
 }
 
 .mobile-margin {
-  margin-left: 10px;
+  margin: auto;
+  width: 100%;
 }
 
 .list-pantry {

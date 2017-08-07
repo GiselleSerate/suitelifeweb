@@ -80,7 +80,7 @@ export class GroupViewComponent implements OnInit {
   generateSelectUserCallback() {
     var that = this;
     return function(user: User) {
-      alert("Added user ".concat(user.name, " to the group ", that.group.groupID, " ", that.localName));
+      alert("Added user ".concat(user.name, " to the group ", that.localName));
       this.db.object('/groups/'.concat(that.group.groupID,'/members/',user.userID)).set(true); // Add user to group
       this.db.object('/users/'.concat(user.userID,'/groups/',that.group.groupID)).set(true);  // Add group to user.  
     }

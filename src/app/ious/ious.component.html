@@ -1,6 +1,5 @@
 <h3>IOUs:</h3>
 <div class="smaller-container">
-  <p *ngIf="(!positive_debts && !negative_debts && !settled_debts) || positive_debts.length + negative_debts.length + settled_debts.length == 0">You don't have any debts on record.</p>
   <span class="disclosure-header" (click)="showPositiveDebts = !showPositiveDebts"> <h4> People you owe ({{positive_debts.length}})</h4>
       <i *ngIf="!showPositiveDebts" class="fa fa-chevron-right fixed-width"></i>
       <i *ngIf="showPositiveDebts" class="fa fa-chevron-down fixed-width"></i>
