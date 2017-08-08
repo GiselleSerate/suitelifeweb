@@ -23,6 +23,7 @@ export class PersonViewComponent implements OnInit {
 
   toggleFocus() { // Toggle focus.
     this.isFocused = !this.isFocused;
+    console.log(this.person.paymentLink);
   }
 
   setFocus(focus: boolean) {

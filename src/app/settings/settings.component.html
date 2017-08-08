@@ -6,8 +6,8 @@
       <li *ngFor="let key of SETTINGSKEYS['single']">
         <div class="row">
           <br>
-            <!-- capitalize the text and replace dashes with spaces -->
-            <label style="text-transform: capitalize;">{{key.replace("-"," ")}}</label>
+            <!-- capitalize the text and add space in Payment Link -->
+            <label style="text-transform: capitalize;">{{key.replace("tL","t L")}}</label>
             <br>
             <input style="margin-left: 15px;"[(ngModel)]="singlePropertySettings[key]" (keyup.enter)="updateSingleProperty(key)">
           <button *ngIf="!isUserCreation" (click)="updateSingleProperty(key)">Update</button>
