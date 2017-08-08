@@ -1,4 +1,5 @@
 <body [class]="currentUserData ? 'fixed-bg' : '' ">
+  <!-- Masthead for entire page. Always display. -->
   <div class="masthead row navbar navbar-fixed-top">
     <div class="logo">
       <img class="logo" src="./assets/iconOnly.svg"/>
@@ -25,7 +26,8 @@
     </div>
   </div>
 
-  <div *ngIf="!currentUserData" class="text-center"> <!-- Menu. -->
+  <!-- Anchor menu for users who are not logged in. -->
+  <div *ngIf="!currentUserData" class="text-center"> 
     <ul class="nav nav-pills center-pills">
       <li><a href="#team">Team</a></li>
       <li><a href="#pitch">Pitch</a></li>
@@ -33,11 +35,13 @@
     </ul>
   </div>
 
+  <!-- Content of about page for users who are not logged in. -->
   <div *ngIf="!currentUserData" class="row mobile-margin">
     <div class="col-xs-0 col-md-2"></div>
     <div class="main-container col-xs-12 col-md-8">
       <div>
 
+        <!-- Team. -->
         <div>
           <div class="page-anchor">
             <a name="team"></a>
@@ -100,6 +104,7 @@
           </p>
         </div>
 
+        <!-- Pitch. -->
         <div>
           <div class="page-anchor">
             <a name="pitch"></a>
@@ -114,6 +119,7 @@
           </div><br>
         </div><br>
 
+        <!-- Contact. -->
         <div class="bottom-scroll">
           <div class="page-anchor">
             <a name="contact"></a>
@@ -131,6 +137,7 @@
     <div class="col-xs-0 col-md-2"></div>
   </div>
 
+  <!-- User creation dialog for users who are logged in but have not created an account. -->
   <div *ngIf="currentUserData && !userExists" class="row">
     <div class="col-xs-1 col-md-2"></div>
     <div class="col-xs-10 col-md-8">
@@ -139,52 +146,55 @@
     <div class="col-xs-1 col-md-2"></div>
   </div>
 
+  <!-- Tabs for authenticated SuiteLife users. -->
   <ul *ngIf="currentUserData && userExists" class="nav nav-tabs nav-justified">
     <li class="active"><a data-toggle="tab" href="#home">Inventory</a></li>
     <li><a data-toggle="tab" href="#menu1">IOUs</a></li>
     <li><a data-toggle="tab" href="#settings">Settings</a></li>
   </ul>
 
+  <!-- Content for authenticated SuiteLife users. -->
   <div *ngIf="currentUserData && userExists" class="tab-content">
-    <!-- INVENTORY CONTENT GOES BELOW THIS -->
+    <!-- Inventory content. -->
     <div id="home" class="tab-pane fade in active">
 
       <div *ngFor="let group of groups" class="row">
-        <div class="col-xs-1 col-md-2"></div> <!-- Groups spacer. -->
+        <div class="col-xs-1 col-md-2"></div> <!-- Spacer around inventories (has transparent background). -->
         <div class="group-container col-xs-10 col-md-8">
           <h3>{{group.name}}</h3><br>
           <div class="inventory-container">
-            <div class="col-xs-0 col-md-1"></div> <!-- Inventory spacer (has transparent background). -->
+            <div class="col-xs-0 col-md-1"></div> <!-- Spacer around each inventory (has green background). -->
             <app-inventory class="inventory-list col-xs-12 col-md-5" [inventoryType]="'list'" [group]="group"></app-inventory>
             <app-inventory class="inventory-pantry col-xs-12 col-md-5"[inventoryType]="'pantry'" [group]="group"></app-inventory>
-            <div class="col-xs-0 col-md-1"></div> <!-- Inventory spacer (has transparent background). -->
+            <div class="col-xs-0 col-md-1"></div> <!-- Spacer around each inventory (has green background). -->
           </div>
         </div>
-        <div class="col-xs-1 col-md-2"></div> <!-- Groups spacer. -->
+        <div class="col-xs-1 col-md-2"></div> <!-- Spacer around inventories (has transparent background). -->
       </div>
     </div>
 
-    <!-- IOUS CONTENT GOES BELOW THIS -->
+    <!-- IOUs content. -->
     <div id="menu1" class="tab-pane fade">
       <div *ngIf="currentUserData" class="row">
-        <div class="col-xs-1 col-md-2"></div> <!-- IOUs spacer. -->
+        <div class="col-xs-1 col-md-2"></div> <!-- Spacer. -->
         <app-ious class="group-container col-xs-10 col-md-8"></app-ious>
-        <div class="col-xs-1 col-md-2"></div> <!-- IOUs spacer. -->
+        <div class="col-xs-1 col-md-2"></div> <!-- Spacer. -->
       </div>
     </div>
 
-    <!-- SETTINGS CONTENT GOES BELOW THIS -->
-    <!-- Perhaps temporary home for Settings -->
+    <!-- Settings content. -->
     <div id="settings" class="tab-pane fade">
+      <!-- User settings. -->
       <div *ngIf="currentUserData" class="row">
-        <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
+        <div class="col-xs-1 col-md-2"></div> <!-- Spacer. -->
         <app-settings class="col-xs-10 col-md-8" [isUserCreation]="false"></app-settings>
-        <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
+        <div class="col-xs-1 col-md-2"></div> <!-- Spacer. -->
       </div>
+      <!-- Group settings. -->
       <div *ngIf="currentUserData" class="row">
-        <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
+        <div class="col-xs-1 col-md-2"></div> <!-- Spacer. -->
         <app-groups-edit class="col-xs-10 col-md-8" [groups]="groups"></app-groups-edit>
-        <div class="col-xs-1 col-md-2"></div> <!-- Settings spacer. -->
+        <div class="col-xs-1 col-md-2"></div> <!-- Spacer. -->
       </div>
     </div>
 
