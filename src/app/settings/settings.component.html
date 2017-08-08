@@ -14,7 +14,8 @@
         </div>
       </li>
       <!-- TODO: no hacky here -->
-      <div style="margin-left: -15px;">Note that the payment link requires a full URL (including the <code>https://</code>). If you specify an invalid link, it won't work.</div>
+      <div style="margin-left: -15px;">Third party payment companies currently supported: <a href="https://paypal.me" target="_blank">https://paypal.me/</a> and <a href="https://venmo.com/" target="_blank">https://venmo.com/</a>. <br>
+      Note that the payment link requires a full URL (including the <code>https://</code>). If you specify an invalid link, it won't work.</div>
     </ul>
     <button *ngIf="isUserCreation" (click)="updateAllProperties()">Continue</button>
 </div>
