@@ -34,9 +34,6 @@ export class AppComponent {
 
     this.currentUser.subscribe(res => {   // This callback block happens upon login or logout. 
       if(res && res.uid) { // User logged in.
-        //TODO: Remove this line once we've got photoURLs for most of our users
-        this.db.object('/users/'.concat(res.uid,'/','photoURL')).set(res.photoURL);
-
         this.matchingUsers = this.db.list('/users/', { query: {
           orderByKey: !null,
           equalTo: res.uid
