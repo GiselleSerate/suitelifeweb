@@ -25,6 +25,7 @@ body {
   margin: 7vh 0 0 0;
   // margin-top: 7vh; // Spacer.
   font-family: $logo-font;
+  font-size: 12pt;
 }
 
 .fixed-bg { // EXtenddd???
@@ -36,6 +37,13 @@ body {
 
   margin-top: 7vh;
 }
+
+
+.larger {
+  font-weight: bold;
+  font-size: 14pt;
+}
+
 
 .splash {
 
@@ -151,6 +159,10 @@ button { // Standardized format for all buttons.
   .bio-pic { // For our bios.
     float: left;
     padding-right: 4px;
+  }
+  .bio-info {
+    font-style: italic;
+    color: rgba($color-white, 0.7);
   }
 }
 

@@ -7,7 +7,8 @@ body {
   height: 100%;
   color: #30383a;
   margin: 7vh 0 0 0;
-  font-family: "Montserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif;
+  font-size: 12pt; }
 
 .fixed-bg {
   background: #30383a url(assets/cityscape.svg) repeat-x fixed bottom;
@@ -16,6 +17,10 @@ body {
   height: 100%;
   color: #30383a;
   margin-top: 7vh; }
+
+.larger {
+  font-weight: bold;
+  font-size: 14pt; }
 
 .splash {
   width: 100%; }
@@ -102,6 +107,9 @@ button {
   .bio .bio-pic {
     float: left;
     padding-right: 4px; }
+  .bio .bio-info {
+    font-style: italic;
+    color: rgba(243, 243, 244, 0.7); }
 
 .profile-pic {
   margin: 4px;
