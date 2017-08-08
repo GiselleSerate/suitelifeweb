@@ -7,7 +7,7 @@
         <div class="row">
           <br>
             <!-- capitalize the text and add space in Payment Link -->
-            <label style="text-transform: capitalize;">{{key.replace("tL","t L")}}</label>
+            <label style="text-transform: capitalize;">{{key.match(new RegExp('.[^A-Z]+(?=[A-Z]|$)','g').reduce( (a,b) => return a.concat(" ", b);))}}</label>
             <br>
             <input style="margin-left: 15px;"[(ngModel)]="singlePropertySettings[key]" (keyup.enter)="updateSingleProperty(key)">
           <button *ngIf="!isUserCreation" (click)="updateSingleProperty(key)">Update</button>
