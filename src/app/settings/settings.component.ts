@@ -22,6 +22,7 @@ import { User } from '../user'
 export class SettingsComponent implements OnInit {
 
   SETTINGSKEYS = {'single': ['handle','name','location', 'paymentLink'], 'multiple': ['dietaryPreferences']};
+  SETTINGSNAMES = {'handle': 'Handle', 'name': 'Name', 'location': 'Location', 'paymentLink': 'Payment Link'};
   VALIDATESETTINGS = {'paymentLink': this.validatePaymentLink}
   UNIQUESETTINGS = ['handle'];
   currentUser: Observable<firebase.User>;
